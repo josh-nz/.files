@@ -1,9 +1,5 @@
 bind "set completion-ignore-case on"
 
-#if [ -f `brew --prefix`/etc/bash_completion ]; then
-#	. `brew --prefix`/etc/bash_completion
-#fi
-
 source $HOME/.shellrc
 
 # define colors
@@ -34,7 +30,6 @@ C_BG_CYAN="\[\033[46m\]"
 C_BG_WHITE="\[\033[47m\]"
 
 # multi line prompt
-#export PS1="\n$C_LIGHTGREEN\u$C_DARKGRAY@$C_BLUE\h$C_DARKGRAY#\$(~/.rvm/bin/rvm-prompt): $C_LIGHTYELLOW\w \$(__git_ps1 '(%s)')\n$C_DARKGRAY\$$C_DEFAULT "
 export PS1="\n$C_BOLDGREEN\u$C_BOLDBLACK@$C_BLUE\h$C_BOLDBLACK#\$(~/.rvm/bin/rvm-prompt): $C_BOLDYELLOW\w\n$C_BOLDBLACK\$$C_DEFAULT "
 
 function take {

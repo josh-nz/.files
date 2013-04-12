@@ -4,8 +4,6 @@ alias ls='ls -aF'
 alias cdl='cd -'
 alias h=history
 alias o=open
-#alias temacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
-#alias cemacs='open -a Emacs'
 
 export CLICOLOR=1
 # for light background
@@ -19,8 +17,5 @@ export PATH="/usr/local/bin:$PATH:/usr/local/sbin"
 # Add local script path at the front
 export PATH="$HOME/bin:$PATH"
 
-# This loads RVM into a shell sessionXC
+# This loads RVM into a shell session
 [[ -s "/Users/josh/.rvm/scripts/rvm" ]] && source "/Users/josh/.rvm/scripts/rvm"
-
-# Add rubygems to loadpath so 'require 'rubygems'' is not required
-#export RUBYOPT=rubygems
