@@ -17,5 +17,8 @@ export PATH="/usr/local/bin:$PATH:/usr/local/sbin"
 # Add local script path at the front
 export PATH="$HOME/bin:$PATH"
 
+# Add nodejs bin path at end
+export PATH="$PATH:/usr/local/share/npm/bin"
+
 # This loads RVM into a shell session
 [[ -s "/Users/josh/.rvm/scripts/rvm" ]] && source "/Users/josh/.rvm/scripts/rvm"
