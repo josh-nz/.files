@@ -10,7 +10,7 @@
 
 dir=~/.files                    # dotfiles directory
 olddir=$dir/_dotfiles_old             # old dotfiles backup directory
-files="bash_profile emacs.d shellrc tmux.conf zshrc"    # list of files/folders to symlink in homedir
+files="bash_profile emacs.d shellrc ruby-version tmux.conf zshrc"    # list of files/folders to symlink in homedir
 
 ##########
 

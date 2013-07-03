@@ -20,5 +20,5 @@ export PATH="$HOME/bin:$PATH"
 # Add nodejs bin path at end
 export PATH="$PATH:/usr/local/share/npm/bin"
 
-# This loads RVM into a shell session
-[[ -s "/Users/josh/.rvm/scripts/rvm" ]] && source "/Users/josh/.rvm/scripts/rvm"
+source /usr/local/opt/chruby/share/chruby/chruby.sh
+source /usr/local/opt/chruby/share/chruby/auto.sh

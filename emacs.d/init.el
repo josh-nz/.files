@@ -78,6 +78,9 @@
 
 (setq whitespace-style '(face tabs spaces trailing lines-tail newline indentation empty space-before-tab space-after-tab space-mark tab-mark newline-mark))
 
+; Don't let the cursor go into minibuffer prompt
+(setq minibuffer-prompt-properties (quote (read-only t point-entered minibuffer-avoid-prompt face minibuffer-prompt)))
+
 ; Copy env variables from shell on OSX
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))

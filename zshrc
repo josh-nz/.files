@@ -33,32 +33,15 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
-# If the prompt displays the current directory as "~rvm_rvmrc_cwd", the fix to
-# add the following to your shell file before sourcing rvm:
-unsetopt auto_name_dirs
-
 source $HOME/.shellrc
 
-# When using iTerm2's feature allowing you to open new tabs / windows and
-# "Reuse Previous Tab's Directory" then we need the following:
-__rvm_project_rvmrc
-
-
 # My bash theme ported to ZSH:
-
-# Get the current ruby version in use with RVM:
-if [ -e ~/.rvm/bin/rvm-prompt ]; then
-    RUBY_PROMPT_="%{$fg_bold[black]%}#\$(~/.rvm/bin/rvm-prompt)"
-else
-  if which rbenv &> /dev/null; then
-    RUBY_PROMPT_="%{$fg_bold[black]%}#\$(rbenv version | sed -e 's/ (set.*$//')"
-  fi
-fi
-
+# eg josh@mpb
 HOST_PROMPT_="%{$fg_bold[green]%}%n%{$fg_bold[black]%}@%{$fg[blue]%}%m%{$reset_color%}"
-PATH_PROMPT="%{$fg_bold[yellow]%}%~%{$reset_color%}"
 GIT_PROMPT="\$(git_prompt_info)"
-precmd() { print -rP "$HOST_PROMPT_$RUBY_PROMPT_$GIT_PROMPT $PATH_PROMPT" }
+# eg ~/code
+PATH_PROMPT="%{$fg_bold[yellow]%}%~%{$reset_color%}"
+precmd() { print -rP "$HOST_PROMPT_$GIT_PROMPT $PATH_PROMPT" }
 PROMPT="%{$fg_bold[black]%}\$%{$reset_color%} "
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[black]%}#"
