@@ -16,16 +16,6 @@
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
 
-; There is a small bug in Emacs24’s package.el such that the
-; dependency order comes out backwards. The problem is patched by some
-; advice.
-
-(defadvice package-compute-transaction
-  (before package-compute-transaction-reverse (package-list requirements) activate compile)
-    "reverse the requirements"
-    (setq requirements (reverse requirements))
-    (print requirements))
-
 ;(when (not package-archive-contents)
 ;  (package-refresh-contents))
 
