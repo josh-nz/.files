@@ -1,0 +1,8 @@
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+nnoremap <esc> :noh<return><esc>
+set backspace+=indent,eol,start
+set nocompatible
+set clipboard=unnamed
