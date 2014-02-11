@@ -18,7 +18,7 @@ export PATH="/usr/local/bin:$PATH:/usr/local/sbin"
 export PATH="$HOME/bin:$PATH"
 
 # Add nodejs bin path at end
-export PATH="$PATH:/usr/local/share/npm/bin"
+#export PATH="$PATH:/usr/local/share/npm/bin"
 
 source /usr/local/opt/chruby/share/chruby/chruby.sh
 source /usr/local/opt/chruby/share/chruby/auto.sh
