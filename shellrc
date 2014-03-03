@@ -5,6 +5,8 @@ alias cdl='cd -'
 alias h=history
 alias o=open
 
+alias ag=ag --ignore-case
+
 export CLICOLOR=1
 # for light background
 #export LSCOLORS=ExFxCxDxBxegedabagacad
