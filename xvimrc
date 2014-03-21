@@ -1,5 +1,5 @@
 set incsearch
-set hlsearch
+#set hlsearch
 set ignorecase
 set smartcase
 nnoremap <esc> :noh<return><esc>
