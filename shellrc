@@ -5,7 +5,7 @@ alias cdl='cd -'
 alias h=history
 alias o=open
 
-alias ag=ag --ignore-case
+#alias ag=ag --ignore-case
 
 export CLICOLOR=1
 # for light background
@@ -22,8 +22,11 @@ export PATH="$HOME/bin:$PATH"
 # Add nodejs bin path at end
 #export PATH="$PATH:/usr/local/share/npm/bin"
 
-source /usr/local/opt/chruby/share/chruby/chruby.sh
-source /usr/local/opt/chruby/share/chruby/auto.sh
+# Tell Android Studio to use Java 8
+#export STUDIO_JDK=/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk
+
+#source /usr/local/opt/chruby/share/chruby/chruby.sh
+#source /usr/local/opt/chruby/share/chruby/auto.sh
 
 function explain {
   # base url with first command already injected
