@@ -1,11 +1,11 @@
 # Path to your oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
+#ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="nebirhos"
+#ZSH_THEME="nebirhos"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -29,16 +29,17 @@ ZSH_THEME="nebirhos"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git)
+#plugins=(git)
 
-source $ZSH/oh-my-zsh.sh
+#source $ZSH/oh-my-zsh.sh
 
 source $HOME/.shellrc
 
 # My bash theme ported to ZSH:
 # eg josh@mpb
 HOST_PROMPT_="%{$fg_bold[green]%}%n%{$fg_bold[black]%}@%{$fg[blue]%}%m%{$reset_color%}"
-GIT_PROMPT="\$(git_prompt_info)"
+#GIT_PROMPT="\$(git_prompt_info)"
+GIT_PROMPT=
 # eg ~/code
 PATH_PROMPT="%{$fg_bold[yellow]%}%~%{$reset_color%}"
 precmd() { print -rP "$HOST_PROMPT_$GIT_PROMPT $PATH_PROMPT" }
@@ -48,3 +49,4 @@ ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[black]%}#"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_DIRTY=" %{$fg[yellow]%}✗%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_CLEAN=""
+
