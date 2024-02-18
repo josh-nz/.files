@@ -5,3 +5,9 @@ return {
   main = "ibl",
   opts = {}
 }
+
+-- Via reddit:
+-- blankline.nvim replaced with the following:
+
+-- vim.o.list = true
+-- vim.opt.listchars = {leadmultispace = "│ "}

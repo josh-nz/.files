@@ -6,7 +6,8 @@ return {
 	event = { "BufEnter" },
 	dependencies = {
 		-- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
-		-- Good video explaining this at https://www.youtube.com/watch?v=ff0GYrK3nT0
+		-- Good videos explaining this at https://www.youtube.com/watch?v=ff0GYrK3nT0
+		-- and at https://www.youtube.com/watch?v=FuYQ7M73bC0
 		"nvim-treesitter/nvim-treesitter-textobjects",
 	},
 	config = function()
@@ -45,7 +46,8 @@ return {
 
 			-- The following modules are provided by "nvim-treesitter/nvim-treesitter-textobjects" dependency.
 			-- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
-			-- Good video explaining this at https://www.youtube.com/watch?v=ff0GYrK3nT0
+			-- Good videos explaining this at https://www.youtube.com/watch?v=ff0GYrK3nT0
+			-- and at https://www.youtube.com/watch?v=FuYQ7M73bC0
 			textobjects = {
 				select = {
 					enable = false,

@@ -2,13 +2,13 @@
 return {
   "gelguy/wilder.nvim",
   enabled = false,
+  dependencies = {
+    "catppuccin/nvim",
+  },
   keys = {
     ":",
     "/",
     "?",
-  },
-  dependencies = {
-    "catppuccin/nvim",
   },
   config = function()
     local wilder = require("wilder")
