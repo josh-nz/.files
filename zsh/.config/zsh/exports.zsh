@@ -28,3 +28,6 @@ export PATH="$HOME/bin:$PATH"
 
 # To get shell history in iex
 export ERL_AFLAGS="-kernel shell_history enabled"
+
+# Set starship prompt theme
+export STARSHIP_CONFIG="$HOME/.config/starship/gruvbox-rainbow.toml"

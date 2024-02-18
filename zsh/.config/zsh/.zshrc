@@ -39,7 +39,7 @@ bindkey -s '^o' 'lfcd\n'
 eval "$(zoxide init zsh)"
 
 # https://starship.rs/
-# eval "$(starship init zsh)"
+eval "$(starship init zsh)"
 
 # https://github.com/junegunn/fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
