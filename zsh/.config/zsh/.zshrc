@@ -40,3 +40,6 @@ eval "$(zoxide init zsh)"
 
 # https://starship.rs/
 # eval "$(starship init zsh)"
+
+# https://github.com/junegunn/fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
