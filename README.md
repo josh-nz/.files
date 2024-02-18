@@ -7,6 +7,12 @@ Once Stow is installed, you must first run `stow stow` to symlink the stow confi
 You can then link any other wanted folders with `stow <folder>`.
 
 
-
 https://www.gnu.org/software/stow/
 https://brandon.invergo.net/news/2012-05-26-using-gnu-stow-to-manage-your-dotfiles.html
+
+
+NeoVim config
+=============
+
+A bunch of stuff was inspired or outright copied from https://github.com/dmmulroy/kickstart.nix/tree/main/config/nvim and as seen https://www.youtube.com/watch?v=oo_I5lAmdi0
+
