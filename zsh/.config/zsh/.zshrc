@@ -1,4 +1,13 @@
-source $HOME/.shellrc
+source $ZDOTDIR/exports.zsh
+
+# Basic auto/tab complete:
+autoload -U compinit
+zstyle ':completion:*' menu select matcher-list 'm:{a-zA-Z}={A-Za-z}'
+zmodload zsh/complist
+compinit
+_comp_options+=(globdots)		# Include hidden files.
+
+HISTFILE=$ZDOTDIR/.zsh_history
 
 # My bash theme ported to ZSH:
 # eg josh@mpb
@@ -15,11 +24,19 @@ ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_DIRTY=" %{$fg[yellow]%}✗%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_CLEAN=""
 
-# To get shell history in iex
-export ERL_AFLAGS="-kernel shell_history enabled"
 
+
+source $ZDOTDIR/aliases.zsh
+source $ZDOTDIR/functions.zsh
+
+# Bindings might refer to functions defined in the above file.
+bindkey -s '^o' 'lfcd\n'
+
+# https://asdf-vm.com/
 . $(brew --prefix asdf)/libexec/asdf.sh
 
+# https://github.com/ajeetdsouza/zoxide
+eval "$(zoxide init zsh)"
 
 # https://starship.rs/
 # eval "$(starship init zsh)"
