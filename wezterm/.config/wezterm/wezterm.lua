@@ -18,7 +18,7 @@ config.colors = {
 -- config.font = wezterm.font('MesloLGL Nerd Font Mono')
 config.font = wezterm.font('Hack Nerd Font Mono')
 -- config.font = wezterm.font('0xProto Nerd Font Mono')
-config.font_size = 10.0
+config.font_size = 12.0
 
 config.mouse_bindings = {
   {
