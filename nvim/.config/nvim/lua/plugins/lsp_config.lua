@@ -2,7 +2,7 @@
 return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPost" },
-	cmd = { "LspInfo", "LspInstall", "LspUninstall", "Mason" },
+  cmd = { "LspInfo", "LspInstall", "LspUninstall", "Mason" },
   dependencies = {
     -- Plugin and UI to automatically install LSPs to stdpath
     -- https://github.com/williamboman/mason.nvim
@@ -15,7 +15,7 @@ return {
 
     -- Install neodev for better nvim configuration and plugin authoring via lsp configurations
     -- https://github.com/folke/neodev.nvim
-		"folke/neodev.nvim",
+    "folke/neodev.nvim",
   },
   config = function()
     -- local map_lsp_keybinds = require("user.keymaps").map_lsp_keybinds -- Has to load keymaps before pluginslsp
@@ -31,7 +31,7 @@ return {
       ensure_installed = {
         "lua_ls",
         "elixirls",
-        -- "tailwindcss",
+        "tailwindcss",
       },
     })
 
@@ -72,15 +72,15 @@ return {
 
     local lsp = require("lspconfig")
     -- Iterate over our servers and set them up
-			for name, config in pairs(servers) do
-				lsp[name].setup({
-					capabilities = extended_capabilities,
-					filetypes = config.filetypes,
-					-- handlers = vim.tbl_deep_extend("force", {}, default_handlers, config.handlers or {}),
-					-- on_attach = on_attach,
-					settings = config.settings,
-				})
-			end
+    for name, config in pairs(servers) do
+      lsp[name].setup({
+        capabilities = extended_capabilities,
+        filetypes = config.filetypes,
+        -- handlers = vim.tbl_deep_extend("force", {}, default_handlers, config.handlers or {}),
+        -- on_attach = on_attach,
+        settings = config.settings,
+      })
+    end
 
     -- Global mappings.
     -- See `:help vim.diagnostic.*` for documentation on any of the below functions
