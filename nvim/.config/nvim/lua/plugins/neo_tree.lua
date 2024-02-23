@@ -12,11 +12,31 @@ return {
     require("neo-tree").setup({
       filesystem = {
         filtered_items = {
-          visible = true,
-        }
-      }
+          -- visible = true,
+          hide_dotfiles = false,
+          hide_gitignored = false,
+          never_show = {
+            -- remains hidden even if visible is toggled to true, this overrides always_show
+            ".DS_Store",
+          },
+        },
+        -- Don't change nvim's cwd if the NeoTree root changes.
+        bind_to_cwd = false,
+        use_libuv_file_watcher = true
+      },
+      buffers = {
+        -- When using sessions, restored buffers start unloaded until focused.
+        -- Set this to true so they still show in the buffer tree. 
+        show_unloaded = true,
+      },
+      source_selector = {
+        winbar = true,
+      },
     })
 
-    vim.keymap.set("n", "<leader>t", ":Neotree filesystem reveal left<CR>")
+    -- `reveal` will open NeoTree and highlight the file of the current buffer.
+    -- Use `focus` or `show` to not highlight the file of the current buffer.
+    vim.keymap.set("n", "<leader>t", ":Neotree filesystem reveal left toggle<CR>")
+    -- :Neotree buffers reveal float
   end,
 }
