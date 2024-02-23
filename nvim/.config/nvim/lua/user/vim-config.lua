@@ -93,6 +93,10 @@ vim.opt.autoread = true
 -- UTF-8 all the things
 vim.opt.fileencoding = "utf-8"
 
+-- Recommended settings for auto-session plugin
+-- https://github.com/rmagatti/auto-session
+vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
 
 
 -- Other stuff
