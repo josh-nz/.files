@@ -77,7 +77,8 @@ vim.opt.foldlevelstart = 99
 vim.opt.foldenable = true
 
 -- Always keep 8 lines above/below cursor unless at start/end of file
-vim.opt.scrolloff = 8
+-- https://vim.fandom.com/wiki/Keep_your_cursor_centered_vertically_on_the_screen
+vim.opt.scrolloff = 8 -- 999
 vim.opt.sidescrolloff = 8
 
 -- Place a column line
