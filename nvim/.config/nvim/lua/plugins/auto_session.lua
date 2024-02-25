@@ -8,6 +8,7 @@ return {
       auto_session_allowed_dirs = {
         "~/.files/",
         "~/code/elixir/*",
+        "~/code/elixir/little_elixir_otp_guide/*",
         "~/code/phoenix/*",
       },
       auto_session_use_git_branch = true,
