@@ -34,9 +34,7 @@ return {
       },
     })
 
-    -- `reveal` will open NeoTree and highlight the file of the current buffer.
-    -- Use `focus` or `show` to not highlight the file of the current buffer.
-    vim.keymap.set("n", "<leader>t", ":Neotree filesystem reveal left toggle<CR>")
-    -- :Neotree buffers reveal float
+    -- More configuration and integration ideas here:
+    -- https://github.com/nvim-neo-tree/neo-tree.nvim/wiki/Recipes
   end,
 }

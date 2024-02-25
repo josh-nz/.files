@@ -12,15 +12,81 @@ local telescope = {
   },
   config = function()
     local actions = require("telescope.actions")
+    local telescope = require("telescope")
 
-    require("telescope").setup({
+    telescope.setup({
       defaults = {
         mappings = {
+          -- https://github.com/nvim-telescope/telescope.nvim/blob/0.1.x/lua/telescope/mappings.lua
+          -- The below are unchanged from the above link unless noted otherwise.
           i = {
-            ["<C-k>"] = actions.move_selection_previous,
-            ["<C-j>"] = actions.move_selection_next,
-            ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-            ["<C-x>"] = actions.delete_buffer,
+            ["<C-n>"] = actions.move_selection_next,  -- Maybe map to <C-k> ?
+            ["<C-p>"] = actions.move_selection_previous,  -- Maybe map to <C-j> ?
+
+            ["<C-c>"] = actions.close,
+
+            ["<Down>"] = actions.move_selection_next,
+            ["<Up>"] = actions.move_selection_previous,
+
+            ["<CR>"] = actions.select_default,
+            ["<C-x>"] = actions.select_horizontal,
+            ["<C-v>"] = actions.select_vertical,
+            ["<C-t>"] = actions.select_tab,
+
+            ["<C-u>"] = actions.preview_scrolling_up,
+            ["<C-d>"] = actions.preview_scrolling_down,
+
+            ["<PageUp>"] = actions.results_scrolling_up,
+            ["<PageDown>"] = actions.results_scrolling_down,
+
+            ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
+            ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
+            ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
+            ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,  -- Maybe map to <C-q> ?
+            ["<C-l>"] = actions.complete_tag,
+            ["<C-/>"] = actions.which_key,
+            ["<C-_>"] = actions.which_key, -- Source comment: keys from pressing <C-/>
+            ["<C-w>"] = { "<c-s-w>", type = "command" },
+
+            -- Source comment: disable c-j because we dont want to allow new lines #2123
+            ["<C-j>"] = actions.nop,
+
+            -- These need to be added, not part of the defaults:
+            -- ["<C-Down>"] = actions.cycle_history_next,
+            -- ["<C-Up>"] = actions.cycle_history_prev,
+          },
+
+          n = {
+            ["<esc>"] = actions.close,
+            ["<CR>"] = actions.select_default,
+            ["<C-x>"] = actions.select_horizontal,
+            ["<C-v>"] = actions.select_vertical,
+            ["<C-t>"] = actions.select_tab,
+
+            ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
+            ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
+            ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
+            ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+
+            -- Source comment: TODO: This would be weird if we switch the ordering.
+            ["j"] = actions.move_selection_next,
+            ["k"] = actions.move_selection_previous,
+            ["H"] = actions.move_to_top,
+            ["M"] = actions.move_to_middle,
+            ["L"] = actions.move_to_bottom,
+
+            ["<Down>"] = actions.move_selection_next,
+            ["<Up>"] = actions.move_selection_previous,
+            ["gg"] = actions.move_to_top,
+            ["G"] = actions.move_to_bottom,
+
+            ["<C-u>"] = actions.preview_scrolling_up,
+            ["<C-d>"] = actions.preview_scrolling_down,
+
+            ["<PageUp>"] = actions.results_scrolling_up,
+            ["<PageDown>"] = actions.results_scrolling_down,
+
+            ["?"] = actions.which_key,
           },
         },
       },
@@ -33,7 +99,6 @@ local telescope = {
           -- To prevent this, a .ignore file should be created that specifies
           -- to ignore `.git/`
           hidden = true,
-        }
         },
         -- :help telescope.defaults.vimgrep_arguments
         -- will show the default arguments passed to ripgrep.
@@ -52,17 +117,10 @@ local telescope = {
       },
     })
 
-    local builtin = require("telescope.builtin")
-    -- find_files calls `rg --files --colour` as priority, see link for details.
-    -- https://github.com/nvim-telescope/telescope.nvim/blob/master/lua/telescope/builtin/__files.lua#L272
-    vim.keymap.set("n", "<C-p>", builtin.find_files, {})
-    -- :help telescope.defaults.vimgrep_arguments
-    -- will show the default arguments passed to ripgrep.
-    vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
-    vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-    vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+    telescope.load_extension("fzf")
 
-    require("telescope").load_extension("fzf")
+    local builtin = require("telescope.builtin")
+    require("user.keymaps").telescope_keymaps(builtin)
   end,
 }
 
