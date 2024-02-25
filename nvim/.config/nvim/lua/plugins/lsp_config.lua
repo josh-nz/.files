@@ -55,10 +55,11 @@ return {
     }
 
     -- Default handlers for LSP
-    -- local default_handlers = {
-    --   ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
-    --   ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
-    -- }
+    -- https://neovim.io/doc/user/lsp.html
+    local default_handlers = {
+      ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
+      ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
+    }
 
     -- nvim-cmp-lsp supports additional completion capabilities,
     -- adds `nvim-lsp` as a completion source as used by completions.lua
@@ -76,7 +77,7 @@ return {
       lsp[name].setup({
         capabilities = extended_capabilities,
         filetypes = config.filetypes,
-        -- handlers = vim.tbl_deep_extend("force", {}, default_handlers, config.handlers or {}),
+        handlers = vim.tbl_deep_extend("force", {}, default_handlers, config.handlers or {}),
         -- on_attach = on_attach,
         settings = config.settings,
       })

@@ -102,6 +102,13 @@ vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,
 
 
 
+vim.diagnostic.config({
+  float = {
+    border = 'rounded',
+  },
+})
+
+
 -- Other stuff
 -- vim.opt.shiftround = true
 -- vim.opt.backspace = '2'
