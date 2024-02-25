@@ -14,3 +14,16 @@ return {
     { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
   },
 }
+
+-- Here are a bunch of similar alternatives:
+-- https://github.com/unblevable/quick-scope
+-- https://github.com/jinh0/eyeliner.nvim
+--
+-- https://github.com/ggandor/leap.nvim
+-- https://github.com/rasulomaroff/telepath.nvim  -- Treesitter text object motions for Leap
+-- https://github.com/ggandor/flit.nvim -- quick-scope like for Leap
+--
+-- https://github.com/woosaaahh/sj.nvim
+-- https://github.com/backdround/improved-ft.nvim
+--
+-- https://github.com/smoka7/hop.nvim

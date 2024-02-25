@@ -1,3 +1,6 @@
+-- https://neovim.io/doc/user/options.html#option-summary
+
+
 -- Make sure to set `mapleader` before lazy
 -- plugin manager init so your mappings are correct
 vim.g.mapleader = " "
@@ -95,7 +98,7 @@ vim.opt.fileencoding = "utf-8"
 
 -- Recommended settings for auto-session plugin
 -- https://github.com/rmagatti/auto-session
-vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 
 
@@ -119,7 +122,7 @@ vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,te
 -- vim.opt.cmdheight = 2  -- More space in the command line for displaying messages.
 -- vim.opt.showmode = true
 -- vim.opt.guifont = "monospace:h17"		
--- vim.cmd('filetype plugin on')			-- set filetype 
+-- vim.cmd('filetype plugin on')			-- set filetype
 -- vim.cmd('set wildmenu')					-- enable wildmen
 -- vim.opt.timeoutlen = 1000 -- time to wait for a mapped sequence to complete (in milliseconds)
 -- vim.opt.ruler = false

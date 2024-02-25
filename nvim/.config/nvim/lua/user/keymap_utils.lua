@@ -10,6 +10,7 @@ local function bind(op, outer_opts)
 	end
 end
 
+-- https://vim.fandom.com/wiki/Mapping_keys_in_Vim_-_Tutorial_(Part_1
 M.map = bind("")
 M.nmap = bind("n", { noremap = false })
 M.nnoremap = bind("n")
