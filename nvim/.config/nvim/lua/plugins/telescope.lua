@@ -25,6 +25,8 @@ local telescope = {
         },
       },
       pickers = {
+        -- find_files calls `rg --files --colour` as priority, see link for details.
+        -- https://github.com/nvim-telescope/telescope.nvim/blob/master/lua/telescope/builtin/__files.lua#L272
         find_files = {
           -- Sets --hidden flag on ripgrep to show files starting with a `.`. 
           -- As a result, this causes it to now find files in .git folders.
@@ -32,6 +34,21 @@ local telescope = {
           -- to ignore `.git/`
           hidden = true,
         }
+        },
+        -- :help telescope.defaults.vimgrep_arguments
+        -- will show the default arguments passed to ripgrep.
+        live_grep = {
+          additional_args = {
+            "--hidden",
+          },
+        },
+        -- :help telescope.defaults.vimgrep_arguments
+        -- will show the default arguments passed to ripgrep.
+        grep_string = {
+          additional_args = {
+            "--hidden",
+          },
+        },
       },
     })
 
