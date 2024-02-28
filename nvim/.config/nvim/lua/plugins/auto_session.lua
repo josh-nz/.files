@@ -3,10 +3,11 @@ return {
   "rmagatti/auto-session",
   -- enabled = false,
   config = function()
+---@diagnostic disable-next-line: missing-fields
     require("auto-session").setup({
       -- log_level = "debug",
       auto_session_allowed_dirs = {
-        "~/.files/",
+        "~/.files",
         "~/code/elixir/*",
         "~/code/elixir/little_elixir_otp_guide/*",
         "~/code/phoenix/*",
