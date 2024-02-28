@@ -34,6 +34,8 @@ return {
       },
     })
 
+    require("user.keymaps").neo_tree_keymaps()
+
     -- More configuration and integration ideas here:
     -- https://github.com/nvim-neo-tree/neo-tree.nvim/wiki/Recipes
   end,
