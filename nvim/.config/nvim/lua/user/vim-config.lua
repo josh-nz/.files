@@ -96,10 +96,15 @@ vim.opt.autoread = true
 -- UTF-8 all the things
 vim.opt.fileencoding = "utf-8"
 
+-- Show current buffer name in title bar
+vim.opt.title = true
+
+-- Creates a backup file
+vim.opt.backup = false
+
 -- Recommended settings for auto-session plugin
 -- https://github.com/rmagatti/auto-session
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
-
 
 
 vim.diagnostic.config({
@@ -113,10 +118,8 @@ vim.diagnostic.config({
 -- vim.opt.shiftround = true
 -- vim.opt.backspace = '2'
 -- vim.opt.autowrite = true
--- vim.opt.title = true					-- show title
 -- vim.cmd('set path+=**')					-- search current directory recursively
 -- vim.opt.syntax = "ON"
--- vim.opt.backup = false -- Creates a backup file
 -- vim.opt.writebackup = false -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 -- vim.opt.swapfile = false -- creates a swapfile
 -- vim.opt.compatible = false				-- turn off vi compatibility mode
