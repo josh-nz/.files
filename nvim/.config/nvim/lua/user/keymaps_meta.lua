@@ -30,8 +30,6 @@ nnoremap("<leader>z", "<cmd>wq<cr>", { silent = false })
 nnoremap("L", "$")
 nnoremap("H", "^")
 
--- Press 'U' for redo
-nnoremap("U", "<C-r>")
 
 
 

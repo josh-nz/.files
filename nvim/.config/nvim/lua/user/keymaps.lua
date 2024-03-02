@@ -38,6 +38,12 @@ nnoremap("<M-Tab>", "<C-6>")
 -- Turn off highlighted results
 nnoremap("<Esc>", ":nohlsearch<CR>", { desc = "No search highlight" })
 
+-- Send replaced char to black hole clip buffer instead of putting it in main clip buffer
+nnoremap("x", '"_x')
+
+-- Press 'U' for redo
+-- nnoremap("U", "<C-r>")
+
 
 
 -- Insert --
