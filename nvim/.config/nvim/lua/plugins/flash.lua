@@ -16,6 +16,8 @@ return {
 }
 
 -- Here are a bunch of similar alternatives:
+
+-- f F t T etc assistants
 -- https://github.com/unblevable/quick-scope
 -- https://github.com/jinh0/eyeliner.nvim
 --
