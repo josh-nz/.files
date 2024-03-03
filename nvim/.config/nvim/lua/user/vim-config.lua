@@ -50,6 +50,9 @@ vim.opt.smartcase = true
 -- Decrease updatetime to 200ms. Faster completion (4000ms default).
 vim.opt.updatetime = 50
 
+-- Time to wait for a mapped sequence to complete (in milliseconds)
+vim.opt.timeoutlen = 500
+
 -- Set completeopt to have a better completion experience
 vim.opt.completeopt = { "menuone", "noselect" }
 
@@ -134,7 +137,6 @@ vim.diagnostic.config({
 -- vim.opt.guifont = "monospace:h17"		
 -- vim.cmd('filetype plugin on')			-- set filetype
 -- vim.cmd('set wildmenu')					-- enable wildmen
--- vim.opt.timeoutlen = 1000 -- time to wait for a mapped sequence to complete (in milliseconds)
 -- vim.opt.ruler = false
 
 -- vim.g.netrw_banner = 0					-- gets rid of the banner for netrw
