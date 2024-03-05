@@ -104,10 +104,6 @@ function M.lsp_keymaps(opts)
   end, opts)
 end
 
-
-
-
-
 -- Telescope keymaps - originally part of telescope.lua
 function M.telescope_keymaps(builtin)
   -- find_files calls `rg --files --colour` as priority, see link for details.
@@ -137,10 +133,6 @@ function M.telescope_keymaps(builtin)
   end, {})
 end
 
-
-
-
-
 -- Neo-tree keymaps - originally part of neo_tree.lua
 function M.neo_tree_keymaps()
   -- `reveal` will open NeoTree and highlight the file of the current buffer.
@@ -148,6 +140,35 @@ function M.neo_tree_keymaps()
   vim.keymap.set("n", "<leader>t", ":Neotree filesystem left toggle<CR>")
   vim.keymap.set("n", "<leader>tf", ":Neotree filesystem reveal left<CR>")
   -- :Neotree buffers reveal float
+end
+
+-- Debug keymaps - originally part of debugging.lua
+function M.dap_keymaps(dap)
+  vim.keymap.set("n", "<F5>", dap.continue, { desc = "Debug: start/continue" })
+  vim.keymap.set("n", "<F10>", dap.step_over, { desc = "Debug: step over" })
+  vim.keymap.set("n", "<F11>", dap.step_into, { desc = "Debug: step into" })
+  vim.keymap.set("n", "<F12>", dap.step_out, { desc = "Debug: step out" })
+  vim.keymap.set("n", "<Leader>b", dap.toggle_breakpoint, { desc = "Debug: toggle breakpoint" })
+  vim.keymap.set("n", "<Leader>B", dap.set_breakpoint, { desc = "Debug: set breakpoint" })
+  vim.keymap.set("n", "<Leader>lp", function()
+    dap.set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
+  end, { desc = "Debug: ?some custom breakpoint?" })
+  vim.keymap.set("n", "<Leader>dr", dap.repl.open, { desc = "Debug: open REPL" })
+  vim.keymap.set("n", "<Leader>dl", dap.run_last, { desc = "Debug: ?run last?" })
+end
+
+function M.dap_ui_keymaps(dapui, widget)
+  -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
+  vim.keymap.set("n", "<F7>", dapui.toggle, { desc = "Debug: see last session result" })
+
+  vim.keymap.set({ "n", "v" }, "<Leader>dh", widget.hover, { desc = "Debug: ?widget hover?" })
+  vim.keymap.set({ "n", "v" }, "<Leader>dp", widget.preview, { desc = "Debug: ?widget.preview?" })
+  vim.keymap.set("n", "<Leader>df", function()
+    widget.centered_float(widget.frames)
+  end, { desc = "Debug: ?widget.centered_float.frames?" })
+  vim.keymap.set("n", "<Leader>ds", function()
+    widget.centered_float(widget.scopes)
+  end, { desc = "Debug: ?widget.centered_float.scopes?" })
 end
 
 return M

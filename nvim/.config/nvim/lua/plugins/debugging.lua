@@ -5,65 +5,36 @@ return {
 	dependencies = {
 		-- https://github.com/rcarriga/nvim-dap-ui
 		"rcarriga/nvim-dap-ui",
+
+    -- Installs the debug adapters for you
+    -- https://github.com/williamboman/mason.nvim
+    'williamboman/mason.nvim',
+    -- https://github.com/jay-babu/mason-nvim-dap.nvim
+    'jay-babu/mason-nvim-dap.nvim',
+
+    -- Add your own debuggers here
 	},
 	config = function()
 		local dap = require("dap")
 		local dapui = require("dapui")
     dapui.setup()
 
-		dap.listeners.before.attach.dapui_config = function()
-			dapui.open()
-		end
-		dap.listeners.before.launch.dapui_config = function()
-			dapui.open()
-		end
-		dap.listeners.before.event_terminated.dapui_config = function()
-			dapui.close()
-		end
-		dap.listeners.before.event_exited.dapui_config = function()
-			dapui.close()
-		end
+    -- Mason must be setup before calling this, might not be, not
+    -- sure how to resolve this with Lazy.
+    require("mason-nvim-dap").setup()
 
-		vim.keymap.set("n", "<F5>", function()
-			dap.continue()
-		end)
-		vim.keymap.set("n", "<F10>", function()
-			dap.step_over()
-		end)
-		vim.keymap.set("n", "<F11>", function()
-			dap.step_into()
-		end)
-		vim.keymap.set("n", "<F12>", function()
-			dap.step_out()
-		end)
-		vim.keymap.set("n", "<Leader>b", function()
-			dap.toggle_breakpoint()
-		end)
-		vim.keymap.set("n", "<Leader>B", function()
-			dap.set_breakpoint()
-		end)
-		vim.keymap.set("n", "<Leader>lp", function()
-			dap.set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
-		end)
-		vim.keymap.set("n", "<Leader>dr", function()
-			dap.repl.open()
-		end)
-		vim.keymap.set("n", "<Leader>dl", function()
-			dap.run_last()
-		end)
+		dap.listeners.before.attach.dapui_config = dapui.open
+		dap.listeners.before.launch.dapui_config = dapui.open
+		dap.listeners.after.event_initialized.dapui_config = dapui.open
+		dap.listeners.before.event_terminated.dapui_config = dapui.close
+		dap.listeners.before.event_exited.dapui_config = dapui.close
 
 		local widget = require("dap.ui.widgets")
-		vim.keymap.set({ "n", "v" }, "<Leader>dh", function()
-			widget.hover()
-		end)
-		vim.keymap.set({ "n", "v" }, "<Leader>dp", function()
-			widget.preview()
-		end)
-		vim.keymap.set("n", "<Leader>df", function()
-			widget.centered_float(widget.frames)
-		end)
-		vim.keymap.set("n", "<Leader>ds", function()
-			widget.centered_float(widget.scopes)
-		end)
+    require("user.keymaps").dap_keymaps(dap)
+    require("user.keymaps").dap_ui_keymaps(dapui, widget)
+
+
+    -- Configure DAP servers here.
+    -- eg require('dap-go').setup()
 	end,
 }
