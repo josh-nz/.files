@@ -1,5 +1,5 @@
 -- https://github.com/nvim-telescope/telescope.nvim
-local telescope = {
+return {
   "nvim-telescope/telescope.nvim",
   branch = "0.1.x",
   dependencies = {
@@ -9,6 +9,8 @@ local telescope = {
       build =
       "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
     },
+    -- https://github.com/nvim-telescope/telescope-ui-select.nvim
+    "nvim-telescope/telescope-ui-select.nvim",
   },
   config = function()
     local actions = require("telescope.actions")
@@ -90,6 +92,7 @@ local telescope = {
           },
         },
       },
+
       pickers = {
         -- find_files calls `rg --files --colour` as priority, see link for details.
         -- https://github.com/nvim-telescope/telescope.nvim/blob/master/lua/telescope/builtin/__files.lua#L272
@@ -115,20 +118,7 @@ local telescope = {
           },
         },
       },
-    })
 
-    telescope.load_extension("fzf")
-
-    local builtin = require("telescope.builtin")
-    require("user.keymaps").telescope_keymaps(builtin)
-  end,
-}
-
--- https://github.com/nvim-telescope/telescope-ui-select.nvim
-local telescope_ui_select = {
-  "nvim-telescope/telescope-ui-select.nvim",
-  config = function()
-    require("telescope").setup({
       extensions = {
         ["ui-select"] = {
           require("telescope.themes").get_dropdown({
@@ -151,13 +141,13 @@ local telescope_ui_select = {
         },
       },
     })
+
+    telescope.load_extension("fzf")
     -- To get ui-select loaded and working with telescope, you need to call
     -- load_extension, somewhere after setup function:
-    require("telescope").load_extension("ui-select")
-  end,
-}
+    telescope.load_extension("ui-select")
 
-return {
-  telescope,
-  telescope_ui_select,
+    local builtin = require("telescope.builtin")
+    require("user.keymaps").telescope_keymaps(builtin)
+  end,
 }
