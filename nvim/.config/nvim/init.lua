@@ -1,19 +1,13 @@
 -- Require my vim config first so leader is
 -- correctly mapped before any lazy config occurs.
 require("user.vim-config")
+
 require("user.lazy")
 
-require("user.vertical_help")
+require("user.keymaps")
+require("user.auto_commands")
+require("user.user_commands")
 
--- require("user.keymaps")
--- require("user.keymaps_alt")
--- require("user.highlight_yank")
--- require("user.format_on_save")
--- require("user.toggle_eslint")
--- require("user.rotate_windows")
--- require("user.resize_windows")
--- require("user.edit_text")
--- require("user.toggle_diagnostics")
 
 -- Hide all semantic highlights until upstream issues are resolved.
 -- https://github.com/catppuccin/nvim/issues/480

@@ -16,6 +16,9 @@ return {
     -- Install neodev for better nvim configuration and plugin authoring via lsp configurations
     -- https://github.com/folke/neodev.nvim
     "folke/neodev.nvim",
+
+    -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
+    -- { "j-hui/fidget.nvim", opts = {} },
   },
   config = function()
     -- local map_lsp_keybinds = require("user.keymaps").map_lsp_keybinds -- Has to load keymaps before pluginslsp
@@ -33,6 +36,18 @@ return {
         "elixirls",
         "tailwindcss",
       },
+      -- See `:h mason-lspconfig.setup_handlers()`
+      ---@type table<string, fun(server_name: string)>?
+      -- handlers = {
+      --   function(server_name)
+      --     local server = servers[server_name] or {}
+      --     -- This handles overriding only values explicitly passed
+      --     -- by the server configuration above. Useful when disabling
+      --     -- certain features of an LSP (for example, turning off formatting for tsserver)
+      --     server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+      --     require('lspconfig')[server_name].setup(server)
+      --   end,
+      -- }
     })
 
     -- IMPORTANT: make sure to setup neodev BEFORE lspconfig
@@ -47,9 +62,21 @@ return {
           Lua = {
             completion = {
               callSnippet = "Replace"
-            }
-          }
-        }
+            },
+            -- workspace = {
+            --   checkThirdParty = false,
+            --   -- Tells lua_ls where to find all the Lua files that you have loaded
+            --   -- for your neovim configuration.
+            --   -- NOTE: This might be what neodev.nvim does automatically?
+            --   library = {
+            --     '${3rd}/luv/library',
+            --     unpack(vim.api.nvim_get_runtime_file('', true)),
+            --   },
+            --   -- If lua_ls is really slow on your computer, you can try this instead:
+            --   -- library = { vim.env.VIMRUNTIME },
+            -- },
+          },
+        },
       },
       elixirls = {},
     }
@@ -86,13 +113,31 @@ return {
     -- Use LspAttach autocommand to only map the following keys
     -- after the language server attaches to the current buffer
     vim.api.nvim_create_autocmd("LspAttach", {
-      group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-      callback = function(ev)
+      group = vim.api.nvim_create_augroup("user-lsp-config", { clear = true }),
+      callback = function(event)
         -- Enable completion triggered by <c-x><c-o>
-        vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+        vim.bo[event.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
-        local opts = { buffer = ev.buf }
+        local opts = { buffer = event.buf }
         require("user.keymaps").lsp_keymaps(opts)
+
+        -- The following two autocommands are used to highlight references of the
+        -- word under your cursor when your cursor rests there for a little while.
+        --    See `:help CursorHold` for information about when this is executed
+        --
+        -- When you move your cursor, the highlights will be cleared (the second autocommand).
+        local client = vim.lsp.get_client_by_id(event.data.client_id)
+        if client and client.server_capabilities.documentHighlightProvider then
+          vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+            buffer = event.buf,
+            callback = vim.lsp.buf.document_highlight,
+          })
+
+          vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+            buffer = event.buf,
+            callback = vim.lsp.buf.clear_references,
+          })
+        end
       end,
     })
   end,

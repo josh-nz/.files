@@ -1,4 +1,4 @@
--- https://neovim.io/doc/user/options.html#option-summary
+-- https://neovim.io/doc/user/options.html#option-summaryconfigvim
 
 
 -- Make sure to set `mapleader` before lazy
@@ -43,15 +43,15 @@ vim.opt.splitright = true
 -- Enable mouse mode
 vim.opt.mouse = "a"
 
--- Enable ignorecase + smartcase for better searching
+-- Case-insensitive searching UNLESS \C or capital in search
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- Decrease updatetime to 200ms. Faster completion (4000ms default).
-vim.opt.updatetime = 50
+vim.opt.updatetime = 50 -- 250 in kickstart settings file
 
 -- Time to wait for a mapped sequence to complete (in milliseconds)
-vim.opt.timeoutlen = 500
+vim.opt.timeoutlen = 350
 
 -- Set completeopt to have a better completion experience
 vim.opt.completeopt = { "menuone", "noselect" }
@@ -68,7 +68,7 @@ vim.opt.signcolumn = "yes"
 -- Set number column width to 4 {default 4}
 -- vim.opt.numberwidth = 4
 
--- Enable access to System Clipboard
+-- Enable access to system clipboard
 vim.opt.clipboard = "unnamed,unnamedplus"
 
 -- Enable cursor line highlight
@@ -85,7 +85,7 @@ vim.opt.foldenable = true
 -- Always keep 8 lines above/below cursor unless at start/end of file
 -- https://vim.fandom.com/wiki/Keep_your_cursor_centered_vertically_on_the_screen
 vim.opt.scrolloff = 8 -- 999
-vim.opt.sidescrolloff = 8
+vim.opt.sidescrolloff = 0
 
 -- Place a column line
 -- vim.opt.colorcolumn = "80"
@@ -102,6 +102,9 @@ vim.opt.fileencoding = "utf-8"
 -- Show current buffer name in title bar
 vim.opt.title = true
 
+-- Hides the mode indicator, eg -- INSERT --, already shown in status line
+vim.opt.showmode = false
+
 -- Creates a backup file
 vim.opt.backup = false
 
@@ -109,6 +112,9 @@ vim.opt.backup = false
 -- https://github.com/rmagatti/auto-session
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
+-- Sets how neovim will display certain whitespace in the editor.
+vim.opt.list = true
+vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 vim.diagnostic.config({
   float = {
@@ -128,7 +134,6 @@ vim.diagnostic.config({
 -- vim.opt.compatible = false				-- turn off vi compatibility mode
 -- vim.opt.pumheight = 10					-- number of items in popup menu
 -- vim.opt.pumblend = 10
--- vim.opt.showmode = false -- hides the mode indicator, eg -- INSERT --
 -- vim.opt.showtabline = 2					-- always show the tab line
 -- vim.opt.laststatus = 2					-- always show statusline
 -- vim.opt.showcmd = true

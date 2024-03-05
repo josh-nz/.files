@@ -30,3 +30,24 @@ vim.api.nvim_create_user_command("RotateWindows", function()
 		vim.api.nvim_err_writeln("You can only swap 2 open windows. Found " .. num_eligible_windows .. ".")
 	end
 end, {})
+
+
+-- https://github.com/dmmulroy/kickstart.nix/blob/main/config/nvim/lua/user/toggle_diagnostics.lua
+-- vim.api.nvim_create_user_command("ToggleDiagnostics", function()
+-- 	if vim.g.diagnostics_enabled == nil then
+-- 		vim.g.diagnostics_enabled = false
+-- 		vim.diagnostic.disable()
+-- 	elseif vim.g.diagnostics_enabled then
+-- 		vim.g.diagnostics_enabled = false
+-- 		vim.diagnostic.disable()
+-- 	else
+-- 		vim.g.diagnostics_enabled = true
+-- 		vim.diagnostic.enable()
+-- 	end
+-- end, {})
+
+
+-- https://github.com/dmmulroy/kickstart.nix/blob/main/config/nvim/lua/user/toggle_eslint.lua
+-- vim.api.nvim_create_user_command("ToggleESLint", function()
+-- 	require("null-ls").toggle("eslint")
+-- end, {})
