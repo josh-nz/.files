@@ -112,9 +112,12 @@ vim.opt.backup = false
 -- https://github.com/rmagatti/auto-session
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
--- Sets how neovim will display certain whitespace in the editor.
+-- Sets how Neovim will display certain whitespace in the editor
 vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+
+-- Configure tab behaviour in commoand mode
+vim.opt.wildmode = "longest:full,full"
 
 vim.diagnostic.config({
   float = {
@@ -131,7 +134,6 @@ vim.diagnostic.config({
 -- vim.opt.syntax = "ON"
 -- vim.opt.writebackup = false -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 -- vim.opt.swapfile = false -- creates a swapfile
--- vim.opt.compatible = false				-- turn off vi compatibility mode
 -- vim.opt.pumheight = 10					-- number of items in popup menu
 -- vim.opt.pumblend = 10
 -- vim.opt.showtabline = 2					-- always show the tab line
@@ -139,12 +141,4 @@ vim.diagnostic.config({
 -- vim.opt.showcmd = true
 -- vim.opt.cmdheight = 2  -- More space in the command line for displaying messages.
 -- vim.opt.showmode = true
--- vim.opt.guifont = "monospace:h17"		
--- vim.cmd('filetype plugin on')			-- set filetype
--- vim.cmd('set wildmenu')					-- enable wildmen
--- vim.opt.ruler = false
 
--- vim.g.netrw_banner = 0					-- gets rid of the banner for netrw
--- vim.g.netrw_browse_split=4				-- open in prior window
--- vim.g.netrw_altv = 1					-- change from left splitting to right splitting
--- vim.g.netrw_liststyle=3					-- tree style view in netrw
