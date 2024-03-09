@@ -57,24 +57,36 @@ nnoremap("x", '"_x')
 -- Press 'U' for redo
 -- nnoremap("U", "<C-r>")
 
+-- Open alternate buffer in vertical split. Default is horizontal split.
+-- Doesn't seem to work reliably.
+nnoremap("<C-w><C-^>", "<C-w>v<C-^>")
+
 nnoremap("<leader>l", ":LazyGit<CR>", { desc = "LazyGit" })
 
 
+
+
+
 -- Insert --
+
 -- Map jj to <esc>
-inoremap("df", "<Esc>")
-inoremap("fd", "<Esc>")
+-- inoremap("df", "<Esc>")
+-- inoremap("fd", "<Esc>")
 inoremap("fj", "<Esc>")
-inoremap("jf", "<Esc>")
-inoremap("jk", "<Esc>")
-inoremap("kj", "<Esc>")
+-- inoremap("jf", "<Esc>")
+-- inoremap("jk", "<Esc>")
+-- inoremap("kj", "<Esc>")
+
 
 
 
 
 -- Visual --
+
 -- Disable Space bar since it'll be used as the leader key
 vnoremap("<Space>", "<nop>")
+
+vnoremap("fj", "<Esc>")
 
 
 
@@ -154,7 +166,7 @@ function M.telescope_keymaps(builtin)
   vim.keymap.set("n", "<leader>fo", builtin.oldfiles, {})
   vim.keymap.set("n", "<leader>fv", builtin.vim_options, {})
   vim.keymap.set("n", "<leader>fc", function()
-    builtin.colorscheme({ enable_preview = true })
+    builtin.colorscheme({ enable_preview = true, initial_mode = "normal" })
   end, {})
   vim.keymap.set("n", "<leader>fk", builtin.keymaps, {})
   vim.keymap.set("n", "<leader>fj", builtin.jumplist, {})
