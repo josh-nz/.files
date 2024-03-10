@@ -31,18 +31,40 @@ return {
 		require("lualine").setup({
 			theme = "dracula",	-- "auto"
 			sections = {
+        lualine_a = {
+          "mode",
+        },
 				lualine_b = {
 					"branch",
 					-- harpoon_component,
 					"diff",
 					"diagnostics",
 				},
-				-- lualine_c = {
-				-- 	{ "filename", path = 1 },
-				-- },
-				-- lualine_x = {
-				-- 	"filetype",
-				-- },
+        lualine_c = {
+          {
+            "filename",
+            path = 1,
+          },
+        },
+
+        lualine_x = {
+          -- "encoding",
+          -- {
+          --   "fileformat",
+          --   symbols = {
+          --     -- MacOS uses *nix file line endings, so we'll always see the
+          --     -- Linux penguin in the status line. Override to Apple icon.
+          --     unix = "",
+          --   },
+          -- },
+          -- "filetype",
+        },
+        lualine_y = {
+          "progress", -- % throught file indicator.
+        },
+        lualine_z = {
+          "location",  -- line and column number.
+        },
 			},
 		})
 	end,
