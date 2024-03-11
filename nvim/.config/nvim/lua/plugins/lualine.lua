@@ -41,10 +41,7 @@ return {
 					"diagnostics",
 				},
         lualine_c = {
-          {
-            "filename",
-            path = 1,
-          },
+          { "filename", path = 1, },
         },
 
         lualine_x = {
@@ -66,6 +63,14 @@ return {
           "location",  -- line and column number.
         },
 			},
+      inactive_sections = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = { { "filename", path = 1, } },
+        lualine_x = { "location" },
+        lualine_y = {},
+        lualine_z = {}
+      },
 		})
 	end,
 }
