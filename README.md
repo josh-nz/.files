@@ -23,6 +23,9 @@ Unlink a folder with `stow -D <folder>`
 
 A bunch of stuff was inspired or outright copied from [this repo](https://github.com/dmmulroy/kickstart.nix/tree/main/config/nvim) and as seen [in this video](https://www.youtube.com/watch?v=oo_I5lAmdi0).
 
+The [NeoVim kickstart repo](https://github.com/nvim-lua/kickstart.nvim) is another source of good stuff, and was used as a basis for further adjustments to my config. There is a [corresponding video](https://www.youtube.com/watch?v=m8C0Cq9Uv9o).
+
+
 ## Search
 
 The `search` folder contains a `.ignore` file.
