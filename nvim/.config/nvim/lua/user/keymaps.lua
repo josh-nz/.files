@@ -61,6 +61,13 @@ nnoremap("x", '"_x')
 -- Doesn't seem to work reliably.
 nnoremap("<C-w><C-^>", "<C-w>v<C-^>")
 
+
+-- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-bufremove.md#features
+-- https://github.com/moll/vim-bbye
+-- https://github.com/mhinz/vim-sayonara
+-- https://stackoverflow.com/questions/4298910/vim-close-buffer-but-not-split-window
+-- nnoremap(",d", ":b#<bar>bd#<bar>b<CR>", { desc = "Close buffer and switch to alternative one. Keeps split open (but with edgecases)." })
+
 nnoremap("<leader>l", ":LazyGit<CR>", { desc = "LazyGit" })
 
 
