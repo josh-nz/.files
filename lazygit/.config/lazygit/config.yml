@@ -1,0 +1,7 @@
+# https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
+gui:
+  theme:
+    selectedLineBgColor:
+      - reverse
+    commandLogSize: 10
+    nerdFontsVersion: "3"
