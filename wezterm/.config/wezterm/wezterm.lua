@@ -13,6 +13,8 @@ config.colors = {
   --split = "#777bdc"
 }
 
+config.hide_tab_bar_if_only_one_tab = true
+
 -- config.default_cwd = "~"
 
 -- config.font = wezterm.font('MesloLGL Nerd Font Mono')
