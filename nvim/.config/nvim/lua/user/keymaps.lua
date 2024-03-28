@@ -84,7 +84,7 @@ inoremap("fj", "<Esc>")
 -- inoremap("jk", "<Esc>")
 -- inoremap("kj", "<Esc>")
 
-
+inoremap("<C-d>", "<Del>")
 
 
 
