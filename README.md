@@ -36,4 +36,7 @@ The current `.ignore` contents allows the `--hidden` argument to be passed to ri
 
 More specifics on the use of this file [here](https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#automatic-filtering).
 
+## tmux
+
+Correct use of the tmux config requires the tmux plugin manager to be installed. After cloning this repo and stow-ing the tmux folder, run `git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm` to install TPM. Then, when inside a tmux session, press `prefix I` to install all referenced plugins.
 
