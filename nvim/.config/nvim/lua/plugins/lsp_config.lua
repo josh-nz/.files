@@ -79,6 +79,7 @@ return {
         },
       },
       elixirls = {},
+      gleam = {},
     }
 
     -- Default handlers for LSP
