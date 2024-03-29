@@ -30,16 +30,21 @@ nnoremap("#", "#zz")
 -- nnoremap("g#", "g#zz")
 
 -- Better window navigation
-nnoremap("<M-h>", "<C-w>h")
-nnoremap("<M-j>", "<C-w>j")
-nnoremap("<M-k>", "<C-w>k")
-nnoremap("<M-l>", "<C-w>l")
-nnoremap("<M-Tab>", "<C-6>")
---  See `:help wincmd` for a list of all window commands
--- nnoremap("<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
--- nnoremap("<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
--- nnoremap("<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
--- nnoremap("<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
+-- See `:help wincmd` for a list of all window commands
+nnoremap("<M-h>", ":wincmd h<CR>", { desc = "Move focus to the left window" })
+nnoremap("<M-j>", ":wincmd j<CR>", { desc = "Move focus to the lower window" })
+nnoremap("<M-k>", ":wincmd k<CR>", { desc = "Move focus to the upper window" })
+nnoremap("<M-l>", ":wincmd l<CR>", { desc = "Move focus to the right window" })
+nnoremap("<M-\\>", ":wincmd p<CR>", { desc = "Move focus to the previous window" })
+
+nnoremap("<M-Tab>", "<C-6>", { desc = "Switch to alternate buffer" })
+
+-- See `:help wincmd` for a list of all window commands
+-- nnoremap("<C-h>", ":wincmd h<CR>", { desc = "Move focus to the left window" })
+-- nnoremap("<C-j>", ":wincmd j<CR>", { desc = "Move focus to the lower window" })
+-- nnoremap("<C-k>", ":wincmd k<CR>", { desc = "Move focus to the upper window" })
+-- nnoremap("<C-l>", ":wincmd l<CR>", { desc = "Move focus to the right window" })
+-- nnoremap("<C-\\>", ":wincmd p<CR>", { desc = "Move focus to the previous window" })
 
 -- TIP: Disable arrow keys in normal mode
 -- nnoremap("<left>", "<cmd>echo \"Use h to move!!\"<CR>")
@@ -134,7 +139,7 @@ function M.lsp_keymaps(opts)
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
   vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
   vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-  vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
+  -- vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
   -- vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts)
   -- vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts)
   vim.keymap.set("n", "<leader>wl", function()
