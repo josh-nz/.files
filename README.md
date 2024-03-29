@@ -21,7 +21,9 @@ Unlink a folder with `stow -D <folder>`
 
 ## NeoVim config
 
-A bunch of stuff was inspired or outright copied from [this repo](https://github.com/dmmulroy/kickstart.nix/tree/main/config/nvim) and as seen [in this video](https://www.youtube.com/watch?v=oo_I5lAmdi0).
+My NeoVim config was started based on [this series of videos](https://www.youtube.com/playlist?list=PLsz00TDipIffreIaUNk64KxTIkQaGguqn) by [typecraft](https://www.youtube.com/@typecraft_dev).
+
+A bunch of stuff was inspired or outright copied from [this repo](https://github.com/dmmulroy/kickstart.nix/tree/main/config/nvim) and as seen [in this video](https://www.youtube.com/watch?v=oo_I5lAmdi0) by Dillon Mulroy.
 
 The [NeoVim kickstart repo](https://github.com/nvim-lua/kickstart.nvim) is another source of good stuff, and was used as a basis for further adjustments to my config. There is a [corresponding video](https://www.youtube.com/watch?v=m8C0Cq9Uv9o).
 
@@ -38,5 +40,7 @@ More specifics on the use of this file [here](https://github.com/BurntSushi/ripg
 
 ## tmux
 
-Correct use of the tmux config requires the tmux plugin manager to be installed. After cloning this repo and stow-ing the tmux folder, run `git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm` to install TPM. Then, when inside a tmux session, press `prefix I` to install all referenced plugins.
+My tmux config was started based on [this series of videos](https://www.youtube.com/playlist?list=PLsz00TDipIfdrJDjpULKY7mQlIFi4HjdR) by [typecraft](https://www.youtube.com/@typecraft_dev).
+
+Correct use of the tmux config requires the [tmux plugin manager](https://github.com/tmux-plugins/tpm) to be installed. After cloning this repo and stow-ing the tmux folder, run `git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm` to install TPM. Then, when inside a tmux session, press `prefix I` to install all referenced plugins.
 
