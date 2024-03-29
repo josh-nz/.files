@@ -3,6 +3,7 @@ local vnoremap = require("user.keymap_utils").vnoremap
 local inoremap = require("user.keymap_utils").inoremap
 local tnoremap = require("user.keymap_utils").tnoremap
 local xnoremap = require("user.keymap_utils").xnoremap
+local ntnoremap = require("user.keymap_utils").ntnoremap
 
 
 local M = {}
@@ -35,22 +36,9 @@ nnoremap("<M-h>", ":wincmd h<CR>", { desc = "Move focus to the left window" })
 nnoremap("<M-j>", ":wincmd j<CR>", { desc = "Move focus to the lower window" })
 nnoremap("<M-k>", ":wincmd k<CR>", { desc = "Move focus to the upper window" })
 nnoremap("<M-l>", ":wincmd l<CR>", { desc = "Move focus to the right window" })
-nnoremap("<M-\\>", ":wincmd p<CR>", { desc = "Move focus to the previous window" })
+nnoremap("<M-p>", ":wincmd p<CR>", { desc = "Move focus to the previous window" })
 
 nnoremap("<M-Tab>", "<C-6>", { desc = "Switch to alternate buffer" })
-
--- See `:help wincmd` for a list of all window commands
--- nnoremap("<C-h>", ":wincmd h<CR>", { desc = "Move focus to the left window" })
--- nnoremap("<C-j>", ":wincmd j<CR>", { desc = "Move focus to the lower window" })
--- nnoremap("<C-k>", ":wincmd k<CR>", { desc = "Move focus to the upper window" })
--- nnoremap("<C-l>", ":wincmd l<CR>", { desc = "Move focus to the right window" })
--- nnoremap("<C-\\>", ":wincmd p<CR>", { desc = "Move focus to the previous window" })
-
--- TIP: Disable arrow keys in normal mode
--- nnoremap("<left>", "<cmd>echo \"Use h to move!!\"<CR>")
--- nnoremap("<right>", "<cmd>echo \"Use l to move!!\"<CR>")
--- nnoremap("<up>", "<cmd>echo \"Use k to move!!\"<CR>")
--- nnoremap("<down>", "<cmd>echo \"Use j to move!!\"<CR>")
 
 
 -- Turn off highlighted results
@@ -139,7 +127,7 @@ function M.lsp_keymaps(opts)
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
   vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
   vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-  -- vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
+  vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
   -- vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts)
   -- vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts)
   vim.keymap.set("n", "<leader>wl", function()
@@ -250,6 +238,17 @@ function M.vim_test_keymaps()
   nnoremap("<leader>ug", ":TestVisit<CR>", { desc = "Visit test file from which tests were last run" })
 end
 
+
+
+
+-- Navigator keymaps
+function M.navigator_keymaps()
+  ntnoremap("<M-h>", ":NavigatorLeft<CR>", { desc = "Move mux focus to the left window" })
+  ntnoremap("<M-j>", ":NavigatorDown<CR>", { desc = "Move mux focus to the lower window" })
+  ntnoremap("<M-k>", ":NavigatorUp<CR>", { desc = "Move mux focus to the upper window" })
+  ntnoremap("<M-l>", ":NavigatorRight<CR>", { desc = "Move mux focus to the right window" })
+  ntnoremap("<M-p>", ":NavigatorPrevious<CR>", { desc = "Move mux focus to the previous window" })
+end
 
 
 return M
