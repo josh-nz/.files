@@ -238,4 +238,18 @@ function M.dap_ui_keymaps(dapui, widget)
   end, { desc = "Debug: ?widget.centered_float.scopes?" })
 end
 
+
+
+
+-- Vim-test keymaps
+function M.vim_test_keymaps()
+  nnoremap("<leader>ut", ":TestNearest<CR>", { desc = "Run test nearest cursor" })
+  nnoremap("<leader>uT", ":TestFile<CR>", { desc = "Run tests in current file" })
+  nnoremap("<leader>ua", ":TestSuite<CR>", { desc = "Run all tests" })
+  nnoremap("<leader>ul", ":TestLast<CR>", { desc = "Run the last test" })
+  nnoremap("<leader>ug", ":TestVisit<CR>", { desc = "Visit test file from which tests were last run" })
+end
+
+
+
 return M
