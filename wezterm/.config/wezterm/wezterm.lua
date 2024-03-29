@@ -11,6 +11,8 @@ config.color_scheme = 'Catppuccin Mocha'
 config.inactive_pane_hsb = { saturation = 0.1, brightness = 0.4, hue = 1 }
 config.colors = {
   --split = "#777bdc"
+  cursor_bg = "red",
+  cursor_fg = "white",
 }
 
 config.hide_tab_bar_if_only_one_tab = true
