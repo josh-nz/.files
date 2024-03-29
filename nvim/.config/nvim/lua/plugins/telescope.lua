@@ -31,7 +31,7 @@ return {
             ["<Up>"] = actions.move_selection_previous,
 
             ["<CR>"] = actions.select_default,
-            ["<C-x>"] = actions.select_horizontal,
+            ["<C-s>"] = actions.select_horizontal,  -- Default was <C-x>
             ["<C-v>"] = actions.select_vertical,
             ["<C-t>"] = actions.select_tab,
 
