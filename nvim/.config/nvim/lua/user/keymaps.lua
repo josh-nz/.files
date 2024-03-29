@@ -251,4 +251,26 @@ function M.navigator_keymaps()
 end
 
 
+
+
+
+-- Navigator keymaps
+function M.smart_splits_keymaps(ss)
+  nnoremap("<M-h>", ss.move_cursor_left, { desc = "Move mux focus to the left window" })
+  nnoremap("<M-j>", ss.move_cursor_down, { desc = "Move mux focus to the lower window" })
+  nnoremap("<M-k>", ss.move_cursor_up, { desc = "Move mux focus to the upper window" })
+  nnoremap("<M-l>", ss.move_cursor_right, { desc = "Move mux focus to the right window" })
+  nnoremap("<M-p>", ss.move_cursor_previous, { desc = "Move mux focus to the previous window" })
+
+  nnoremap("<M-S-h>", ss.resize_left, { desc = "Resize window left" })
+  nnoremap("<M-S-j>", ss.resize_down, { desc = "Resize window down" })
+  nnoremap("<M-S-k>", ss.resize_up, { desc = "Resize window up" })
+  nnoremap("<M-S-l>", ss.resize_right, { desc = "Resize window right" })
+
+  nnoremap("<leader>bh", ss.swap_buf_left, { desc = "Swap buffer left" })
+  nnoremap("<leader>bj", ss.swap_buf_down, { desc = "Swap buffer down" })
+  nnoremap("<leader>bk", ss.swap_buf_up, { desc = "Swap buffer up" })
+  nnoremap("<leader>bl", ss.swap_buf_right, { desc = "Swap buffer right" })
+end
+
 return M
