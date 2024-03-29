@@ -57,7 +57,7 @@ vim.opt.timeoutlen = 350
 vim.opt.completeopt = { "menuone", "noselect" }
 
 -- Enable persistent undo history
-vim.opt.undofile = true
+-- vim.opt.undofile = true
 
 -- Enable 24-bit color
 vim.opt.termguicolors = true
