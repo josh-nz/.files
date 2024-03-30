@@ -32,11 +32,15 @@ config.mouse_bindings = {
   },
 }
 
--- local act = wezterm.action
--- config.keys = {
---   { mods = 'CTRL', key = 'u', action = act.ScrollByPage(-1) },
---   { mods = 'CTRL', key = 'd', action = act.ScrollByPage(1) },
--- }
+local act = wezterm.action
+config.keys = {
+  -- { mods = 'CTRL', key = 'u', action = act.ScrollByPage(-1) },
+  -- { mods = 'CTRL', key = 'd', action = act.ScrollByPage(1) },
+  -- Unbind all the minimize/hide key bindings, except CMD m
+  { mods = "CTRL", key = "M", action = act.DisableDefaultAssignment },
+  { mods = "SHIFT|CTRL", key = "M", action = act.DisableDefaultAssignment },
+  { mods = "SHIFT|CTRL", key = "m", action = act.DisableDefaultAssignment },
+}
 
 -- https://github.com/wez/wezterm/discussions/3733
 -- https://wezfurlong.org/wezterm/config/lua/gui-events/gui-startup.html
