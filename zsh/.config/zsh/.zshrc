@@ -31,6 +31,10 @@ source $ZDOTDIR/functions.zsh
 # Bindings might refer to functions defined in the above file.
 bindkey -s '^o' 'lfcd\n'
 
+# Use Emacs bindings. This is required for tmux to correctly process Ctrl-a and Ctrl-e
+# even if ZSH works fine without the following line.
+# https://stackoverflow.com/a/39520371
+bindkey -e
 
 # https://asdf-vm.com/
 . $(brew --prefix asdf)/libexec/asdf.sh
