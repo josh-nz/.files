@@ -1,7 +1,7 @@
 -- https://github.com/hrsh7th/nvim-cmp
 return {
   "hrsh7th/nvim-cmp",
-  event = "InsertEnter",
+  event = { "InsertEnter", "CmdlineEnter" },
   dependencies = {
     -- https://github.com/L3MON4D3/LuaSnip
     {
@@ -66,20 +66,24 @@ return {
         documentation = cmp.config.window.bordered(),
       },
       mapping = cmp.mapping.preset.insert({
-        ["<C-k>"] = cmp.mapping.select_prev_item(),
-        ["<C-j>"] = cmp.mapping.select_next_item(),
-        ["<C-u>"] = cmp.mapping.scroll_docs(4),
-        ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+        -- Not seeing any difference in these behaviours
+        ["<C-p>"] = cmp.mapping.select_prev_item({ behaviour = cmp.SelectBehavior.Select }),
+        ["<C-n>"] = cmp.mapping.select_next_item({ behaviour = cmp.SelectBehavior.Insert }),
+        ["<C-d>"] = cmp.mapping.scroll_docs(4),
+        ["<C-u>"] = cmp.mapping.scroll_docs(-4),
         -- Manually trigger a completion from nvim-cmp.
         -- Generally you don't need this, because nvim-cmp will display
         -- completions whenever it has completion options available.
         ["<C-Space>"] = cmp.mapping.complete({}),
-        ["<C-c>"] = cmp.mapping.abort(), -- close completion window
+        ["<C-c>"] = cmp.mapping.abort(), -- close completion window, also <C-e>
         -- ["<CR>"] = cmp.mapping.confirm({ select = true }), -- select suggestion
         -- Accept ([y]es) the completion.
         -- This will auto-import if your LSP supports it.
         -- This will expand snippets if the LSP sent a snippet.
-        ["<C-y>"] = cmp.mapping.confirm({ select = true }),
+        ["<C-y>"] = cmp.mapping.confirm({
+          select = true,
+          behaviour = cmp.ConfirmBehavior.Replace,
+        }),
 
         -- Think of <C-l> as moving to the right of your snippet expansion.
         --  So if you have a snippet that's like:
@@ -198,6 +202,7 @@ return {
     --   }, {
     --     { name = "cmdline" },
     --   }),
+    --   matching = { disallow_symbol_nonprefix_matching = false },
     -- })
   end,
 }
