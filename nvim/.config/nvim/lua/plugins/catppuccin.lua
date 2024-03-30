@@ -25,7 +25,7 @@ return {
 	-- 		treesitter_context = true,
 	-- 	},
 	-- },
-	config = function()
+	init = function()
 		vim.cmd.colorscheme("catppuccin")
 
     -- You can configure highlights by doing something like

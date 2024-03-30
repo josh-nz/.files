@@ -13,7 +13,8 @@ return {
     -- https://github.com/hrsh7th/cmp-nvim-lsp
     "hrsh7th/cmp-nvim-lsp",
 
-    -- Install neodev for better nvim configuration and plugin authoring via lsp configurations
+    -- Configures Lua LSP for Neovim config, runtime, and plugins
+    -- used for completion, annotations, and signatures of Neovim APIs
     -- https://github.com/folke/neodev.nvim
     "folke/neodev.nvim",
 
@@ -21,40 +22,27 @@ return {
     -- { "j-hui/fidget.nvim", opts = {} },
   },
   config = function()
-    -- local map_lsp_keybinds = require("user.keymaps").map_lsp_keybinds -- Has to load keymaps before pluginslsp
+    -- Default handlers for LSP
+    -- https://neovim.io/doc/user/lsp.html
+    local rounded_corner_handlers = {
+      ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
+      ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
+    }
 
-    -- Setup mason so it can manage 3rd party LSP servers
-    require("mason").setup({
-      ui = {
-        border = "rounded",
-      },
-    })
+    -- LSP servers and clients are able to communicate to each other what features they support.
+    -- By default, Neovim doesn't support everything that is in the LSP specification.
+    -- When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
+    -- So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
+    local default_capabilities = vim.lsp.protocol.make_client_capabilities()
+    local extended_capabilities = require("cmp_nvim_lsp").default_capabilities(default_capabilities)
 
-    require("mason-lspconfig").setup({
-      ensure_installed = {
-        "lua_ls",
-        "elixirls",
-        "tailwindcss",
-      },
-      -- See `:h mason-lspconfig.setup_handlers()`
-      ---@type table<string, fun(server_name: string)>?
-      -- handlers = {
-      --   function(server_name)
-      --     local server = servers[server_name] or {}
-      --     -- This handles overriding only values explicitly passed
-      --     -- by the server configuration above. Useful when disabling
-      --     -- certain features of an LSP (for example, turning off formatting for tsserver)
-      --     server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-      --     require('lspconfig')[server_name].setup(server)
-      --   end,
-      -- }
-    })
-
-    -- IMPORTANT: make sure to setup neodev BEFORE lspconfig
-    require("neodev").setup({
-      -- add any options here, or leave empty to use the default settings
-    })
-
+    -- Enable the following language servers
+    -- Add any additional override configuration in the following tables. Available keys are:
+    --  - cmd (table): Override the default command used to start the server
+    --  - filetypes (table): Override the default list of associated filetypes for the server
+    --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
+    --  - settings (table): Override the default settings passed when initializing the server.
+    --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
     local servers = {
       -- https://luals.github.io/wiki/settings/
       lua_ls = {
@@ -63,18 +51,8 @@ return {
             completion = {
               callSnippet = "Replace"
             },
-            -- workspace = {
-            --   checkThirdParty = false,
-            --   -- Tells lua_ls where to find all the Lua files that you have loaded
-            --   -- for your neovim configuration.
-            --   -- NOTE: This might be what neodev.nvim does automatically?
-            --   library = {
-            --     '${3rd}/luv/library',
-            --     unpack(vim.api.nvim_get_runtime_file('', true)),
-            --   },
-            --   -- If lua_ls is really slow on your computer, you can try this instead:
-            --   -- library = { vim.env.VIMRUNTIME },
-            -- },
+            -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+            -- diagnostics = { disable = { 'missing-fields' } },
           },
         },
       },
@@ -82,37 +60,44 @@ return {
       gleam = {},
     }
 
-    -- Default handlers for LSP
-    -- https://neovim.io/doc/user/lsp.html
-    local default_handlers = {
-      ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
-      ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
-    }
 
-    -- nvim-cmp-lsp supports additional completion capabilities,
-    -- adds `nvim-lsp` as a completion source as used by completions.lua
-    local default_capabilities = vim.lsp.protocol.make_client_capabilities()
-    local extended_capabilities = require("cmp_nvim_lsp").default_capabilities(default_capabilities)
+    -- IMPORTANT: make sure to setup neodev BEFORE lspconfig
+    require("neodev").setup({
+      -- add any options here, or leave empty to use the default settings
+    })
 
-    -- local on_attach = function(_client, buffer_number)
-    --   -- Pass the current buffer to map lsp keybinds
-    --   map_lsp_keybinds(buffer_number)
-    -- end
+    -- Setup mason so it can manage 3rd party LSP servers
+    require("mason").setup({
+      ui = {
+        border = "rounded",
+      },
+    })
 
     local lsp = require("lspconfig")
-    -- Iterate over our servers and set them up
-    for name, config in pairs(servers) do
-      lsp[name].setup({
-        capabilities = extended_capabilities,
-        filetypes = config.filetypes,
-        handlers = vim.tbl_deep_extend("force", {}, default_handlers, config.handlers or {}),
-        -- on_attach = on_attach,
-        settings = config.settings,
-      })
-    end
+    require("mason-lspconfig").setup({
+      ensure_installed = {
+        "lua_ls",
+        "elixirls",
+        "tailwindcss",
+      },
+      -- See `:h mason-lspconfig.setup_handlers()`
+      handlers = {
+        function(server_name)
+          local server = servers[server_name] or {}
+          -- This handles overriding only values explicitly passed
+          -- by the server configuration above. Useful when disabling
+          -- certain features of an LSP (for example, turning off formatting for tsserver)
+          server.handlers = vim.tbl_deep_extend("force", {}, rounded_corner_handlers, server.handlers or {})
+          server.capabilities = vim.tbl_deep_extend('force', {}, extended_capabilities, server.capabilities or {})
+          lsp[server_name].setup(server)
+        end,
+      },
+    })
 
-    -- Use LspAttach autocommand to only map the following keys
-    -- after the language server attaches to the current buffer
+    -- This function gets run when an LSP attaches to a particular buffer.
+    -- That is to say, every time a new file is opened that is associated with
+    -- an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
+    -- function will be executed to configure the current buffer
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("user-lsp-config", { clear = true }),
       callback = function(event)

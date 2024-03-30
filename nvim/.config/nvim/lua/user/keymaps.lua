@@ -41,8 +41,26 @@ nnoremap("<M-p>", ":wincmd p<CR>", { desc = "Move focus to the previous window" 
 nnoremap("<M-Tab>", "<C-6>", { desc = "Switch to alternate buffer" })
 
 
+
+-- nnoremap("H", ":bp<CR>", "Previous buffer")
+-- nnoremap("L", ":bn<CR>", "Next buffer")
+
+-- J and K to go up and down quickly, while keeping jump list clean
+-- nnoremap("}", ':<C-u>execute "keepjumps norm! " . v:count1 . "}"<CR>')
+-- nnoremap("{", ':<C-u>execute "keepjumps norm! " . v:count1 . "{"<CR>')
+-- nnoremap("J", "}")
+-- nnoremap("K", "{")
+
+-- Remap for joining lines, since J is now a motion. But you can also leave this off and do :j as a command
+-- nnoremap("gJ", ":join<CR>")
+
+
+
 -- Turn off highlighted results
-nnoremap("<Esc>", ":nohlsearch<CR>", { desc = "No search highlight" })
+nnoremap("<Esc>", ":nohlsearch<CR><Esc>", { desc = "No search highlight" })
+
+-- gF is a more useful default that gf as it will also go to the line number
+nnoremap("gf", "gF", { desc = "Go to file" })
 
 -- Send replaced char to black hole clip buffer instead of putting it in main clip buffer
 nnoremap("x", '"_x')
@@ -123,23 +141,69 @@ vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagn
 function M.lsp_keymaps(opts)
   -- Buffer local mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-  vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-  vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-  vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-  vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
-  -- vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts)
-  -- vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts)
-  vim.keymap.set("n", "<leader>wl", function()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end, opts)
-  vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, opts)
-  vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-  vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
-  vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+  -- vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+  -- vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts) -- <C-t> to jump back
+  -- vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+  -- vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+  -- vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
+  -- -- vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts)
+  -- -- vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts)
+  -- -- vim.keymap.set("n", "<leader>wl", function()
+  -- --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+  -- -- end, opts)
+  -- vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, opts)
+  -- vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+  -- vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
+  -- vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
   vim.keymap.set("n", "<leader>cf", function()
     vim.lsp.buf.format({ async = true })
   end, opts)
+  -- vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+
+  local map = function(keys, func, desc)
+    vim.keymap.set('n', keys, func, { buffer = opts.buffer, desc = 'LSP: ' .. desc })
+  end
+
+  -- Jump to the definition of the word under your cursor.
+  --  This is where a variable was first declared, or where a function is defined, etc.
+  --  To jump back, press <C-t>.
+  map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
+
+  -- Find references for the word under your cursor.
+  map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+
+  -- Jump to the implementation of the word under your cursor.
+  --  Useful when your language has ways of declaring types without an actual implementation.
+  map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
+
+  -- Jump to the type of the word under your cursor.
+  --  Useful when you're not sure what type a variable is and you want to see
+  --  the definition of its *type*, not where it was *defined*.
+  map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
+
+  -- Fuzzy find all the symbols in your current document.
+  --  Symbols are things like variables, functions, types, etc.
+  map('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+
+  -- Fuzzy find all the symbols in your current workspace.
+  --  Similar to document symbols, except searches over your entire project.
+  map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+
+  -- Rename the variable under your cursor.
+  --  Most Language Servers support renaming across files, etc.
+  map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+
+  -- Execute a code action, usually your cursor needs to be on top of an error
+  -- or a suggestion from your LSP for this to activate.
+  map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+
+  -- Opens a popup that displays documentation about the word under your cursor
+  --  See `:help K` for why this keymap.
+  map('K', vim.lsp.buf.hover, 'Hover Documentation')
+
+  -- WARN: This is not Goto Definition, this is Goto Declaration.
+  --  For example, in C this would take you to the header.
+  map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 end
 
 
@@ -178,6 +242,15 @@ function M.telescope_keymaps(builtin)
   vim.keymap.set("n", "<leader>fn", function()
     builtin.find_files { cwd = vim.fn.stdpath("config") }
   end, { desc = "[F]ind in [N]eovim files" })
+
+  -- Slightly advanced example of overriding default behavior and theme
+  vim.keymap.set('n', '<leader>/', function()
+    -- You can pass additional configuration to Telescope to change the theme, layout, etc.
+    builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown({
+      winblend = 10,
+      previewer = false,
+    }))
+  end, { desc = '[/] Fuzzily search in current buffer' })
 end
 
 
