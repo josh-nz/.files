@@ -19,6 +19,7 @@ return {
     "folke/neodev.nvim",
 
     -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
+    -- https://github.com/j-hui/fidget.nvim
     { "j-hui/fidget.nvim", opts = {} },
   },
   config = function()
@@ -52,7 +53,7 @@ return {
               callSnippet = "Replace"
             },
             -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-            -- diagnostics = { disable = { 'missing-fields' } },
+            diagnostics = { disable = { 'missing-fields' } },
           },
         },
       },
