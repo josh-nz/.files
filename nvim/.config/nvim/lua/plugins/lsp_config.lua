@@ -19,8 +19,10 @@ return {
     "folke/neodev.nvim",
 
     -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
+    -- Doesn't support a lot of LSPs that I'd use:
+    -- https://github.com/j-hui/fidget.nvim/wiki/Known-compatible-LSP-servers
     -- https://github.com/j-hui/fidget.nvim
-    { "j-hui/fidget.nvim", opts = {} },
+    -- { "j-hui/fidget.nvim", opts = {} },
   },
   config = function()
     -- Default handlers for LSP
