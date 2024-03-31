@@ -33,6 +33,8 @@ return {
     "hrsh7th/cmp-buffer",
     -- https://github.com/hrsh7th/cmp-path
     "hrsh7th/cmp-path",
+    -- https://github.com/hrsh7th/cmp-cmdline
+    "hrsh7th/cmp-cmdline",
     -- https://github.com/hrsh7th/cmp-nvim-lua
     -- "hrsh7th/cmp-nvim-lua",  -- folke/neodev.nvim as used in lsp_config.lua might provide these completions as an alternative
   },
@@ -52,6 +54,10 @@ return {
 
     -- Set up nvim-cmp.
     cmp.setup({
+      -- enabled = function()
+      --   -- disable completion if the cursor is `Comment` syntax group.
+      --   return not cmp.config.context.in_syntax_group('Comment')
+      -- end,
       snippet = {
         -- REQUIRED - you must specify a snippet engine
         expand = function(args)
@@ -65,25 +71,37 @@ return {
         completion = cmp.config.window.bordered(),
         documentation = cmp.config.window.bordered(),
       },
+      performance = {
+        -- max_view_entries = 100,
+      },
+      -- preselect = "None", -- "Item" preselects item as specified by source.
       mapping = cmp.mapping.preset.insert({
-        -- Not seeing any difference in these behaviours
-        ["<C-p>"] = cmp.mapping.select_prev_item({ behaviour = cmp.SelectBehavior.Select }),
-        ["<C-n>"] = cmp.mapping.select_next_item({ behaviour = cmp.SelectBehavior.Insert }),
+        -- https://github.com/hrsh7th/nvim-cmp/issues/809
+        ["<C-p>"] = cmp.mapping(
+          cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+          { "i", "c" }
+        ),
+        ["<C-n>"] = cmp.mapping(
+          cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+          { "i", "c" }
+        ),
         ["<C-d>"] = cmp.mapping.scroll_docs(4),
         ["<C-u>"] = cmp.mapping.scroll_docs(-4),
         -- Manually trigger a completion from nvim-cmp.
         -- Generally you don't need this, because nvim-cmp will display
         -- completions whenever it has completion options available.
-        ["<C-Space>"] = cmp.mapping.complete({}),
+        ["<C-Space>"] = cmp.mapping(cmp.mapping.complete({}), { "i", "c" }),
         ["<C-c>"] = cmp.mapping.abort(), -- close completion window, also <C-e>
-        -- ["<CR>"] = cmp.mapping.confirm({ select = true }), -- select suggestion
+
+       -- Select highlighted word, won't complete if no highlight
+        ["<CR>"] = cmp.mapping(cmp.mapping.confirm({ select = false }), { "i", "c" }),
         -- Accept ([y]es) the completion.
         -- This will auto-import if your LSP supports it.
         -- This will expand snippets if the LSP sent a snippet.
-        ["<C-y>"] = cmp.mapping.confirm({
-          select = true,
-          behaviour = cmp.ConfirmBehavior.Replace,
-        }),
+        ["<C-y>"] = cmp.mapping(
+          cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace }),
+          { "i", "c" }
+        ),
 
         -- Think of <C-l> as moving to the right of your snippet expansion.
         --  So if you have a snippet that's like:
@@ -129,36 +147,32 @@ return {
         --   end
         -- end, { "i", "s" }),
       }),
+
+
       -- sources for autocompletion
       sources = cmp.config.sources({
-        { name = "nvim_lsp" }, -- lsp
+        {
+          name = "nvim_lsp",
+          -- entry_filter = function(entry, ctx)
+          --   return require('cmp.types').lsp.CompletionItemKind[entry:get_kind()] ~= 'Text'
+          -- end,
+        }, -- lsp
         { name = "nvim_lsp_signature_help" },
-        { name = "buffer", max_item_count = 5 }, -- text within current buffer
+        {
+          name = "buffer",
+          -- max_item_count = 5,
+        }, -- text within current buffer
         { name = "path" }, -- file system paths
+        {
+          name = "luasnip",
+          -- max_item_count = 3,
+          -- group_index = 2, -- Easier than using the table of tables syntax for groups.
+        }, -- For luasnip users.
         -- { name = "vsnip" }, -- For vsnip users.
-        { name = "luasnip", max_item_count = 3 }, -- For luasnip users.
         -- { name = 'ultisnips' }, -- For ultisnips users.
         -- { name = 'snippy' }, -- For snippy users.
       }),
 
-      -- sources = cmp.config.sources({
-      --     {
-      --       name = "nvim_lsp",
-      --       entry_filter = function(entry, ctx)
-      --         return cmp.lsp.CompletionItemKind.Text ~= entry:get_kind()
-      --       end,
-      --     },
-      --   }, {
-      --     { name = "nvim_lsp_signature_help" },
-      --     --{ name = 'nvim_lua' },
-      --   }, {
-      --     -- { name = "vsnip" }, -- For vsnip users.
-      --     { name = "luasnip" }, -- For luasnip users.
-      --     -- { name = 'ultisnips' }, -- For ultisnips users.
-      --     -- { name = 'snippy' }, -- For snippy users.
-      --   }, {
-      --     { name = "buffer" },
-      -- }),
 
       -- Enable pictogram icons for lsp/autocompletion
       formatting = {
@@ -167,12 +181,27 @@ return {
           mode = "symbol_text",
           maxwidth = 50,
           ellipsis_char = "…",
+          show_labelDetails = true,
+          menu = ({
+            nvim_lsp = "[lsp]  ",
+            nvim_lsp_signature_help = "[lsp sig]  ",
+            buffer = "[buffer]  ",
+            path = "[path]  ",
+            luasnip = "[luasnip]  ",
+            nvim_lsp_document_symbol = "[lsp sym]  ",
+            cmdline = "[cmdline]  ",
+          })
         }),
       },
       experimental = {
         -- ghost_text = true,
       },
     })
+
+
+    -- Configuration for these other completion types below looks to inherit
+    -- from the above general completion setup as a starting point.
+
 
 
     -- Set configuration for specific filetype.
@@ -185,24 +214,65 @@ return {
     -- }),
 
     -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
-    -- cmp.setup.cmdline({ "/", "?" }, {
-    --   mapping = cmp.mapping.preset.cmdline(),
-    --   sources = cmp.config.sources({
-    --     { name = "nvim_lsp_document_symbol" },
-    --   }, {
-    --     { name = "buffer" },
-    --   }),
-    -- })
+    cmp.setup.cmdline({ "/", "?" }, {
+      -- We need to override the presets above here to
+      -- get the Tab toggling working, otherwise Tab will
+      -- insert a Tab character. I could bind Tab myself,
+      -- but why bother. This also means having to set
+      -- some overrides defined above again, sadly.
+      mapping = cmp.mapping.preset.cmdline({
+        ["<C-p>"] = cmp.mapping(
+          cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+          { "i", "c" }
+        ),
+        ["<C-n>"] = cmp.mapping(
+          cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+          { "i", "c" }
+        ),
+        ["<C-y>"] = cmp.mapping(
+          cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace }),
+          { "i", "c" }
+        ),
+      }),
+      sources = cmp.config.sources({
+        -- Document symbol completions are triggered by `/@`
+        { name = "nvim_lsp_document_symbol" },
+        { name = "buffer" },
+      }),
+    })
 
     -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-    -- cmp.setup.cmdline(":", {
-    --   mapping = cmp.mapping.preset.cmdline(),
-    --   sources = cmp.config.sources({
-    --     { name = "path" },
-    --   }, {
-    --     { name = "cmdline" },
-    --   }),
-    --   matching = { disallow_symbol_nonprefix_matching = false },
-    -- })
+    cmp.setup.cmdline(":", {
+      -- This preset will override any keymaps defined above, so
+      -- we need to repeat them here. It also binds different keys
+      -- like Tab, which overrides the native Vim autocomplete, at
+      -- least for the : cmdline autocomplete. I think it's best to
+      -- define the mappings above to work in command mode and ignore
+      -- anything here. It also retains the Bash style tab completion
+      -- I have already configured for the native VIm autocomplete.
+
+      -- mapping = cmp.mapping.preset.cmdline({
+      --   ["<C-p>"] = cmp.mapping(
+      --     cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+      --     { "i", "c" }
+      --   ),
+      --   ["<C-n>"] = cmp.mapping(
+      --     cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+      --     { "i", "c" }
+      --   ),
+      --   ["<C-y>"] = cmp.mapping(
+      --     cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace }),
+      --     { "i", "c" }
+      --   ),
+      -- }),
+      sources = cmp.config.sources({
+        { name = "cmdline" },
+        { name = "path" },
+      }),
+      -- matching = {
+      --   -- Whether to allow symbols in matches if the match is not a prefix match.
+      --   disallow_symbol_nonprefix_matching = false,
+      -- },
+    })
   end,
 }
