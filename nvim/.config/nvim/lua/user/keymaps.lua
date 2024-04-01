@@ -38,7 +38,13 @@ nnoremap("<M-k>", ":wincmd k<CR>", { desc = "Move focus to the upper window" })
 nnoremap("<M-l>", ":wincmd l<CR>", { desc = "Move focus to the right window" })
 nnoremap("<M-p>", ":wincmd p<CR>", { desc = "Move focus to the previous window" })
 
-nnoremap("<M-Tab>", "<C-6>", { desc = "Switch to alternate buffer" })
+nnoremap("<C-h>", ":wincmd h<CR>", { desc = "Move focus to the left window" })
+nnoremap("<C-j>", ":wincmd j<CR>", { desc = "Move focus to the lower window" })
+nnoremap("<C-k>", ":wincmd k<CR>", { desc = "Move focus to the upper window" })
+nnoremap("<C-l>", ":wincmd l<CR>", { desc = "Move focus to the right window" })
+nnoremap("<C-p>", ":wincmd p<CR>", { desc = "Move focus to the previous window" })
+
+-- nnoremap("<M-Tab>", "<C-6>", { desc = "Switch to alternate buffer" })
 
 
 
@@ -123,8 +129,13 @@ vnoremap("fj", "<Esc>")
 --
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
-
+-- vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
+vim.keymap.set("t", "fj", [[<C-\><C-n>]],  { desc = "Exit terminal mode" })
+-- vim.keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
+-- vim.keymap.set("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opts)
+-- vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)
+-- vim.keymap.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
+vim.keymap.set("t", "<C-w>", [[<C-\><C-n><C-w>]])
 
 
 
