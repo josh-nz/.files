@@ -149,7 +149,7 @@ return {
     telescope.load_extension("fzf")
     -- To get ui-select loaded and working with telescope, you need to call
     -- load_extension, somewhere after setup function:
-    telescope.load_extension("ui-select")
+    -- telescope.load_extension("ui-select")
 
     local builtin = require("telescope.builtin")
     require("user.keymaps").telescope_keymaps(builtin)
