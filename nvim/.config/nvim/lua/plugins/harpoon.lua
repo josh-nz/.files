@@ -2,8 +2,7 @@
 return {
   "ThePrimeagen/harpoon",
   enabled = false,
-  branch = "harpoon2",
-  dependencies = { 
+  dependencies = {
     "nvim-lua/plenary.nvim",
     -- https://github.com/nvim-telescope/telescope.nvim
     -- "nvim-telescope/telescope.nvim"

@@ -2,6 +2,7 @@
 -- Good video explaining this at https://www.youtube.com/watch?v=kYXcxJxJVxQ
 return {
   "nvim-treesitter/nvim-treesitter",
+  enabled = true,
   build = ":TSUpdate",
   event = { "BufEnter" },
   dependencies = {

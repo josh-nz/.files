@@ -1,6 +1,7 @@
 -- https://github.com/numToStr/Comment.nvim
 return {
   "numToStr/Comment.nvim",
+  enabled = true,
   event = { "BufEnter" },
   -- lazy = true,
   -- Not needed since Comment.nvim supports TreeSitter?

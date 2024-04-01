@@ -2,4 +2,5 @@
 return {
   "echasnovski/mini.trailspace",
   enabled = false,
+  config = true,
 }

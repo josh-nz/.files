@@ -1,4 +1,5 @@
 -- https://github.com/folke/tokyonight.nvim
 return {
-	"folke/tokyonight.nvim",
+  "folke/tokyonight.nvim",
+  enabled = true,
 }

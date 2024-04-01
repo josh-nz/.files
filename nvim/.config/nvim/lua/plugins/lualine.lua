@@ -1,7 +1,8 @@
 -- https://github.com/nvim-lualine/lualine.nvim
 return {
   "nvim-lualine/lualine.nvim",
-  dependencies = { 
+  enabled = true,
+  dependencies = {
     "nvim-tree/nvim-web-devicons",
     -- https://github.com/ThePrimeagen/harpoon
     -- "ThePrimeagen/harpoon",

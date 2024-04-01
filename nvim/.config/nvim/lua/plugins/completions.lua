@@ -1,6 +1,7 @@
 -- https://github.com/hrsh7th/nvim-cmp
 return {
   "hrsh7th/nvim-cmp",
+  enabled = true,
   event = { "InsertEnter", "CmdlineEnter" },
   dependencies = {
     -- https://github.com/L3MON4D3/LuaSnip

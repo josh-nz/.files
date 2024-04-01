@@ -2,4 +2,5 @@
 return {
   "echasnovski/mini.cursorword",
   enabled = false,
+  config = true,
 }

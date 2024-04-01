@@ -1,4 +1,5 @@
 -- https://github.com/sainnhe/sonokai
 return {
-	"sainnhe/sonokai",
+  "sainnhe/sonokai",
+  enabled = true,
 }

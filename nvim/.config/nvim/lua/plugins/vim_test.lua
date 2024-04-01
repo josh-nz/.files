@@ -1,6 +1,7 @@
 -- https://github.com/vim-test/vim-test
 return {
   "vim-test/vim-test",
+  enabled = true,
   dependencies = {
     -- https://github.com/preservim/vimux
     "preservim/vimux",

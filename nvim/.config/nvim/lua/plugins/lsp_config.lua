@@ -1,6 +1,7 @@
 -- https://github.com/neovim/nvim-lspconfig
 return {
   "neovim/nvim-lspconfig",
+  enabled = true,
   event = { "BufReadPost" },
   cmd = { "LspInfo", "LspInstall", "LspUninstall", "Mason" },
   dependencies = {
