@@ -8,7 +8,7 @@ return {
   },
   config = function()
     require("user.keymaps").vim_test_keymaps()
-    vim.cmd("let test#strategy = 'vimux'")
+    -- vim.cmd("let test#strategy = 'vimux'")
     vim.cmd("let g:test#preserve_screen = 1")
 
     vim.g.VimuxUseNearest = false
