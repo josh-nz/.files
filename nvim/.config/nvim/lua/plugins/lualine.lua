@@ -29,8 +29,13 @@ return {
     --  return string.format("󱡅 %s/%d", current_mark, total_marks)
     -- end
 
+
     require("lualine").setup({
-      -- theme = "dracula", -- "auto"
+      options = {
+        theme = "auto",
+        component_separators = { left = "", right = "" },
+        section_separators = { left = "", right = "" },
+      },
       sections = {
         lualine_a = {
           "mode",
@@ -61,6 +66,8 @@ return {
           "progress", -- % throught file indicator.
         },
         lualine_z = {
+          -- "selectioncount",
+          -- "searchcount",
           "location",  -- line and column number.
         },
       },
@@ -72,6 +79,93 @@ return {
         lualine_y = {},
         lualine_z = {}
       },
+
+      -- Tabline (aka bufferline) is a bar that goes across the whole of Vim,
+      -- so is therefore not scoped to just a single window.
+      tabline = {
+        lualine_a = {
+          {
+            "buffers",
+            -- show_filename_only = false,
+            mode = 4,  -- 4 = buffer name + buffer number, 2 = buffer name + index
+            -- use_mode_colours = true, -- Don't understand what this does.
+            icons_enabled = false,
+            symbols = {
+              modified = " [+]",
+              alternate_file = "#",
+            },
+
+            -- buffers_color = {
+            --   -- :h attr-list for gui styles
+            --   active = function(section)
+            --     -- print("active")
+            --     print(vim.inspect(section))
+            --     if vim.bo.modified then
+            --       return { gui = "italic,bold", bg = "grey" }
+
+            --     else
+            --       return { gui = "NONE", bg = "blue" }
+            --     end
+            --   end,
+            --   inactive = function(section)
+            --     -- print("inactive")
+            --     print(vim.inspect(section))
+
+            --     if vim.bo.modified then
+            --       return { gui = "italic,bold", bg = "red" }
+            --     else
+            --       return { gui = "NONE", bg = "white" }
+            --     end
+            --   end,
+
+            --   -- BufferLineModifiedSelected
+            --   -- BufferLineModifiedVisible
+            --   -- active = function(section)
+            --   --    return { fg = vim.bo.modified and '#aa3355' or '#33aa88' }
+            --   -- end,
+
+            -- },
+            -- color key doesn't seem to work for this component, need to use
+            -- the buffers_color sub keys, which take the same data structure as color.
+            -- color = { fg = "color_name(red)", bg = "grey", gui = "italic,bold" },
+          },
+        },
+        -- lualine_b = { "branch" },
+        -- lualine_c = { "filename" },
+        -- lualine_x = {},
+        -- lualine_y = {},
+        lualine_z = {
+          -- "tabs",
+          {
+            "datetime",
+            style = "%H:%M",
+          },
+        }
+      },
+
+      -- Appears to be a bar that sits just above the window but below
+      -- the Tabline, scoped to current window only.
+      -- This property appears to be written to the session, so if
+      -- playing with this setting, note that the winbar might 
+      -- persist even after disabling the winbar settings and restarting
+      -- Vim because of session persistence. Kill those buffers, and
+      -- restart Vim to clear this session info out.
+      -- winbar = {
+      --   lualine_a = {},
+      --   lualine_b = {},
+      --   lualine_c = {'filename'},
+      --   lualine_x = {},
+      --   lualine_y = {},
+      --   lualine_z = {}
+      -- },
+      -- inactive_winbar = {
+      --   lualine_a = {},
+      --   lualine_b = {},
+      --   lualine_c = {'filename'},
+      --   lualine_x = {},
+      --   lualine_y = {},
+      --   lualine_z = {}
+      -- },
     })
   end,
 }
