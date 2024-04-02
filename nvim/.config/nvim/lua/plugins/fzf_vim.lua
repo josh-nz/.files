@@ -1,7 +1,9 @@
+-- Original version, not async so slower (in theory, untested)
+
 -- https://github.com/junegunn/fzf.vim
 return {
   "junegunn/fzf.vim",
-  enabled = true,
+  enabled = false,
   dependencies = {
     -- https://github.com/junegunn/fzf
     "junegunn/fzf"
