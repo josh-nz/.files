@@ -11,6 +11,12 @@ return {
   },
   config = function()
     -- calling `setup` is optional for customization
-    require("fzf-lua").setup({})
+    require("fzf-lua").setup({
+      -- utilizes fzf's native previewing ability in the terminal where
+      -- possible using bat for previews
+      "fzf-native",
+
+    })
+    require("user.keymaps").fzflua_keymaps()
   end,
 }

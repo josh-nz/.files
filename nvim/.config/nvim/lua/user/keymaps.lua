@@ -226,7 +226,7 @@ end
 function M.telescope_keymaps(builtin)
   -- find_files calls `rg --files --colour` as priority, see link for details.
   -- https://github.com/nvim-telescope/telescope.nvim/blob/master/lua/telescope/builtin/__files.lua#L272
-  vim.keymap.set("n", "<C-p>", builtin.find_files, {})
+  -- vim.keymap.set("n", "<C-p>", builtin.find_files, {})
   vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
   -- :help telescope.defaults.vimgrep_arguments
   -- will show the default arguments passed to ripgrep.
@@ -265,6 +265,11 @@ function M.telescope_keymaps(builtin)
   end, { desc = '[/] Fuzzily search in current buffer' })
 end
 
+-- Fzflua keymaps
+function M.fzflua_keymaps()
+  nnoremap("<C-p>", ":FzfLua files<CR>", { desc = "Find files" })
+  nnoremap("<C-b>", ":FzfLua buffers<CR>", { desc = "Find buffers" })
+end
 
 
 
