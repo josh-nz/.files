@@ -17,8 +17,8 @@ alias g='lazygit'
 # alias rm='rm -i'
 
 if command -v bat &> /dev/null; then
-  alias cat="bat -pp --theme Dracula" 
-  alias catt="bat --theme Draclua" 
+  alias cat="bat" 
+  alias catp="bat --style=plain" 
 fi
 
 #alias ag=ag --ignore-case
