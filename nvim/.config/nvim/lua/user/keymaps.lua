@@ -85,7 +85,7 @@ nnoremap("<C-w><C-^>", "<C-w>v<C-^>")
 -- https://stackoverflow.com/questions/4298910/vim-close-buffer-but-not-split-window
 -- nnoremap(",d", ":b#<bar>bd#<bar>b<CR>", { desc = "Close buffer and switch to alternative one. Keeps split open (but with edgecases)." })
 
-nnoremap("<leader>l", ":LazyGit<CR>", { desc = "LazyGit" })
+
 
 
 
@@ -314,6 +314,14 @@ function M.dap_ui_keymaps(dapui, widget)
   vim.keymap.set("n", "<Leader>ds", function()
     widget.centered_float(widget.scopes)
   end, { desc = "Debug: ?widget.centered_float.scopes?" })
+end
+
+
+
+
+
+function M.lazygit_keymaps()
+  nnoremap("<leader>l", ":LazyGit<CR>", { desc = "LazyGit" })
 end
 
 

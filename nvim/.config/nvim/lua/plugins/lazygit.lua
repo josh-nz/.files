@@ -13,4 +13,7 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
   },
+  init = function()
+    require("user.keymaps").lazygit_keymaps()
+  end,
 }
