@@ -8,6 +8,7 @@ local config = wezterm.config_builder()
 
 -- For example, changing the color scheme:
 config.color_scheme = 'Catppuccin Mocha'
+-- config.color_scheme = 'Eldritch'
 config.inactive_pane_hsb = { saturation = 0.1, brightness = 0.4, hue = 1 }
 config.colors = {
   --split = "#777bdc"

@@ -27,3 +27,13 @@ export PATH="$HOME/bin:$PATH"
 # To get shell history in iex.
 export ERL_AFLAGS="-kernel shell_history enabled"
 
+# Catppuccin mocha theme for fzf
+# https://github.com/catppuccin/fzf
+# export FZF_DEFAULT_OPTS=" \
+# --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+# --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+# --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
+
+# Eldritch theme for fzf
+# https://github.com/eldritch-theme/fzf
+# export FZF_DEFAULT_OPTS='--color=fg:#ebfafa,bg:#282a36,hl:#37f499 --color=fg+:#ebfafa,bg+:#212337,hl+:#37f499 --color=info:#f7c67f,prompt:#04d1f9,pointer:#7081d0 --color=marker:#7081d0,spinner:#f7c67f,header:#323449'
