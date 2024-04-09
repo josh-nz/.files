@@ -4,6 +4,8 @@ require("user.vim-config")
 
 require("user.lazy")
 
+vim.cmd.colorscheme("catppuccin")
+
 require("user.keymaps")
 require("user.auto_commands")
 require("user.user_commands")
