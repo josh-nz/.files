@@ -269,6 +269,7 @@ end
 function M.fzflua_keymaps()
   nnoremap("<C-p>", ":FzfLua files<CR>", { desc = "Find files" })
   nnoremap("<C-b>", ":FzfLua buffers<CR>", { desc = "Find buffers" })
+  nnoremap("<C-g>", ":FzfLua grep<CR>", { desc = "Grep" })
 end
 
 
