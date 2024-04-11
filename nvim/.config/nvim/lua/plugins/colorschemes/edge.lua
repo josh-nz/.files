@@ -1,6 +1,6 @@
--- https://github.com/sainnhe/sonokai
+-- https://github.com/sainnhe/edge
 return {
-  "sainnhe/sonokai",
+  "sainnhe/edge",
   enabled = true,
   lazy = false,
   priority = 1000,

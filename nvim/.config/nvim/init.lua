@@ -4,6 +4,17 @@ require("user.vim-config")
 
 require("user.lazy")
 
+-- https://vimcolorschemes.com
+
+-- Some themes might set the background automatically,
+-- others might require it to be explicitly set. Some
+-- will determine the light/dark variant based on the
+-- background setting. Probably best to default to
+-- setting it explicitly.
+-- :h 'background'
+
+-- vim.o.background = "light"
+vim.o.background = "dark"
 vim.cmd.colorscheme("catppuccin")
 
 require("user.keymaps")

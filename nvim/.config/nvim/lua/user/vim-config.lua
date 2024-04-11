@@ -140,5 +140,4 @@ vim.diagnostic.config({
 -- vim.opt.laststatus = 2					-- always show statusline
 -- vim.opt.showcmd = true
 -- vim.opt.cmdheight = 2  -- More space in the command line for displaying messages.
--- vim.opt.showmode = true
 
