@@ -3,6 +3,7 @@
   "FTerm.nvim": { "branch": "master", "commit": "d1320892cc2ebab472935242d9d992a2c9570180" },
   "LuaSnip": { "branch": "master", "commit": "a7a4b4682c4b3e2ba82b82a4e6e5f5a0e79dec32" },
   "balance-theme.nvim": { "branch": "master", "commit": "ea6ed74360da571676f1ba3a83397f9c48161bd1" },
+  "borrowed.nvim": { "branch": "main", "commit": "12faaa8e34721fbaf3a9d9bfb4034caa9edc42f6" },
   "catppuccin": { "branch": "main", "commit": "aebe43db9cb26e1c70fc5b2fd4158169c405e720" },
   "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },
   "cmp-cmdline": { "branch": "main", "commit": "d250c63aa13ead745e3a40f61fdd3470efde3923" },
