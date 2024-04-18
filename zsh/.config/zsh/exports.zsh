@@ -18,6 +18,10 @@ export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 export PATH="/usr/local/bin:$PATH:/usr/local/sbin"
 export HOMEBREW_NO_ANALYTICS=1
 
+# Add WezTerm binary for WezTerm CLI features.
+# These are used to navigate between NeoVim and other WezTerm panes.
+export PATH="$PATH:/Applications/WezTerm.app/Contents/MacOS"
+
 # Add local script path at the front.
 export PATH="$HOME/bin:$PATH"
 

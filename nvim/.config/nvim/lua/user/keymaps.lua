@@ -399,4 +399,15 @@ end
 
 
 
+
+
+-- WezTerm0move keymaps
+function M.wezterm_move_keymaps(wm)
+  nnoremap("<C-h>", function() wm.move("h") end, { desc = "Move WezTerm focus to the left window" })
+  nnoremap("<C-j>", function() wm.move("j") end, { desc = "Move WezTerm focus to the lower window" })
+  nnoremap("<C-k>", function() wm.move("k") end, { desc = "Move WezTerm focus to the upper window" })
+  nnoremap("<C-l>", function() wm.move("l") end, { desc = "Move WezTerm focus to the right window" })
+end
+
+
 return M

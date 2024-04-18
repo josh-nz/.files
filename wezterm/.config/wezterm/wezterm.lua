@@ -43,6 +43,8 @@ config.keys = {
   { mods = "SHIFT|CTRL", key = "m", action = act.DisableDefaultAssignment },
 }
 
+require("wezterm_move_nvim").nav_keys(wezterm, config.keys)
+
 -- https://github.com/wez/wezterm/discussions/3733
 -- https://wezfurlong.org/wezterm/config/lua/gui-events/gui-startup.html
 -- https://wezfurlong.org/wezterm/config/lua/mux-events/mux-startup.html

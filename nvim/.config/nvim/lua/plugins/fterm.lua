@@ -1,7 +1,7 @@
 -- https://github.com/numToStr/FTerm.nvim
 return {
   "numToStr/FTerm.nvim",
-  enabled = true,
+  enabled = false,
   config = function()
     -- require("FTerm").setup()
     vim.keymap.set('n', '<A-i>', '<CMD>lua require("FTerm").toggle()<CR>')
