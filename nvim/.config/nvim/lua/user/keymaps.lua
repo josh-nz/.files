@@ -86,6 +86,9 @@ nnoremap("<C-w><C-^>", "<C-w>v<C-^>")
 -- nnoremap(",d", ":b#<bar>bd#<bar>b<CR>", { desc = "Close buffer and switch to alternative one. Keeps split open (but with edgecases)." })
 
 
+-- Plugin development
+nnoremap("<C-m>", ":messages<CR>")
+nnoremap("<M-l>", ":Lazy reload poss<CR>")
 
 
 
