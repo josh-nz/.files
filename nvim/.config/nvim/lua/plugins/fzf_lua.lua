@@ -33,6 +33,11 @@ return {
       --   ["header"]      = { "fg", "Comment" },
       --   ["gutter"]      = { "bg", "Normal" },
       -- },
+      keymap = {
+        fzf = {
+          ["ctrl-q"] = "select-all+accept", -- Send all items to quickfix list.
+        },
+      },
       previewers = {
         bat = { theme = "Catppuccin Mocha" },
       },
