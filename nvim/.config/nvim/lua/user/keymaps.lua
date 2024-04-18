@@ -267,6 +267,31 @@ end
 
 -- Fzflua keymaps
 function M.fzflua_keymaps()
+  -- Was trying to copy from here:
+  -- https://www.reddit.com/r/neovim/comments/1c1id24/vscode_like_path_display_in_fzfluas_files_picker/
+  -- but doesn't work for me due to my FzfLua profile stuffing it up somehow, they way it passes
+  -- data to the remove nvim process.
+  -- Can mimick the expected results on the cmd line with:
+  -- fd --color=never --type f --hidden --exclude .git -x printf "{}: {/} {//}\n" | fzf --with-nth '3' --delimiter '\s' --tiebreak 'begin,index' --ansi
+  -- local vs_code_style = function()
+  --   local fd_cmd = string.format(
+  --     [[fd --color=never --type f --hidden --follow --exclude .git -x printf "{}: {/} %s\n"]],
+  --     require('fzf-lua.utils').ansi_codes.grey('{//}')
+  --   )
+
+  --   require('fzf-lua').files({
+  --     cmd = fd_cmd,
+  --     fzf_opts = {
+  --       ["--ansi"] = true,
+  --       ["--with-nth"] = "2..",
+  --       ["--delimiter"] = "\\s",
+  --       ["--tiebreak"] = "begin,index",
+  --     },
+  --     -- debug = true,
+  --   })
+  -- end
+
+  -- nnoremap("<C-p>", vs_code_style, { desc = "Find files" })
   nnoremap("<C-p>", ":FzfLua files<CR>", { desc = "Find files" })
   nnoremap("<C-b>", ":FzfLua buffers<CR>", { desc = "Find buffers" })
   nnoremap("<C-g>", ":FzfLua grep<CR>", { desc = "Grep" })
@@ -353,7 +378,7 @@ end
 
 
 
--- Navigator keymaps
+-- Smart-splits keymaps
 function M.smart_splits_keymaps(ss)
   nnoremap("<M-h>", ss.move_cursor_left, { desc = "Move mux focus to the left window" })
   nnoremap("<M-j>", ss.move_cursor_down, { desc = "Move mux focus to the lower window" })
@@ -371,5 +396,7 @@ function M.smart_splits_keymaps(ss)
   nnoremap("<leader>bk", ss.swap_buf_up, { desc = "Swap buffer up" })
   nnoremap("<leader>bl", ss.swap_buf_right, { desc = "Swap buffer right" })
 end
+
+
 
 return M
