@@ -103,6 +103,8 @@ M.nav_keys = function(wezterm, keys)
   -- This function behaves a bit goofy if there is
   -- already more than 1 split when NeoVim starts.
   -- Use the code as inspiration for something better.
+  -- Another idea here:
+  -- https://github.com/wez/wezterm/discussions/3779#discussioncomment-8923369
   table.insert(keys, split_or_zoom(wezterm))
 end
 
