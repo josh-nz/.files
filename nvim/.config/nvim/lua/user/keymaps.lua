@@ -407,6 +407,8 @@ function M.wezterm_move_keymaps(wm)
   nnoremap("<C-j>", function() wm.move("j") end, { desc = "Move WezTerm focus to the lower window" })
   nnoremap("<C-k>", function() wm.move("k") end, { desc = "Move WezTerm focus to the upper window" })
   nnoremap("<C-l>", function() wm.move("l") end, { desc = "Move WezTerm focus to the right window" })
+
+  nnoremap("<C-;>", function() wm.move("j") end, { desc = "Move WezTerm focus to the lower window" })
 end
 
 

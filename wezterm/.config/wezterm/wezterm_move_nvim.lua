@@ -44,6 +44,48 @@ local function split_nav(resize_or_move, key, wezterm)
 end
 
 
+local function find_vim_pane(tab)
+  for _, pane in ipairs(tab:panes()) do
+    if is_vim(pane) then
+      return pane
+    end
+  end
+end
+
+
+-- Toggle zoom for neovim
+local function split_or_zoom(wezterm)
+  return {
+    key = ";",
+    mods = "CTRL",
+    action = wezterm.action_callback(function(window, pane)
+      local tab = window:active_tab()
+
+      -- Open pane below if current pane is vim
+      if is_vim(pane) then
+        if (#tab:panes()) == 1 then
+          -- Open pane below if when there is only one pane and it is vim
+          pane:split({ direction = "Bottom" })
+        else
+          -- Send `CTRL-; to vim`, navigate to bottom pane from vim
+          window:perform_action({
+            SendKey = { key = ";", mods = "CTRL" },
+          }, pane)
+        end
+        return
+      end
+
+      -- Zoom to vim pane if it exists
+      local vim_pane = find_vim_pane(tab)
+      if vim_pane then
+        vim_pane:activate()
+        tab:set_zoomed(true)
+      end
+    end),
+  }
+end
+
+
 local M = {}
 M.nav_keys = function(wezterm, keys)
   -- move between split panes
@@ -57,6 +99,11 @@ M.nav_keys = function(wezterm, keys)
   table.insert(keys, split_nav("resize", "j", wezterm))
   table.insert(keys, split_nav("resize", "k", wezterm))
   table.insert(keys, split_nav("resize", "l", wezterm))
+
+  -- This function behaves a bit goofy if there is
+  -- already more than 1 split when NeoVim starts.
+  -- Use the code as inspiration for something better.
+  table.insert(keys, split_or_zoom(wezterm))
 end
 
 return M
