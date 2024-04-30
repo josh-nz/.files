@@ -36,8 +36,8 @@ bindkey -s '^o' 'lfcd\n'
 # https://stackoverflow.com/a/39520371
 bindkey -e
 
-# https://asdf-vm.com/
-. $(brew --prefix asdf)/libexec/asdf.sh
+# https://mise.jdx.dev/getting-started.html
+eval "$(mise activate zsh)"
 
 # https://github.com/ajeetdsouza/zoxide
 eval "$(zoxide init zsh)"
