@@ -96,15 +96,26 @@ nnoremap("<M-l>", ":Lazy reload poss<CR>")
 
 -- Insert --
 
--- Map jj to <esc>
+-- Currently have a very short Ctrl press (<0.01s) mapped to trigger Esc
+-- via BetterTouchTool which looks to be working great. To configure this:
+-- Select `Key Sequences / Typed Words` droplist item
+-- Add a new item which brings up the recording keys screen
+-- Press the desired key
+-- Stop recording
+-- Set `Trigger only if no further keyboard input is recognised for` to 0.01s
+-- Save
+-- Assign an action `Keyboard Keys`, `Esc`
+
+-- This is also this option:
+-- https://karabiner-elements.pqrs.org/
 -- inoremap("df", "<Esc>")
 -- inoremap("fd", "<Esc>")
-inoremap("fj", "<Esc>")
+-- inoremap("fj", "<Esc>")
 -- inoremap("jf", "<Esc>")
 -- inoremap("jk", "<Esc>")
 -- inoremap("kj", "<Esc>")
 
-inoremap("<C-d>", "<Del>")
+-- inoremap("<C-d>", "<Del>")
 
 
 
@@ -297,7 +308,7 @@ function M.fzflua_keymaps()
   -- nnoremap("<C-p>", vs_code_style, { desc = "Find files" })
   nnoremap("<C-p>", ":FzfLua files<CR>", { desc = "Find files" })
   nnoremap("<C-b>", ":FzfLua buffers<CR>", { desc = "Find buffers" })
-  nnoremap("<C-g>", ":FzfLua grep<CR>", { desc = "Grep" })
+  nnoremap("<leader>g", ":FzfLua grep<CR>", { desc = "Grep" })
 end
 
 
