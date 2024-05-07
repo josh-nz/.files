@@ -41,7 +41,6 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # Case insensitive com
 compinit
 _comp_options+=(globdots)		# Include hidden files in completion.
 
-
 source $ZDOTDIR/prompt.zsh
 source $ZDOTDIR/aliases.zsh
 source $ZDOTDIR/functions.zsh
@@ -54,6 +53,9 @@ bindkey -s '^o' 'lfcd\n'
 # even if ZSH works fine without the following line.
 # https://stackoverflow.com/a/39520371
 bindkey -e
+
+# brew install zsh-autosuggestions
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # https://mise.jdx.dev/getting-started.html
 eval "$(mise activate zsh)"
