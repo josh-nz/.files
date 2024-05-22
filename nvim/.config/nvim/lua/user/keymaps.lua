@@ -158,8 +158,10 @@ vim.keymap.set("t", "<C-w>", [[<C-\><C-n><C-w>]])
 
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror message" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+-- The following are now default mappings in 0.10.0, and can be removed:
+vim.keymap.set("n", "<C-w>d", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror message" })
+vim.keymap.set("n", "<C-w><C-d>", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror message" })
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
 
@@ -225,6 +227,7 @@ function M.lsp_keymaps(opts)
 
   -- Opens a popup that displays documentation about the word under your cursor
   --  See `:help K` for why this keymap.
+  -- This is now a default mapping in 1.10.0 and can be removed:
   nnoremap("K", vim.lsp.buf.hover, { desc = "Hover Documentation" })
 
   -- WARN: This is not Goto Definition, this is Goto Declaration.

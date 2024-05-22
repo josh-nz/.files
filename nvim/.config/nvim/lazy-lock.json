@@ -1,5 +1,4 @@
 {
-  "Comment.nvim": { "branch": "master", "commit": "0236521ea582747b58869cb72f70ccfa967d2e89" },
   "LuaSnip": { "branch": "master", "commit": "de1a287c9cb525ae52bc846e8f6207e5ef1da5ac" },
   "balance-theme.nvim": { "branch": "master", "commit": "ea6ed74360da571676f1ba3a83397f9c48161bd1" },
   "borrowed.nvim": { "branch": "main", "commit": "75585d8c4bf8e3cff4d6d505c22f9f9d573e8a4e" },
