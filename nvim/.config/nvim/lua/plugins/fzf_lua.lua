@@ -41,6 +41,9 @@ return {
       previewers = {
         bat = { theme = "Catppuccin Mocha" },
       },
+      files = {
+        formatter = "path.filename_first",
+      },
       grep = {
         rg_opts = "--hidden " .. rg_opts_default,
       },
