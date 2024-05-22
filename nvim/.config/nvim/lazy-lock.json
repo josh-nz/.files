@@ -11,6 +11,7 @@
   "cmp-path": { "branch": "main", "commit": "91ff86cd9c29299a64f968ebb45846c485725f23" },
   "cmp_luasnip": { "branch": "master", "commit": "05a9ab28b53f71d1aece421ef32fee2cb857a843" },
   "colorbuddy.nvim": { "branch": "master", "commit": "8b968581e5c19d22a861d5f3fe5dbd83394fa681" },
+  "cyberdream.nvim": { "branch": "main", "commit": "17f9e55bd3c349006190e7ff8203c2af6b7e3051" },
   "diffview.nvim": { "branch": "main", "commit": "ad03c42b2899117ff039d84ac24860a77116204b" },
   "edge": { "branch": "master", "commit": "605c70fac8985bd6ac137839571f1323b4a067a9" },
   "eldritch.nvim": { "branch": "master", "commit": "d5107e60f9b911709ff760db21d0ca88ae29603a" },
