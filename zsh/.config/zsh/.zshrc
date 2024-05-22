@@ -18,8 +18,14 @@ setopt HIST_IGNORE_SPACE         # Don't record an entry starting with a space.
 # setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history file.
 setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
 
-bindkey '^[[A' history-search-backward
-bindkey '^[[B' history-search-forward
+# history-search-direction when called with a partial command, will
+# only search history matching that command, and not replace the 
+# existing command. For example, if you type `curl ` and trigger
+# the history search, you only match results that start with `curl `.
+bindkey '^[[A' history-search-backward  # Up key.
+bindkey '^[[A' history-search-backward  # Up key.
+bindkey '^N' history-search-forward   # Ctrl-n key.
+bindkey '^P' history-search-forward   # Ctrl-p key.
 
 
 # Basic auto/tab complete:
@@ -36,6 +42,7 @@ bindkey -M menuselect 'l' vi-forward-char
 zstyle ':completion:*' completer _complete _approximate
 zstyle ':completion:*' menu select  # Show completions as list of choices, can navigate using tab or arrow keys.
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # Case insensitive completion matching.
+# ls --colour doesn't work on MacOS, maybe that's why the following doesn't work also. Non-GNU ls or something?
 # zstyle ':completion:*' list-colors "${(s.:.)LSCOLORS}"  # Doesn't seem to use LSCOLORS values (folders and symlinks have swapped colours from `ls` output).
 # zstyle ':completion:*' list-colors '' # Default colours.
 compinit
