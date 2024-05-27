@@ -16,14 +16,18 @@ config.colors = {
   cursor_fg = "white",
 }
 
+-- config.font = wezterm.font('MesloLGL Nerd Font Mono')
+-- config.font = wezterm.font('Hack Nerd Font Mono')
+-- config.font = wezterm.font('0xProto Nerd Font Mono')
+-- config.font = wezterm.font_with_fallback({ 'Geist Mono' })
+-- config.font = wezterm.font_with_fallback({ 'IBM Plex Mono' })
+config.font = wezterm.font_with_fallback({ 'MonoLisa Trial' })
+config.font_size = 12.0
+
+
 config.hide_tab_bar_if_only_one_tab = true
 
 -- config.default_cwd = "~"
-
--- config.font = wezterm.font('MesloLGL Nerd Font Mono')
-config.font = wezterm.font('Hack Nerd Font Mono')
--- config.font = wezterm.font('0xProto Nerd Font Mono')
-config.font_size = 12.0
 
 
 -- Distinguish between more key modifier combinations.
