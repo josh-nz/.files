@@ -21,6 +21,7 @@
   "fzf-lua": { "branch": "main", "commit": "b442569ab827f72e344236c598b02cb9dc754e9f" },
   "gleam-theme-nvim": { "branch": "main", "commit": "662ede7d35a639adcae7b27da151eb777c784b93" },
   "gleam.vim": { "branch": "master", "commit": "6739d8b656adb5d2807675b7652afb6e257b2b1c" },
+  "huez.nvim": { "branch": "main", "commit": "d2872466ab54349624189c8287973a7bb84deaf8" },
   "iceberg.vim": { "branch": "master", "commit": "e01ac08c2202e7544531f4d806f6893539da6471" },
   "kanagawa.nvim": { "branch": "master", "commit": "860e4f80df71221d18bf2cd9ef1deb4d364274d2" },
   "lazy.nvim": { "branch": "main", "commit": "8f19915175395680808de529e4220da8dafc0759" },
