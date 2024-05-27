@@ -176,7 +176,10 @@ function M.lsp_keymaps(opts)
   -- vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
   -- vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
   -- vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-  vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
+
+  -- https://www.reddit.com/r/neovim/comments/mbj8m5/how_to_setup_ctrlshiftkey_mappings_in_neovim_and/
+  -- Not currently working, see also :h modifyOtherKeys
+  vim.keymap.set("n", "<C-S-k>", vim.lsp.buf.signature_help, opts)
 
   -- vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
 
