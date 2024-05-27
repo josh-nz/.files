@@ -35,6 +35,7 @@
   "monet.nvim": { "branch": "main", "commit": "aafa0d8489c3f225ea17b8303e989b91ad913e97" },
   "neo-tree.nvim": { "branch": "v3.x", "commit": "29f7c215332ba95e470811c380ddbce2cebe2af4" },
   "neodev.nvim": { "branch": "main", "commit": "ce9a2e8eaba5649b553529c5498acb43a6c317cd" },
+  "neofusion.nvim": { "branch": "main", "commit": "329ecf98b38b9a994077606557d926ae10518b90" },
   "neogit": { "branch": "master", "commit": "daebc4bc94bdcfa69d8d75c731878bff758e16fa" },
   "neovim-ayu": { "branch": "master", "commit": "d7a2b754c9f9be3c30e14a53d6cfda3e111edd24" },
   "nightfox.nvim": { "branch": "main", "commit": "df75a6a94910ae47854341d6b5a6fd483192c0eb" },
