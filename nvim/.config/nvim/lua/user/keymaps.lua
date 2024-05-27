@@ -285,33 +285,11 @@ function M.telescope_keymaps(builtin)
   end, { desc = '[/] Fuzzily search in current buffer' })
 end
 
+
+
+
 -- Fzflua keymaps
 function M.fzflua_keymaps()
-  -- Was trying to copy from here:
-  -- https://www.reddit.com/r/neovim/comments/1c1id24/vscode_like_path_display_in_fzfluas_files_picker/
-  -- but doesn't work for me due to my FzfLua profile stuffing it up somehow, they way it passes
-  -- data to the remove nvim process.
-  -- Can mimick the expected results on the cmd line with:
-  -- fd --color=never --type f --hidden --exclude .git -x printf "{}: {/} {//}\n" | fzf --with-nth '3' --delimiter '\s' --tiebreak 'begin,index' --ansi
-  -- local vs_code_style = function()
-  --   local fd_cmd = string.format(
-  --     [[fd --color=never --type f --hidden --follow --exclude .git -x printf "{}: {/} %s\n"]],
-  --     require('fzf-lua.utils').ansi_codes.grey('{//}')
-  --   )
-
-  --   require('fzf-lua').files({
-  --     cmd = fd_cmd,
-  --     fzf_opts = {
-  --       ["--ansi"] = true,
-  --       ["--with-nth"] = "2..",
-  --       ["--delimiter"] = "\\s",
-  --       ["--tiebreak"] = "begin,index",
-  --     },
-  --     -- debug = true,
-  --   })
-  -- end
-
-  -- nnoremap("<C-p>", vs_code_style, { desc = "Find files" })
   nnoremap("<C-p>", ":FzfLua files<CR>", { desc = "Find files" })
   nnoremap("<C-b>", ":FzfLua buffers<CR>", { desc = "Find buffers" })
   nnoremap("<leader>g", ":FzfLua grep<CR>", { desc = "Grep" })
