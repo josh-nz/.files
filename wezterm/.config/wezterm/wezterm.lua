@@ -64,7 +64,7 @@ wezterm.on("gui-startup", function(cmd)
   local tab, left_pane, window = wezterm.mux.spawn_window(cmd or {})
   window:gui_window():maximize()
 
-  local right_pane = left_pane:split({ })
+  -- local right_pane = left_pane:split({ })
 
 --   local scripts_pane = left_pane:split({ direction = "Bottom", size = 0.1, cwd = "~" })
 
