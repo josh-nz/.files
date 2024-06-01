@@ -78,6 +78,7 @@ nnoremap("x", '"_x')
 -- Doesn't seem to work reliably.
 nnoremap("<C-w><C-^>", "<C-w>v<C-^>")
 
+nnoremap('""', ':registers "0123456789abcdefghijklmnopqrstuvwxyz*+.<CR>')
 
 -- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-bufremove.md#features
 -- https://github.com/moll/vim-bbye
