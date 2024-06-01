@@ -250,7 +250,7 @@ return {
       -- least for the : cmdline autocomplete. I think it's best to
       -- define the mappings above to work in command mode and ignore
       -- anything here. It also retains the Bash style tab completion
-      -- I have already configured for the native VIm autocomplete.
+      -- I have already configured for the native Vim autocomplete.
 
       -- mapping = cmp.mapping.preset.cmdline({
       --   ["<C-p>"] = cmp.mapping(

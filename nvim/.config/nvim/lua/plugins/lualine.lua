@@ -63,7 +63,7 @@ return {
           -- "filetype",
         },
         lualine_y = {
-          "progress", -- % throught file indicator.
+          "progress", -- % through file indicator.
         },
         lualine_z = {
           -- "selectioncount",
