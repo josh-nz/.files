@@ -85,7 +85,7 @@ vim.opt.foldenable = true
 -- Always keep 8 lines above/below cursor unless at start/end of file
 -- https://vim.fandom.com/wiki/Keep_your_cursor_centered_vertically_on_the_screen
 vim.opt.scrolloff = 8 -- 999
-vim.opt.sidescrolloff = 0
+vim.opt.sidescrolloff = 5
 
 -- Place a column line
 -- vim.opt.colorcolumn = "80"
@@ -141,3 +141,5 @@ vim.diagnostic.config({
 -- vim.opt.showcmd = true
 -- vim.opt.cmdheight = 2  -- More space in the command line for displaying messages.
 
+-- Consider - as part of keyword
+-- opt.iskeyword:append("-")
