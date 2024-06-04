@@ -181,7 +181,7 @@ function M.lsp_keymaps(opts)
   -- https://www.reddit.com/r/neovim/comments/mbj8m5/how_to_setup_ctrlshiftkey_mappings_in_neovim_and/
   -- Not currently working, see also :h modifyOtherKeys
   -- vim.keymap.set("n", "<C-S-k>", vim.lsp.buf.signature_help, opts)
-  vim.keymap.set("n", "<leader>k", vim.lsp.buf.signature_help, opts)
+  vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, opts)
 
   -- vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
 
@@ -216,6 +216,7 @@ function M.lsp_keymaps(opts)
 
   -- Fuzzy find all the symbols in your current document.
   --  Symbols are things like variables, functions, types, etc.
+  --  Duplicate of custom Telescope keymap <leader>fs
   nnoremap("<leader>ds", ts.lsp_document_symbols, { desc = "[D]ocument [S]ymbols" })
 
   -- Fuzzy find all the symbols in your current workspace.
@@ -268,6 +269,7 @@ function M.telescope_keymaps(builtin)
   end, {})
   vim.keymap.set("n", "<leader>fk", builtin.keymaps, {})
   vim.keymap.set("n", "<leader>fj", builtin.jumplist, {})
+  --  Duplicate of custom debug keymap <leader>ds
   vim.keymap.set("n", "<leader>fs", function()
     builtin.lsp_document_symbols({ show_line = true })
   end, {})
@@ -409,6 +411,14 @@ function M.wezterm_move_keymaps(wm)
   nnoremap("<C-l>", function() wm.move("l") end, { desc = "Move WezTerm focus to the right window" })
 
   nnoremap("<C-;>", function() wm.move("j") end, { desc = "Move WezTerm focus to the lower window" })
+end
+
+
+
+
+-- Possession.nvim keymaps
+function M.possession_keymaps()
+    nnoremap("<leader>p", ":Telescope possession list<CR>", { desc = "Show saved sessions" })
 end
 
 
