@@ -1,7 +1,7 @@
 -- https://github.com/rmagatti/auto-session
 return {
   "rmagatti/auto-session",
-  enabled = true,
+  enabled = false,
   config = function()
 ---@diagnostic disable-next-line: missing-fields
     require("auto-session").setup({
