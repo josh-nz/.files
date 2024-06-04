@@ -125,7 +125,7 @@ nnoremap("<M-l>", ":Lazy reload poss<CR>")
 -- Disable Space bar since it'll be used as the leader key
 vnoremap("<Space>", "<nop>")
 
-vnoremap("fj", "<Esc>")
+-- vnoremap("fj", "<Esc>")
 
 
 
@@ -180,7 +180,8 @@ function M.lsp_keymaps(opts)
 
   -- https://www.reddit.com/r/neovim/comments/mbj8m5/how_to_setup_ctrlshiftkey_mappings_in_neovim_and/
   -- Not currently working, see also :h modifyOtherKeys
-  vim.keymap.set("n", "<C-S-k>", vim.lsp.buf.signature_help, opts)
+  -- vim.keymap.set("n", "<C-S-k>", vim.lsp.buf.signature_help, opts)
+  vim.keymap.set("n", "<leader>k", vim.lsp.buf.signature_help, opts)
 
   -- vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
 
@@ -400,7 +401,7 @@ end
 
 
 
--- WezTerm0move keymaps
+-- WezTerm-move keymaps
 function M.wezterm_move_keymaps(wm)
   nnoremap("<C-h>", function() wm.move("h") end, { desc = "Move WezTerm focus to the left window" })
   nnoremap("<C-j>", function() wm.move("j") end, { desc = "Move WezTerm focus to the lower window" })
