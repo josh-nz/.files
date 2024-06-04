@@ -94,7 +94,10 @@ return {
         ["<C-Space>"] = cmp.mapping(cmp.mapping.complete({}), { "i", "c" }),
         ["<C-c>"] = cmp.mapping.abort(), -- close completion window, also <C-e>
 
-       -- Select highlighted word, won't complete if no highlight
+        -- Select highlighted word, won't complete if no highlight
+        -- This is useful when an LSP defines a preselect for a completion,
+        -- since we'd typically be pressing <CR> about now to go to the next
+        -- line anyway, so might as well trigger the completion at the same time.
         ["<CR>"] = cmp.mapping(cmp.mapping.confirm({ select = false }), { "i", "c" }),
         -- Accept ([y]es) the completion.
         -- This will auto-import if your LSP supports it.
@@ -110,18 +113,20 @@ return {
         --    $body
         --  end
         --
-        -- <c-l> will move you to the right of each of the expansion locations.
-        -- <c-h> is similar, except moving you backwards.
-        ['<C-l>'] = cmp.mapping(function()
+        -- <C-l> will move you to the right of each of the expansion locations.
+        -- <C-h> is similar, except moving you backwards.
+        ["<C-l>"] = cmp.mapping(function()
           if luasnip.expand_or_locally_jumpable() then
             luasnip.expand_or_jump()
+          else
+            cmp.complete_common_string()
           end
-        end, { 'i', 's' }),
-        ['<C-h>'] = cmp.mapping(function()
+        end, { "i", "s" }),
+        ["<C-h>"] = cmp.mapping(function()
           if luasnip.locally_jumpable(-1) then
             luasnip.jump(-1)
           end
-        end, { 'i', 's' }),
+        end, { "i", "s" }),
 
         -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
         -- https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
