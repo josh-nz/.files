@@ -159,10 +159,15 @@ return {
       sources = cmp.config.sources({
         {
           name = "nvim_lsp",
-          -- entry_filter = function(entry, ctx)
-          --   return require('cmp.types').lsp.CompletionItemKind[entry:get_kind()] ~= 'Text'
-          -- end,
+          entry_filter = function(entry, ctx)
+            return require('cmp.types').lsp.CompletionItemKind[entry:get_kind()] ~= 'Text'
+          end,
         }, -- lsp
+        {
+          -- optional completion source for Neovim Lua require statements and module annotations
+          name = "lazydev",
+          group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+        },
         { name = "nvim_lsp_signature_help" },
         {
           name = "buffer",
