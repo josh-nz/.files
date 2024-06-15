@@ -1,7 +1,7 @@
 -- https://github.com/nvim-neo-tree/neo-tree.nvim
 return {
   "nvim-neo-tree/neo-tree.nvim",
-  enabled = true,
+  enabled = false,
   event = "VeryLazy",
   branch = "v3.x",
   dependencies = {
