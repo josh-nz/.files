@@ -95,6 +95,9 @@ return {
               alternate_file = "#",
             },
 
+            buffers_color = {
+              active = "lualine_b_normal",
+            },
             -- buffers_color = {
             --   -- :h attr-list for gui styles
             --   active = function(section)
