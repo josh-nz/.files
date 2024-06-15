@@ -18,7 +18,15 @@ return {
     fzflua.setup({
       -- utilizes fzf's native previewing ability in the terminal where
       -- possible using bat for previews
-      "fzf-native",
+      -- "fzf-native",
+      -- This profile allows the following auto colors option to work,
+      -- since the preview is rendered by Neovim.
+      -- `fzf-native` calls bat and will therefore use whatever colors
+      -- bat is configured for, requiring a shell config change if the
+      -- preview is to be consistent in color with Neovim, when changing
+      -- the Neovim colorscheme.
+      "default",  -- This profile allows the following option to work, fzf-native calls bat and will therefore use whatever bat is configured for
+      fzf_colors = true,  -- Auto generate colors based on colorscheme
       -- fzf_colors = {
       --   ["fg"]          = { "fg", "CursorLine" },
       --   ["bg"]          = { "bg", "Normal" },
