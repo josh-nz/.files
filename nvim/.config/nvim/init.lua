@@ -21,6 +21,7 @@ vim.o.background = "dark"
 -- This will help maximise Neovim startup while also 
 -- ensuring that the desired colorscheme is loaded 
 -- first for correct colours.
+-- vim.cmd.colorscheme("catppuccin")
 
 require("user.keymaps")
 require("user.auto_commands")
