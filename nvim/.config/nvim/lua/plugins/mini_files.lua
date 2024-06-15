@@ -2,5 +2,6 @@
 return {
   "echasnovski/mini.files",
   enabled = true,
+  lazy = true,
   config = true,
 }

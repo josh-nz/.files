@@ -2,6 +2,6 @@
 return {
   "M-T3K/tartessos.nvim",
   enabled = true,
-	lazy = false,
+  lazy = true,
 	priority = 1000,
 }

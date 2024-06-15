@@ -6,6 +6,7 @@ return {
     -- https://github.com/folke/lazydev.nvim
     "folke/lazydev.nvim",
     enabled = true,
+    lazy = true,
     ft = "lua", -- only load on lua files
     dependencies = {
       { "Bilal2453/luvit-meta", lazy = true }, -- optional `vim.uv` typings

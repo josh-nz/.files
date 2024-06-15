@@ -15,7 +15,12 @@ require("user.lazy")
 
 -- vim.o.background = "light"
 vim.o.background = "dark"
-vim.cmd.colorscheme("catppuccin")
+-- When changing colorscheme:
+-- - Set `lazy = true,` in the current colorscheme file
+-- -Set `lazy = false,` in the new colorscheme file
+-- This will help maximise Neovim startup while also 
+-- ensuring that the desired colorscheme is loaded 
+-- first for correct colours.
 
 require("user.keymaps")
 require("user.auto_commands")

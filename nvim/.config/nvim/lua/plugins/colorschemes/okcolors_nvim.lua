@@ -2,6 +2,6 @@
 return {
   "e-q/okcolors.nvim",
   enabled = true,
-  lazy = false,
+  lazy = true,
   priority = 1000,
 }

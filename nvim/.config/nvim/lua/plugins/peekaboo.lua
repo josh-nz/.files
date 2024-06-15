@@ -2,4 +2,5 @@
 return {
   "junegunn/vim-peekaboo",
   enabled = true,
+  event = "VeryLazy",
 }

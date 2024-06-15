@@ -2,11 +2,11 @@
 return {
   "jesseleite/nvim-noirbuddy",
   enabled = true,
+  lazy = true,
+  priority = 1000,
   dependencies = {
     { "tjdevries/colorbuddy.nvim" }
   },
-  lazy = false,
-  priority = 1000,
   opts = {
     -- All of your `setup(opts)` will go here
   },

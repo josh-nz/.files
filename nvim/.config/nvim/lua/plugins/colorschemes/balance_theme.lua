@@ -2,6 +2,6 @@
 return {
   "MetriC-DT/balance-theme.nvim",
   enabled = true,
-  lazy = false,
+  lazy = true,
   priority = 1000,
 }

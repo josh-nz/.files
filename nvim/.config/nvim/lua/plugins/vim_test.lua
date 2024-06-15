@@ -2,6 +2,7 @@
 return {
   "vim-test/vim-test",
   enabled = true,
+  lazy = true,
   dependencies = {
     -- https://github.com/preservim/vimux
     "preservim/vimux",

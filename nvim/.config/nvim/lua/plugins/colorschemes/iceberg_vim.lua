@@ -2,6 +2,6 @@
 return {
   "cocopon/iceberg.vim",
   enabled = true,
-  lazy = false,
+  lazy = true,
   priority = 1000,
 }

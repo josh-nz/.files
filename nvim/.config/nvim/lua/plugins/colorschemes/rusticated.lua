@@ -2,6 +2,6 @@
 return {
   "d00h/nvim-rusticated",
   enabled = true,
-  lazy = false,
+  lazy = true,
   priority = 1000,
 }

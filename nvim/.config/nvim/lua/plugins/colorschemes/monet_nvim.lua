@@ -2,6 +2,6 @@
 return {
   "fynnfluegge/monet.nvim",
   enabled = true,
-  lazy = false,
+  lazy = true,
   priority = 1000,
 }

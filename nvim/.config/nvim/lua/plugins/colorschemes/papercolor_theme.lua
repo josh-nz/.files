@@ -2,6 +2,6 @@
 return {
   "NLKNguyen/papercolor-theme",
   enabled = true,
-  lazy = false,
+  lazy = true,
   priority = 1000,
 }

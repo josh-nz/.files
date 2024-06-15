@@ -2,4 +2,5 @@
 return {
   "gleam-lang/gleam.vim",
   enabled = true,
+  event = "VeryLazy",
 }
