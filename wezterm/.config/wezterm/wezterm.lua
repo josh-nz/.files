@@ -29,7 +29,12 @@ config.colors = {
 -- config.font = wezterm.font_with_fallback({ 'CommitMono' })
 -- config.font = wezterm.font_with_fallback({ 'Geist Mono' })
 -- config.font = wezterm.font_with_fallback({ 'IBM Plex Mono' })
-config.font = wezterm.font_with_fallback({ 'MonoLisa Trial' })
+config.font = wezterm.font_with_fallback(
+{{
+    family = 'MonoLisa Trial',
+    -- https://wezfurlong.org/wezterm/config/font-shaping.html#advanced-font-shaping-options
+    harfbuzz_features = { 'zero' },
+}})
 config.font_size = 12.0
 
 
