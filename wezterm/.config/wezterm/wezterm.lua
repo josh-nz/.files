@@ -9,7 +9,8 @@ local config = wezterm.config_builder()
 -- For example, changing the color scheme:
 config.color_scheme = 'Catppuccin Mocha'
 -- config.color_scheme = 'Eldritch'
-config.inactive_pane_hsb = { saturation = 0.1, brightness = 0.4, hue = 1 }
+-- config.inactive_pane_hsb = { saturation = 0.1, brightness = 0.4, hue = 1 }
+config.inactive_pane_hsb = { saturation = 0.7, brightness = 1, hue = 1 }
 config.colors = {
   --split = "#777bdc"
   cursor_bg = "red",
@@ -26,6 +27,7 @@ config.colors = {
 -- config.font = wezterm.font('FiraMono Nerd Font Mono')
 -- config.font = wezterm.font('Inconsolata Nerd Font Mono')
 
+-- config.font = wezterm.font_with_fallback({ 'SF Mono' })
 -- config.font = wezterm.font_with_fallback({ 'CommitMono' })
 -- config.font = wezterm.font_with_fallback({ 'Geist Mono' })
 -- config.font = wezterm.font_with_fallback({ 'IBM Plex Mono' })
