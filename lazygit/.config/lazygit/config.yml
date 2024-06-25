@@ -1,7 +1,16 @@
 # https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
 gui:
+  scrollOffMargin: 2
+  scrollOfBehavior: "jump"
+  expandFocusedSidePanel: true
+  shortTimeFormat: 15:03
   theme:
     selectedLineBgColor:
       - reverse
     commandLogSize: 10
     nerdFontsVersion: "3"
+  git:
+    paging:
+      # https://github.com/jesseduffield/lazygit/blob/master/docs/Custom_Pagers.md
+      colorArgs: always
+      useConfig: true
