@@ -8,7 +8,8 @@ return {
   event = "VeryLazy",
   opts = {
     startVisible = true,
-    showBlankVirtLine = false,
+    -- virtLinePosition = "dynamic-inverted",
+    showBlankVirtLine = true,
     -- highlightColor = { link = "Comment" },
     highlightColor = {
       fg = "yellow",
@@ -28,8 +29,8 @@ return {
     },
     gutterHints = {
       -- prio is not currently used for gutter hints
-      G = { text = "G", prio = 0 }, -- Originally prio 10
-      gg = { text = "gg", prio = 0 }, -- Originally prio 9
+      G = { text = "G", prio = 10 }, -- Originally prio 10
+      gg = { text = "gg", prio = 9 }, -- Originally prio 9
       PrevParagraph = { text = "{", prio = 8 },
       NextParagraph = { text = "}", prio = 8 },
     },
