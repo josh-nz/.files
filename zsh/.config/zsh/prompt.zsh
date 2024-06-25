@@ -21,7 +21,8 @@
 # Currently using Starship for custom prompt, rather than building it myself:
 
 # Set starship prompt theme.
-export STARSHIP_CONFIG="$HOME/.config/starship/gruvbox-rainbow.toml"
+# export STARSHIP_CONFIG="$HOME/.config/starship/gruvbox-rainbow.toml"
+export STARSHIP_CONFIG="$HOME/.config/starship/foo.toml"
 
 # https://starship.rs/
 eval "$(starship init zsh)"
