@@ -30,6 +30,12 @@ return {
     -- end
 
 
+    local function session_name()
+      -- return ""
+      local _, name = pcall(require("possession.session").get_session_name)
+      return name and "[" .. name .. "]" or ""
+    end
+
     require("lualine").setup({
       options = {
         theme = "auto",
@@ -60,7 +66,8 @@ return {
           --     unix = "",
           --   },
           -- },
-          -- "filetype",
+          session_name,
+          "filetype",
         },
         lualine_y = {
           "progress", -- % through file indicator.
