@@ -41,8 +41,9 @@ config.window_padding = {
 
 -- Distinguish between more key modifier combinations.
 -- This allows Nvim to distinguish between C-k and C-S-k for example.
--- config.enable_csi_u_key_encoding = true
--- config.enable_kitty_keyboard = true
+-- https://wezfurlong.org/wezterm/config/key-encoding.html
+-- config.enable_csi_u_key_encoding = true  -- Not recommended according to docs.
+config.enable_kitty_keyboard = true
 
 
 config.mouse_bindings = {

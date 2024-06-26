@@ -62,6 +62,7 @@ nnoremap("<C-p>", ":wincmd p<CR>", { desc = "Move focus to the previous window" 
 
 
 
+
 -- Turn off highlighted results
 nnoremap("<Esc>", ":nohlsearch<CR><Esc>", { desc = "No search highlight" })
 
@@ -154,7 +155,6 @@ vim.keymap.set("t", "<C-w>", [[<C-\><C-n><C-w>]])
 
 
 
-
 -- LSP keymaps - originally part of lsp_config.lua
 
 -- Global mappings.
@@ -179,8 +179,8 @@ function M.lsp_keymaps(opts)
   -- vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 
   -- https://www.reddit.com/r/neovim/comments/mbj8m5/how_to_setup_ctrlshiftkey_mappings_in_neovim_and/
-  -- Not currently working, see also :h modifyOtherKeys
-  -- vim.keymap.set("n", "<C-S-k>", vim.lsp.buf.signature_help, opts)
+  -- See also :h tui-input
+  vim.keymap.set("n", "<C-S-k>", vim.lsp.buf.signature_help, opts)
   vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, opts)
 
   -- vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
