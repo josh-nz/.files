@@ -4,39 +4,23 @@ local wezterm = require('wezterm')
 -- This will hold the configuration.
 local config = wezterm.config_builder()
 
--- This is where you actually apply your config choices
+-- https://github.com/wez/wezterm/discussions/5435
+local selector = require("config_selector")
+local fonts = selector.new({ title = "Font selector", subdir = "fonts" })
+local font_sizes = selector.new({ title = "Font size selector", subdir = "font_sizes" })
+local colors = selector.new({ title = "Colorscheme selector", subdir = "colorschemes" })
+local inactive_panes = selector.new({ title = "Inactive pane selector", subdir = "inactivepanes" })
 
--- For example, changing the color scheme:
-config.color_scheme = 'Catppuccin Mocha'
--- config.color_scheme = 'Eldritch'
--- config.inactive_pane_hsb = { saturation = 0.1, brightness = 0.4, hue = 1 }
-config.inactive_pane_hsb = { saturation = 0.7, brightness = 1, hue = 1 }
+fonts:select(config, "MonoLisa")
+colors:select(config, "Catppuccin Mocha")
+inactive_panes:select(config, "Slightly dimmed")
 config.colors = {
   --split = "#777bdc"
   cursor_bg = "red",
   cursor_fg = "white",
 }
 
--- config.font = wezterm.font('MesloLGL Nerd Font Mono')
--- config.font = wezterm.font('Hack Nerd Font Mono')
--- config.font = wezterm.font('0xProto Nerd Font Mono')
--- config.font = wezterm.font('Hasklug Nerd Font Mono')
--- config.font = wezterm.font('JetBrainsMono Nerd Font Mono')
--- config.font = wezterm.font('SauceCodePro Nerd Font Mono')
--- config.font = wezterm.font('0xProto Nerd Font Mono')
--- config.font = wezterm.font('FiraMono Nerd Font Mono')
--- config.font = wezterm.font('Inconsolata Nerd Font Mono')
 
--- config.font = wezterm.font_with_fallback({ 'SF Mono' })
--- config.font = wezterm.font_with_fallback({ 'CommitMono' })
--- config.font = wezterm.font_with_fallback({ 'Geist Mono' })
--- config.font = wezterm.font_with_fallback({ 'IBM Plex Mono' })
-config.font = wezterm.font_with_fallback(
-{{
-    family = 'MonoLisa Trial',
-    -- https://wezfurlong.org/wezterm/config/font-shaping.html#advanced-font-shaping-options
-    harfbuzz_features = { 'zero' },
-}})
 config.font_size = 12.0
 
 
