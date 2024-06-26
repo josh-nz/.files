@@ -54,16 +54,52 @@ config.mouse_bindings = {
   },
 }
 
+config.disable_default_key_bindings = true
+-- If clearing defaults, it's recommended to at least bind these two:
+-- config.keys = {
+--   { mods = 'CTRL', key = 'P', action = wezterm.action.ActivateCommandPalette },
+--   { mods = 'CTRL', key = 'L', action = wezterm.action.ShowDebugOverlay },
+-- }
+
+config.leader = { key = "o", mods = "SUPER", timeout_milliseconds = 1000 }
+
+-- Dump key bindings: wezterm show-keys --lua
+local keymaps = require('default_keys')
+config.key_tables = keymaps.key_tables
+
 local act = wezterm.action
-config.keys = {
-  -- { mods = 'CTRL', key = 'u', action = act.ScrollByPage(-1) },
-  -- { mods = 'CTRL', key = 'd', action = act.ScrollByPage(1) },
-  -- Unbind all the minimize/hide key bindings, except CMD m
-  { mods = "CTRL", key = "M", action = act.DisableDefaultAssignment },
-  { mods = "SHIFT|CTRL", key = "M", action = act.DisableDefaultAssignment },
-  { mods = "SHIFT|CTRL", key = "m", action = act.DisableDefaultAssignment },
+local custom_keys = {
+  { key = 'l', mods = 'SUPER', action = act.ShowDebugOverlay },
+  { key = 'p', mods = 'SUPER', action = act.ActivateCommandPalette },
+  { key = 'z', mods = 'SUPER', action = act.TogglePaneZoomState },
+
+  { mods = "LEADER", key = "c", action = colors:selector_action() },
+  { mods = "LEADER", key = "f", action = fonts:selector_action() },
+  { mods = "LEADER", key = "i", action = inactive_panes:selector_action() },
+  { mods = "LEADER", key = "s", action = font_sizes:selector_action() },
 }
 
+for _, v in ipairs(custom_keys) do
+  table.insert(keymaps.keys, v)
+end
+
+config.keys = keymaps.keys
+-- config.keys = {
+--   -- { mods = 'CTRL', key = 'u', action = act.ScrollByPage(-1) },
+--   -- { mods = 'CTRL', key = 'd', action = act.ScrollByPage(1) },
+--   -- Unbind all the minimize/hide key bindings, except CMD m
+--   { mods = "CTRL", key = "M", action = act.DisableDefaultAssignment },
+--   { mods = "SHIFT|CTRL", key = "M", action = act.DisableDefaultAssignment },
+--   { mods = "SHIFT|CTRL", key = "m", action = act.DisableDefaultAssignment },
+--   -- { mods = "SHIFT|CTRL", key = "k", action = act.DisableDefaultAssignment },
+--   { mods = "CTRL", key = "l", action = act.DisableDefaultAssignment },
+--
+--   { mods = "LEADER", key = "c", action = colors:selector_action() },
+--   { mods = "LEADER", key = "f", action = fonts:selector_action() },
+--   { mods = "LEADER", key = "i", action = inactive_panes:selector_action() },
+--   { mods = "LEADER", key = "s", action = font_sizes:selector_action() },
+-- }
+--
 require("wezterm_move_nvim").nav_keys(wezterm, config.keys)
 
 -- https://github.com/wez/wezterm/discussions/3733
