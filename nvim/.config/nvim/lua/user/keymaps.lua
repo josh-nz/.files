@@ -78,7 +78,7 @@ nnoremap("x", '"_x')
 -- Doesn't seem to work reliably.
 nnoremap("<C-w><C-^>", "<C-w>v<C-^>")
 
-nnoremap('""', ':registers "0123456789abcdefghijklmnopqrstuvwxyz*+.<CR>')
+-- nnoremap('""', ':registers "0123456789abcdefghijklmnopqrstuvwxyz*+.<CR>')
 
 -- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-bufremove.md#features
 -- https://github.com/moll/vim-bbye
@@ -88,7 +88,7 @@ nnoremap('""', ':registers "0123456789abcdefghijklmnopqrstuvwxyz*+.<CR>')
 
 
 -- Plugin development
-nnoremap("<C-m>", ":messages<CR>")
+-- nnoremap("<C-m>", ":messages<CR>")
 nnoremap("<M-l>", ":Lazy reload poss<CR>")
 
 
@@ -233,7 +233,7 @@ function M.lsp_keymaps(opts)
 
   -- Opens a popup that displays documentation about the word under your cursor
   --  See `:help K` for why this keymap.
-  -- This is now a default mapping in 1.10.0 and can be removed:
+  -- This is now a default mapping in 0.10.0 and can be removed:
   nnoremap("K", vim.lsp.buf.hover, { desc = "Hover Documentation" })
 
   -- WARN: This is not Goto Definition, this is Goto Declaration.
