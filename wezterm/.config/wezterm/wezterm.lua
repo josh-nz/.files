@@ -14,6 +14,10 @@ local inactive_panes = selector.new({ title = "Inactive pane selector", subdir =
 fonts:select(config, "MonoLisa")
 colors:select(config, "Catppuccin Mocha")
 inactive_panes:select(config, "Slightly dimmed")
+
+
+config.font_size = 12.0
+
 config.colors = {
   --split = "#777bdc"
   cursor_bg = "red",
@@ -21,10 +25,16 @@ config.colors = {
 }
 
 
-config.font_size = 12.0
-
-
 config.hide_tab_bar_if_only_one_tab = true
+config.window_close_confirmation = "NeverPrompt"
+
+config.window_padding = {
+  left = 0,
+  right = 0,
+  top = 0,
+  bottom = 0,
+}
+
 
 -- config.default_cwd = "~"
 
@@ -65,7 +75,7 @@ wezterm.on("gui-startup", function(cmd)
 
   -- local right_pane = left_pane:split({ })
 
---   local scripts_pane = left_pane:split({ direction = "Bottom", size = 0.1, cwd = "~" })
+  -- local scripts_pane = left_pane:split({ direction = "Bottom", size = 0.1, cwd = "~" })
 
   left_pane:activate()
 end)
@@ -94,4 +104,6 @@ end)
 -- }
 
 -- and finally, return the configuration to wezterm
+
+
 return config
