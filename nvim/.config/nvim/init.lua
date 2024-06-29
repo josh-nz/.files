@@ -17,9 +17,9 @@ require("user.lazy")
 vim.o.background = "dark"
 -- When changing colorscheme:
 -- - Set `lazy = true,` in the current colorscheme file
--- -Set `lazy = false,` in the new colorscheme file
--- This will help maximise Neovim startup while also 
--- ensuring that the desired colorscheme is loaded 
+-- - Set `lazy = false,` in the new colorscheme file
+-- This will help maximise Neovim startup while also
+-- ensuring that the desired colorscheme is loaded
 -- first for correct colours.
 -- vim.cmd.colorscheme("catppuccin")
 
@@ -27,9 +27,3 @@ require("user.keymaps")
 require("user.auto_commands")
 require("user.user_commands")
 
-
--- Hide all semantic highlights until upstream issues are resolved.
--- https://github.com/catppuccin/nvim/issues/480
-for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
-  vim.api.nvim_set_hl(0, group, {})
-end
