@@ -19,7 +19,7 @@ inactive_panes:select(config, "Slightly dimmed")
 config.font_size = 13.0
 
 config.colors = {
-  --split = "#777bdc"
+  -- split = "#777bdc",
   cursor_bg = "red",
   cursor_fg = "white",
 }
@@ -48,9 +48,9 @@ config.enable_kitty_keyboard = true
 
 config.mouse_bindings = {
   {
-    event = { Down = { streak = 1, button = 'Right' } },
-    mods = 'NONE',
-    action = wezterm.action.PasteFrom('Clipboard'),
+    event = { Down = { streak = 1, button = "Right" } },
+    mods = "NONE",
+    action = wezterm.action.PasteFrom("Clipboard"),
   },
 }
 
@@ -67,16 +67,24 @@ config.leader = { key = "o", mods = "SUPER", timeout_milliseconds = 1000 }
 local keymaps = require('default_keys')
 config.key_tables = keymaps.key_tables
 
+local kmod = {
+  c = "CTRL",
+  s = "SHIFT",
+  a = "ALT",
+  l = "LEADER",
+  p = "SUPER",
+}
+
 local act = wezterm.action
 local custom_keys = {
-  { key = 'l', mods = 'SUPER', action = act.ShowDebugOverlay },
-  { key = 'p', mods = 'SUPER', action = act.ActivateCommandPalette },
-  { key = 'z', mods = 'SUPER', action = act.TogglePaneZoomState },
+  { mods = kmod.p, key = "l", action = act.ShowDebugOverlay },
+  { mods = kmod.p, key = "p", action = act.ActivateCommandPalette },
+  { mods = kmod.p, key = "z", action = act.TogglePaneZoomState },
 
-  { mods = "LEADER", key = "c", action = colors:selector_action() },
-  { mods = "LEADER", key = "f", action = fonts:selector_action() },
-  { mods = "LEADER", key = "i", action = inactive_panes:selector_action() },
-  { mods = "LEADER", key = "s", action = font_sizes:selector_action() },
+  { mods = kmod.l, key = "c", action = colors:selector_action() },
+  { mods = kmod.l, key = "f", action = fonts:selector_action() },
+  { mods = kmod.l, key = "i", action = inactive_panes:selector_action() },
+  { mods = kmod.l, key = "s", action = font_sizes:selector_action() },
 }
 
 for _, v in ipairs(custom_keys) do
@@ -84,22 +92,8 @@ for _, v in ipairs(custom_keys) do
 end
 
 config.keys = keymaps.keys
--- config.keys = {
---   -- { mods = 'CTRL', key = 'u', action = act.ScrollByPage(-1) },
---   -- { mods = 'CTRL', key = 'd', action = act.ScrollByPage(1) },
---   -- Unbind all the minimize/hide key bindings, except CMD m
---   { mods = "CTRL", key = "M", action = act.DisableDefaultAssignment },
---   { mods = "SHIFT|CTRL", key = "M", action = act.DisableDefaultAssignment },
---   { mods = "SHIFT|CTRL", key = "m", action = act.DisableDefaultAssignment },
---   -- { mods = "SHIFT|CTRL", key = "k", action = act.DisableDefaultAssignment },
---   { mods = "CTRL", key = "l", action = act.DisableDefaultAssignment },
---
---   { mods = "LEADER", key = "c", action = colors:selector_action() },
---   { mods = "LEADER", key = "f", action = fonts:selector_action() },
---   { mods = "LEADER", key = "i", action = inactive_panes:selector_action() },
---   { mods = "LEADER", key = "s", action = font_sizes:selector_action() },
--- }
---
+
+
 require("wezterm_move_nvim").nav_keys(wezterm, config.keys)
 
 -- https://github.com/wez/wezterm/discussions/3733
