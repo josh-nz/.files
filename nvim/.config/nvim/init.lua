@@ -22,6 +22,7 @@ vim.o.background = "dark"
 -- ensuring that the desired colorscheme is loaded
 -- first for correct colours.
 -- vim.cmd.colorscheme("catppuccin")
+vim.api.nvim_set_hl(0, "Comment", { italic = true })
 
 require("user.keymaps")
 require("user.auto_commands")
