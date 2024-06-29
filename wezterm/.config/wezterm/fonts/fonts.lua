@@ -11,6 +11,7 @@ M.init = function()
     { label = "JetBrains", value = "JetBrainsMono Nerd Font Mono" },
     { label = "SourceCodePro", value = "SauceCodePro Nerd Font Mono" },
     { label = "Meslo", value = "MesloLGL Nerd Font Mono" },
+    { label = "CascadiaCode", value = "Cascadia Code NF" },
 
     { label = "Commit", value = "CommitMono" },
     { label = "Geist", value = "Geist Mono" },
@@ -20,8 +21,16 @@ M.init = function()
   }
 end
 
-M.activate = function(config, _, value)
+M.activate = function(config, label, value)
   config.font = wezterm.font(value)
+
+  if label == "CascadiaCode" then
+    -- ss01 is italic script variant.
+    -- ss19 is slashed zero instead of dotted zero.
+    config.harfbuzz_features = { "calt=1", "ss01=1", "ss19=1" }
+  else
+    config.harfbuzz_features = {}
+  end
   -- config.harfbuzz_features = { "ss02=1" }
   -- config.font = wezterm.font(
   -- {{

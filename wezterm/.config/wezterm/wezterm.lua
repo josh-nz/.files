@@ -11,12 +11,12 @@ local font_sizes = selector.new({ title = "Font size selector", subdir = "font_s
 local colors = selector.new({ title = "Colorscheme selector", subdir = "colorschemes" })
 local inactive_panes = selector.new({ title = "Inactive pane selector", subdir = "inactivepanes" })
 
-fonts:select(config, "MonoLisa")
+fonts:select(config, "CascadiaCode")
 colors:select(config, "Catppuccin Mocha")
 inactive_panes:select(config, "Slightly dimmed")
 
 
-config.font_size = 12.0
+config.font_size = 13.0
 
 config.colors = {
   --split = "#777bdc"
