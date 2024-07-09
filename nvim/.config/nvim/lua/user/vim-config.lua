@@ -109,8 +109,7 @@ vim.opt.showmode = false
 vim.opt.backup = false
 
 -- Recommended settings for auto-session plugin
--- https://github.com/rmagatti/auto-session
-vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,options,localoptions"
 
 -- Sets how Neovim will display certain whitespace in the editor
 vim.opt.list = true
