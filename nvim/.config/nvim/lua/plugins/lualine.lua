@@ -145,7 +145,15 @@ return {
         -- lualine_x = {},
         -- lualine_y = {},
         lualine_z = {
-          -- "tabs",
+          {
+            "tabs",
+            mode = 0,  -- 0 nbr, 1 name, 2 both
+            path = 0,  -- 0 filename
+            tabs_color = {
+              active = "lualine_b_normal",
+            },
+            show_modified_status = true,
+          },
           {
             "datetime",
             style = "%H:%M",
