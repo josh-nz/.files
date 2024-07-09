@@ -63,6 +63,7 @@ return {
         -- Forcefully delete all buffers before loading a session.
         delete_buffers = true,
         -- delete_buffers = false,
+        stop_lsp_clients = true,
       },
       telescope = {
         previewer = {
