@@ -16,12 +16,20 @@ return {
       prompt_no_cr = false,
       autosave = {
         current = true,
-        -- cwd = true,
         cwd = function()
           -- Autosave if somewhere within a Git repo.
           for name, type in vim.fs.dir(vim.fn.getcwd()) do
             if name == ".git" and type == "directory" then
-              return true
+              local s = require("possession.session")
+              local p = require("possession.paths")
+              -- This `cwd` function is called while saving on quit
+              -- only if there is no current session. This happens when
+              -- session autoload is prevented (eg file args passed to 
+              -- Neovim), or a session is closed. In these cases, we don't
+              -- want to autosave the `cwd` session if it already exists,
+              -- since it was never loaded and would therefore be overwritten.
+              -- https://github.com/jedrzejboczar/possession.nvim/issues/72
+              return not s.exists(p.cwd_session_name())
             end
           end
           return false
