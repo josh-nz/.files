@@ -94,7 +94,7 @@ return {
         ["<C-Space>"] = cmp.mapping(cmp.mapping.complete({}), { "i", "c" }),
         ["<C-c>"] = cmp.mapping.abort(), -- close completion window, also <C-e>
 
-        -- Select highlighted word, won't complete if no highlight
+        -- Select highlighted word, won't complete if no highlight.
         -- This is useful when an LSP defines a preselect for a completion,
         -- since we'd typically be pressing <CR> about now to go to the next
         -- line anyway, so might as well trigger the completion at the same time.
