@@ -109,7 +109,12 @@ vim.opt.showmode = false
 vim.opt.backup = false
 
 -- Recommended settings for auto-session plugin
-vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,options,localoptions"
+vim.opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,options,localoptions"
+
+-- Don't insert comment leader when hitting `o` or `O` from normal mode
+-- vim.opt.formatoptions:remove("o")
+-- vim.o.formatoptions = "jcrql"
+-- vim.cmd("set formatoptions-=o")
 
 -- Sets how Neovim will display certain whitespace in the editor
 vim.opt.list = true
