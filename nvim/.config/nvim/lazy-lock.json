@@ -17,6 +17,7 @@
   "edge": { "branch": "master", "commit": "926a6511cb0f94f1319042f139e89ebd3d8db204" },
   "eldritch.nvim": { "branch": "master", "commit": "63268ea7135faa013840d07653181b008dbaacae" },
   "everforest": { "branch": "master", "commit": "3f772e9867cc5f79316dd28c8a036fed0c502ce4" },
+  "flow": { "branch": "main", "commit": "0f8c8bdce39460abb0a47d994cff4f188adb7c8e" },
   "fluoromachine.nvim": { "branch": "main", "commit": "b07254dc7da67e5a373a19c7ce4376b35e798ee2" },
   "friendly-snippets": { "branch": "main", "commit": "45a1b96e46efe5fce8af325d4bed45feb9d29d0f" },
   "fzf-lua": { "branch": "main", "commit": "975534f4861e2575396716225c1202572645583d" },
