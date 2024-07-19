@@ -22,6 +22,9 @@ vim.o.background = "dark"
 -- ensuring that the desired colorscheme is loaded
 -- first for correct colours.
 -- vim.cmd.colorscheme("catppuccin")
+vim.cmd.colorscheme("rose-pine-moon")
+-- vim.cmd.colorscheme("nordic")
+
 vim.api.nvim_set_hl(0, "Comment", { italic = true })
 
 require("user.keymaps")
