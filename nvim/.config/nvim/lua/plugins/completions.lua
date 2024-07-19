@@ -280,6 +280,11 @@ return {
         { name = "cmdline" },
         { name = "path" },
       }),
+      -- sorting = {
+      --   comparators = {
+      --     cmp.config.compare.sort_text,
+      --   }
+      -- },
       -- matching = {
       --   -- Whether to allow symbols in matches if the match is not a prefix match.
       --   disallow_symbol_nonprefix_matching = false,
