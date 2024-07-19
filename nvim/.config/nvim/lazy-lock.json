@@ -60,6 +60,7 @@
   "pool-vim": { "branch": "master", "commit": "038e29e6747ce2d0497f0f63f524ef14b4b079bd" },
   "possession.nvim": { "branch": "master", "commit": "cf770879896e38e2a77158900557c408b3cc756a" },
   "precognition.nvim": { "branch": "main", "commit": "2a566f03eb06859298eff837f3a6686dfa5304a5" },
+  "quick-scope": { "branch": "master", "commit": "4d35d3b2bc6794666353dcc241b2680bd560416f" },
   "rose-pine": { "branch": "main", "commit": "dded5c15e9d27ac95ad1e803b35a752d80f3f42b" },
   "sonokai": { "branch": "master", "commit": "7b318640337ad3cb538a3dcf720520b7f7213609" },
   "tartessos.nvim": { "branch": "main", "commit": "7e80dd9e76a388c471bd970380299581ca81de3a" },
