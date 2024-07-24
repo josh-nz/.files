@@ -72,7 +72,8 @@ vim.opt.signcolumn = "yes"
 vim.opt.clipboard = "unnamed,unnamedplus"
 
 -- Enable cursor line highlight
-vim.opt.cursorline = true
+-- vim.opt.cursorline = true
+vim.opt.cursorline = false
 
 -- Set fold settings
 -- These options were reccommended by nvim-ufo
