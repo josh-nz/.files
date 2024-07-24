@@ -61,6 +61,7 @@
   "possession.nvim": { "branch": "master", "commit": "e3b9d7c00fe335bedb5a12d88e9eac08c944acfe" },
   "precognition.nvim": { "branch": "main", "commit": "2a566f03eb06859298eff837f3a6686dfa5304a5" },
   "quick-scope": { "branch": "master", "commit": "4d35d3b2bc6794666353dcc241b2680bd560416f" },
+  "resession.nvim": { "branch": "master", "commit": "e087ebeef81df25a12fcc4ec067ca73e2bb54c4a" },
   "rose-pine": { "branch": "main", "commit": "375ddbeb60f41c5fd54daec5960a6ae3e8b03ee5" },
   "sonokai": { "branch": "master", "commit": "598d29bef1cdea1eef4749c96824af0ae2f9350c" },
   "tartessos.nvim": { "branch": "main", "commit": "7e80dd9e76a388c471bd970380299581ca81de3a" },
