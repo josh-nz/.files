@@ -123,6 +123,8 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 -- Configure tab behaviour in commoand mode
 vim.opt.wildmode = "longest:full,full"
 
+vim.opt.spelllang = "en_nz,en_gb"
+
 vim.diagnostic.config({
   float = {
     border = 'rounded',
