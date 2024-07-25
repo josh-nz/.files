@@ -3,5 +3,5 @@ return {
   "comfysage/evergarden",
   enabled = true,
   lazy = true,
-	priority = 1000,
+  priority = 1000,
 }
