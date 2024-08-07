@@ -34,3 +34,4 @@ require("user.keymaps")
 require("user.auto_commands")
 require("user.user_commands")
 
+require("user.wezterm_nvim_move")

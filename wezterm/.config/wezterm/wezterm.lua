@@ -61,7 +61,7 @@ config.disable_default_key_bindings = true
 --   { mods = 'CTRL', key = 'L', action = wezterm.action.ShowDebugOverlay },
 -- }
 
-config.leader = { key = "o", mods = "SUPER", timeout_milliseconds = 1000 }
+config.leader = { mods = "SUPER", key = "o", timeout_milliseconds = 1000 }
 
 -- Dump key bindings: wezterm show-keys --lua
 local keymaps = require('default_keys')
@@ -94,7 +94,7 @@ end
 config.keys = keymaps.keys
 
 
-require("wezterm_move_nvim").nav_keys(wezterm, config.keys)
+require("wezterm_nvim_move").nav_keys(wezterm, config.keys)
 
 -- https://github.com/wez/wezterm/discussions/3733
 -- https://wezfurlong.org/wezterm/config/lua/gui-events/gui-startup.html

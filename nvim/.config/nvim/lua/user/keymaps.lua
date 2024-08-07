@@ -38,11 +38,12 @@ nnoremap("<M-k>", ":wincmd k<CR>", { desc = "Move focus to the upper window" })
 nnoremap("<M-l>", ":wincmd l<CR>", { desc = "Move focus to the right window" })
 nnoremap("<M-p>", ":wincmd p<CR>", { desc = "Move focus to the previous window" })
 
-nnoremap("<C-h>", ":wincmd h<CR>", { desc = "Move focus to the left window" })
-nnoremap("<C-j>", ":wincmd j<CR>", { desc = "Move focus to the lower window" })
-nnoremap("<C-k>", ":wincmd k<CR>", { desc = "Move focus to the upper window" })
-nnoremap("<C-l>", ":wincmd l<CR>", { desc = "Move focus to the right window" })
-nnoremap("<C-p>", ":wincmd p<CR>", { desc = "Move focus to the previous window" })
+-- wezterm_nvim_move.lua takes care of these mappings.
+-- nnoremap("<C-h>", ":wincmd h<CR>", { desc = "Move focus to the left window" })
+-- nnoremap("<C-j>", ":wincmd j<CR>", { desc = "Move focus to the lower window" })
+-- nnoremap("<C-k>", ":wincmd k<CR>", { desc = "Move focus to the upper window" })
+-- nnoremap("<C-l>", ":wincmd l<CR>", { desc = "Move focus to the right window" })
+-- nnoremap("<C-p>", ":wincmd p<CR>", { desc = "Move focus to the previous window" })
 
 -- nnoremap("<M-Tab>", "<C-6>", { desc = "Switch to alternate buffer" })
 
@@ -403,14 +404,14 @@ end
 
 
 
--- WezTerm-move keymaps
-function M.wezterm_move_keymaps(wm)
-  nnoremap("<C-h>", function() wm.move("h") end, { desc = "Move WezTerm focus to the left window" })
-  nnoremap("<C-j>", function() wm.move("j") end, { desc = "Move WezTerm focus to the lower window" })
-  nnoremap("<C-k>", function() wm.move("k") end, { desc = "Move WezTerm focus to the upper window" })
-  nnoremap("<C-l>", function() wm.move("l") end, { desc = "Move WezTerm focus to the right window" })
+-- WezTerm_nvim_move keymaps
+function M.wezterm_nvim_move_keymaps(move)
+  nnoremap("<C-h>", function() move("h") end, { desc = "Move WezTerm focus to the left window" })
+  nnoremap("<C-j>", function() move("j") end, { desc = "Move WezTerm focus to the lower window" })
+  nnoremap("<C-k>", function() move("k") end, { desc = "Move WezTerm focus to the upper window" })
+  nnoremap("<C-l>", function() move("l") end, { desc = "Move WezTerm focus to the right window" })
 
-  nnoremap("<C-;>", function() wm.move("j") end, { desc = "Move WezTerm focus to the lower window" })
+  -- nnoremap("<C-;>", function() move_fn("j") end, { desc = "Move WezTerm focus to the lower window" })
 end
 
 
