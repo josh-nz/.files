@@ -13,6 +13,7 @@
   "cmp_luasnip": { "branch": "master", "commit": "05a9ab28b53f71d1aece421ef32fee2cb857a843" },
   "colorbuddy.nvim": { "branch": "master", "commit": "8b968581e5c19d22a861d5f3fe5dbd83394fa681" },
   "cyberdream.nvim": { "branch": "main", "commit": "bb3011a38b94ac4f13c107f5f1b3464c1c03ced1" },
+  "darkvoid.nvim": { "branch": "master", "commit": "93e2c309c5d39766e4c78446fd97b799d4b6838c" },
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
   "edge": { "branch": "master", "commit": "2de1aede94569f643de438391f6c8b1712038d35" },
   "eldritch.nvim": { "branch": "master", "commit": "63268ea7135faa013840d07653181b008dbaacae" },

@@ -24,7 +24,9 @@ vim.o.background = "dark"
 -- vim.cmd.colorscheme("catppuccin")
 -- vim.cmd.colorscheme("rose-pine-moon")
 -- vim.cmd.colorscheme("nordic")
-vim.cmd.colorscheme("blue")
+-- vim.cmd.colorscheme("blue")
+-- vim.cmd.colorscheme("evergarden")
+vim.cmd.colorscheme("darkvoid")
 
 vim.api.nvim_set_hl(0, "Comment", { italic = true })
 
