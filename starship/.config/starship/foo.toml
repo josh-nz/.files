@@ -5,10 +5,10 @@
 
 format = """
 $directory\
+${custom.mise_elixir}\
 $git_branch\
 $git_state\
 $git_status\
-${custom.mise_elixir}\
 $cmd_duration\
 $fill\
 $time\
@@ -62,7 +62,7 @@ style = "bright-black"
 command = 'mise current elixir'
 detect_files = ["mix.exs"]
 # symbol = '💧'
-symbol = '🔮'
+# symbol = '🔮'
 style = "bold purple"
 
 [fill]
