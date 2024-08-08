@@ -1,13 +1,13 @@
 -- Initial basis from: https://github.com/letieu/wezterm-move.nvim
--- Requires vim plugin to move from NeoVim back to WezTerm:
+-- Requires vim plugin to move from Neovim back to WezTerm:
 -- https://github.com/letieu/wezterm-move.nvim
 -- but I have modified this, see nvim/lua/user/wezterm_nvim_move.lua
 -- Modified to be a function by myself.
--- Split or zoom taken from above NeoVim plugin author's config:
+-- Split or zoom taken from above Neovim plugin author's config:
 -- https://github.com/letieu/dotfiles/blob/master/dot_config/wezterm/key.lua#L78
 -- split_nav modified based on Folke's implementation:
 -- https://github.com/folke/dot/blob/master/config/wezterm/keys.lua
--- Basis of the above links were taken from NeoVim smart-splits plugin, which is
+-- Basis of the above links were taken from Neovim smart-splits plugin, which is
 -- an alternative option to this, with more features:
 -- https://github.com/mrjones2014/smart-splits.nvim
 
@@ -27,9 +27,10 @@ local function split_nav(resize_or_move, mods, key, dir, wezterm)
         if resize_or_move == "resize" then
           win:perform_action({ AdjustPaneSize = { dir, 10 } }, pane)
         else
-          -- win:perform_action({ ActivatePaneDirection = dir }, pane)
+          -- WezTerm cli cannot determine zoomed state, so while we can
+          -- zoom the pane change to when moved from a WezTerm (terminal)
+          -- pane, we can't do the same thing when moving from a Neovim pane.
 
-          -- wezterm.log_info(pane.pane_id)
           -- local is_zoomed = false
           -- local panes = pane:tab():panes_with_info()
           -- for _, p in ipairs(panes) do
@@ -41,7 +42,7 @@ local function split_nav(resize_or_move, mods, key, dir, wezterm)
           local next_pane = pane:tab():get_pane_direction(dir)
           if next_pane then
             win:perform_action({ ActivatePaneDirection = dir }, pane)
-            -- win:perform_action({ SetPaneZoomState = true }, pane)
+            -- win:perform_action({ SetPaneZoomState = is_zoomed }, pane)
           end
 
           -- wezterm.log_info("is_zoomed: " .. tostring(is_zoomed))
@@ -57,7 +58,7 @@ local function split_nav(resize_or_move, mods, key, dir, wezterm)
   }
 end
 
--- Toggle zoom for neovim
+-- Toggle zoom for Neovim
 local function split_or_zoom(wezterm)
   return {
     key = ";",
@@ -106,7 +107,7 @@ M.nav_keys = function(wezterm, keys)
   table.insert(keys, split_nav("resize", "ALT", "l", "Right", wezterm))
 
   -- This function behaves a bit goofy if there is
-  -- already more than 1 split when NeoVim starts.
+  -- already more than 1 split when Neovim starts.
   -- Use the code as inspiration for something better.
   -- Another idea here:
   -- https://github.com/wez/wezterm/discussions/3779#discussioncomment-8923369
