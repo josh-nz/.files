@@ -47,5 +47,7 @@ return {
         end,
       },
     })
+
+    require("user.keymaps").oil_keymaps()
   end,
 }

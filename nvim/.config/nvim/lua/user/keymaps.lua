@@ -32,10 +32,11 @@ nnoremap("#", "#zz")
 
 -- Better window navigation
 -- See `:help wincmd` for a list of all window commands
+vim.keymap.set("n", "<M-h>", ":wincmd l<CR>", { desc = "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW", noremap = true })
 nnoremap("<M-h>", ":wincmd h<CR>", { desc = "Move focus to the left window" })
 nnoremap("<M-j>", ":wincmd j<CR>", { desc = "Move focus to the lower window" })
 nnoremap("<M-k>", ":wincmd k<CR>", { desc = "Move focus to the upper window" })
-nnoremap("<M-l>", ":wincmd l<CR>", { desc = "Move focus to the right window" })
+-- nnoremap("<M-l>", ":wincmd l<CR>", { desc = "Move focus to the right window" })
 nnoremap("<M-p>", ":wincmd p<CR>", { desc = "Move focus to the previous window" })
 
 -- wezterm_nvim_move.lua takes care of these mappings.
@@ -312,6 +313,13 @@ function M.neo_tree_keymaps()
   -- :Neotree buffers reveal float
 end
 
+
+
+
+-- Oil file manager keymaps
+function M.oil_keymaps()
+  nnoremap("-", ":Oil<CR>", { desc = "Open Oil file manager" })
+end
 
 
 
