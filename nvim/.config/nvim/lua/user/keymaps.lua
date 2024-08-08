@@ -32,14 +32,13 @@ nnoremap("#", "#zz")
 
 -- Better window navigation
 -- See `:help wincmd` for a list of all window commands
-vim.keymap.set("n", "<M-h>", ":wincmd l<CR>", { desc = "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW", noremap = true })
-nnoremap("<M-h>", ":wincmd h<CR>", { desc = "Move focus to the left window" })
-nnoremap("<M-j>", ":wincmd j<CR>", { desc = "Move focus to the lower window" })
-nnoremap("<M-k>", ":wincmd k<CR>", { desc = "Move focus to the upper window" })
+-- nnoremap("<M-h>", ":wincmd h<CR>", { desc = "Move focus to the left window" })
+-- nnoremap("<M-j>", ":wincmd j<CR>", { desc = "Move focus to the lower window" })
+-- nnoremap("<M-k>", ":wincmd k<CR>", { desc = "Move focus to the upper window" })
 -- nnoremap("<M-l>", ":wincmd l<CR>", { desc = "Move focus to the right window" })
-nnoremap("<M-p>", ":wincmd p<CR>", { desc = "Move focus to the previous window" })
+-- nnoremap("<M-p>", ":wincmd p<CR>", { desc = "Move focus to the previous window" })
 
--- wezterm_nvim_move.lua takes care of these mappings.
+-- WezTerm handles these keymaps, passing them to wezterm_nvim_move.lua when necessary.
 -- nnoremap("<C-h>", ":wincmd h<CR>", { desc = "Move focus to the left window" })
 -- nnoremap("<C-j>", ":wincmd j<CR>", { desc = "Move focus to the lower window" })
 -- nnoremap("<C-k>", ":wincmd k<CR>", { desc = "Move focus to the upper window" })
