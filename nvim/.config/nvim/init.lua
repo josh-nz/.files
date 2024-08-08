@@ -26,9 +26,10 @@ vim.o.background = "dark"
 -- vim.cmd.colorscheme("nordic")
 -- vim.cmd.colorscheme("blue")
 -- vim.cmd.colorscheme("evergarden")
-vim.cmd.colorscheme("darkvoid")
+-- vim.cmd.colorscheme("darkvoid")
+vim.cmd.colorscheme("serene")
 
-vim.api.nvim_set_hl(0, "Comment", { italic = true })
+-- vim.api.nvim_set_hl(0, "Comment", { italic = true })
 
 require("user.keymaps")
 require("user.auto_commands")
