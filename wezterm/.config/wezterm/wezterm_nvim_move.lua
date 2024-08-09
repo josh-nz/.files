@@ -11,11 +11,13 @@
 -- an alternative option to this, with more features:
 -- https://github.com/mrjones2014/smart-splits.nvim
 
+local wezterm = require("wezterm")
+
 local function is_vim(pane)
   return pane:get_user_vars().IS_NVIM == "true" or pane:get_foreground_process_name():find("n?vim")
 end
 
-local function split_nav(resize_or_move, mods, key, dir, wezterm)
+local function split_nav(resize_or_move, mods, key, dir)
   return {
     key = key,
     mods = mods,
@@ -59,7 +61,7 @@ local function split_nav(resize_or_move, mods, key, dir, wezterm)
 end
 
 -- Toggle zoom for Neovim
-local function split_or_zoom(wezterm)
+local function split_or_zoom()
   return {
     key = ";",
     mods = "CTRL",
@@ -94,17 +96,17 @@ end
 
 
 local M = {}
-M.nav_keys = function(wezterm, keys)
+M.nav_keys = function(keys)
   -- Move between split panes
-  table.insert(keys, split_nav("move", "CTRL", "h", "Left", wezterm))
-  table.insert(keys, split_nav("move", "CTRL", "j", "Down", wezterm))
-  table.insert(keys, split_nav("move", "CTRL", "k", "Up", wezterm))
-  table.insert(keys, split_nav("move", "CTRL", "l", "Right", wezterm))
+  table.insert(keys, split_nav("move", "CTRL", "h", "Left"))
+  table.insert(keys, split_nav("move", "CTRL", "j", "Down"))
+  table.insert(keys, split_nav("move", "CTRL", "k", "Up"))
+  table.insert(keys, split_nav("move", "CTRL", "l", "Right"))
 
-  table.insert(keys, split_nav("resize", "ALT", "h", "Left", wezterm))
-  table.insert(keys, split_nav("resize", "ALT", "j", "Down", wezterm))
-  table.insert(keys, split_nav("resize", "ALT", "k", "Up", wezterm))
-  table.insert(keys, split_nav("resize", "ALT", "l", "Right", wezterm))
+  table.insert(keys, split_nav("resize", "ALT", "h", "Left"))
+  table.insert(keys, split_nav("resize", "ALT", "j", "Down"))
+  table.insert(keys, split_nav("resize", "ALT", "k", "Up"))
+  table.insert(keys, split_nav("resize", "ALT", "l", "Right"))
 
   -- This function behaves a bit goofy if there is
   -- already more than 1 split when Neovim starts.

@@ -6,17 +6,20 @@ local config = wezterm.config_builder()
 
 -- https://github.com/wez/wezterm/discussions/5435
 local selector = require("config_selector")
-local fonts = selector.new({ title = "Font selector", subdir = "fonts" })
-local font_sizes = selector.new({ title = "Font size selector", subdir = "font_sizes" })
-local colors = selector.new({ title = "Colorscheme selector", subdir = "colorschemes" })
-local inactive_panes = selector.new({ title = "Inactive pane selector", subdir = "inactivepanes" })
-
-fonts:select(config, "CascadiaCode")
-colors:select(config, "Catppuccin Mocha")
-inactive_panes:select(config, "Slightly dimmed")
+local pickers = {
+  fonts = selector.new({ title = "Font selector", subdir = "fonts" }),
+  font_sizes = selector.new({ title = "Font size selector", subdir = "font_sizes" }),
+  colors = selector.new({ title = "Colorscheme selector", subdir = "colorschemes" }),
+  inactive_panes = selector.new({ title = "Inactive pane selector", subdir = "inactivepanes" }),
+}
 
 
 config.font_size = 13.0
+
+
+pickers.colors:select(config, "Catppuccin Mocha")
+pickers.inactive_panes:select(config, "Slightly dimmed")
+
 
 config.colors = {
   -- split = "#777bdc",
@@ -46,55 +49,9 @@ config.window_padding = {
 config.enable_kitty_keyboard = true
 
 
-config.mouse_bindings = {
-  {
-    event = { Down = { streak = 1, button = "Right" } },
-    mods = "NONE",
-    action = wezterm.action.PasteFrom("Clipboard"),
-  },
-}
+-- Setup key and mouse bindings.
+require("bindings").setup(config, pickers)
 
-config.disable_default_key_bindings = true
--- If clearing defaults, it's recommended to at least bind these two:
--- config.keys = {
---   { mods = 'CTRL', key = 'P', action = wezterm.action.ActivateCommandPalette },
---   { mods = 'CTRL', key = 'L', action = wezterm.action.ShowDebugOverlay },
--- }
-
-config.leader = { mods = "SUPER", key = "o", timeout_milliseconds = 1000 }
-
--- Dump key bindings: wezterm show-keys --lua
-local keymaps = require('default_keys')
-config.key_tables = keymaps.key_tables
-
-local kmod = {
-  c = "CTRL",
-  s = "SHIFT",
-  a = "ALT",
-  l = "LEADER",
-  p = "SUPER",
-}
-
-local act = wezterm.action
-local custom_keys = {
-  { mods = kmod.p, key = "l", action = act.ShowDebugOverlay },
-  { mods = kmod.p, key = "p", action = act.ActivateCommandPalette },
-  { mods = kmod.p, key = "z", action = act.TogglePaneZoomState },
-
-  { mods = kmod.l, key = "c", action = colors:selector_action() },
-  { mods = kmod.l, key = "f", action = fonts:selector_action() },
-  { mods = kmod.l, key = "i", action = inactive_panes:selector_action() },
-  { mods = kmod.l, key = "s", action = font_sizes:selector_action() },
-}
-
-for _, v in ipairs(custom_keys) do
-  table.insert(keymaps.keys, v)
-end
-
-config.keys = keymaps.keys
-
-
-require("wezterm_nvim_move").nav_keys(wezterm, config.keys)
 
 -- https://github.com/wez/wezterm/discussions/3733
 -- https://wezfurlong.org/wezterm/config/lua/gui-events/gui-startup.html
