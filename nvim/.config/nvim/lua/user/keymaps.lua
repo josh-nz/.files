@@ -32,40 +32,40 @@ nnoremap("#", "#zz")
 
 -- Better window navigation
 -- See `:help wincmd` for a list of all window commands
--- nnoremap("<M-h>", ":wincmd h<CR>", { desc = "Move focus to the left window" })
--- nnoremap("<M-j>", ":wincmd j<CR>", { desc = "Move focus to the lower window" })
--- nnoremap("<M-k>", ":wincmd k<CR>", { desc = "Move focus to the upper window" })
--- nnoremap("<M-l>", ":wincmd l<CR>", { desc = "Move focus to the right window" })
--- nnoremap("<M-p>", ":wincmd p<CR>", { desc = "Move focus to the previous window" })
+-- nnoremap("<M-h>", "<Cmd>wincmd h<CR>", { desc = "Move focus to the left window" })
+-- nnoremap("<M-j>", "<Cmd>wincmd j<CR>", { desc = "Move focus to the lower window" })
+-- nnoremap("<M-k>", "<Cmd>wincmd k<CR>", { desc = "Move focus to the upper window" })
+-- nnoremap("<M-l>", "<Cmd>wincmd l<CR>", { desc = "Move focus to the right window" })
+-- nnoremap("<M-p>", "<Cmd>wincmd p<CR>", { desc = "Move focus to the previous window" })
 
 -- WezTerm handles these keymaps, passing them to wezterm_nvim_move.lua when necessary.
--- nnoremap("<C-h>", ":wincmd h<CR>", { desc = "Move focus to the left window" })
--- nnoremap("<C-j>", ":wincmd j<CR>", { desc = "Move focus to the lower window" })
--- nnoremap("<C-k>", ":wincmd k<CR>", { desc = "Move focus to the upper window" })
--- nnoremap("<C-l>", ":wincmd l<CR>", { desc = "Move focus to the right window" })
--- nnoremap("<C-p>", ":wincmd p<CR>", { desc = "Move focus to the previous window" })
+-- nnoremap("<C-h>", "<Cmd>wincmd h<CR>", { desc = "Move focus to the left window" })
+-- nnoremap("<C-j>", "<Cmd>wincmd j<CR>", { desc = "Move focus to the lower window" })
+-- nnoremap("<C-k>", "<Cmd>wincmd k<CR>", { desc = "Move focus to the upper window" })
+-- nnoremap("<C-l>", "<Cmd>wincmd l<CR>", { desc = "Move focus to the right window" })
+-- nnoremap("<C-p>", "<Cmd>wincmd p<CR>", { desc = "Move focus to the previous window" })
 
 -- nnoremap("<M-Tab>", "<C-6>", { desc = "Switch to alternate buffer" })
 
 
 
--- nnoremap("H", ":bp<CR>", "Previous buffer")
--- nnoremap("L", ":bn<CR>", "Next buffer")
+-- nnoremap("H", "<Cmd>bp<CR>", "Previous buffer")
+-- nnoremap("L", "<Cmd>bn<CR>", "Next buffer")
 
 -- J and K to go up and down quickly, while keeping jump list clean
--- nnoremap("}", ':<C-u>execute "keepjumps norm! " . v:count1 . "}"<CR>')
--- nnoremap("{", ':<C-u>execute "keepjumps norm! " . v:count1 . "{"<CR>')
+-- nnoremap("}", '<Cmd><C-u>execute "keepjumps norm! " . v:count1 . "}"<CR>')
+-- nnoremap("{", '<Cmd><C-u>execute "keepjumps norm! " . v:count1 . "{"<CR>')
 -- nnoremap("J", "}")
 -- nnoremap("K", "{")
 
 -- Remap for joining lines, since J is now a motion. But you can also leave this off and do :j as a command
--- nnoremap("gJ", ":join<CR>")
+-- nnoremap("gJ", "<Cmd>join<CR>")
 
 
 
 
 -- Turn off highlighted results
-nnoremap("<Esc>", ":nohlsearch<CR><Esc>", { desc = "No search highlight" })
+nnoremap("<Esc>", "<Cmd>nohlsearch<CR><Esc>", { desc = "No search highlight" })
 
 -- gF is a more useful default that gf as it will also go to the line number
 nnoremap("gf", "gF", { desc = "Go to file" })
@@ -80,18 +80,18 @@ nnoremap("x", '"_x')
 -- Doesn't seem to work reliably.
 nnoremap("<C-w><C-^>", "<C-w>v<C-^>")
 
--- nnoremap('""', ':registers "0123456789abcdefghijklmnopqrstuvwxyz*+.<CR>')
+-- nnoremap('""', '<Cmd>registers "0123456789abcdefghijklmnopqrstuvwxyz*+.<CR>')
 
 -- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-bufremove.md#features
 -- https://github.com/moll/vim-bbye
 -- https://github.com/mhinz/vim-sayonara
 -- https://stackoverflow.com/questions/4298910/vim-close-buffer-but-not-split-window
--- nnoremap(",d", ":b#<bar>bd#<bar>b<CR>", { desc = "Close buffer and switch to alternative one. Keeps split open (but with edgecases)." })
+-- nnoremap(",d", "<Cmd>b#<bar>bd#<bar>b<CR>", { desc = "Close buffer and switch to alternative one. Keeps split open (but with edgecases)." })
 
 
 -- Plugin development
--- nnoremap("<C-m>", ":messages<CR>")
-nnoremap("<M-l>", ":Lazy reload poss<CR>")
+-- nnoremap("<C-m>", "<Cmd>messages<CR>")
+nnoremap("<M-l>", "<Cmd>Lazy reload poss<CR>")
 
 
 
@@ -295,9 +295,9 @@ end
 
 -- Fzflua keymaps
 function M.fzflua_keymaps()
-  nnoremap("<C-p>", ":FzfLua files<CR>", { desc = "Find files" })
-  nnoremap("<C-b>", ":FzfLua buffers<CR>", { desc = "Find buffers" })
-  nnoremap("<leader>g", ":FzfLua grep<CR>", { desc = "Grep" })
+  nnoremap("<C-p>", "<Cmd>FzfLua files<CR>", { desc = "Find files" })
+  nnoremap("<C-b>", "<Cmd>FzfLua buffers<CR>", { desc = "Find buffers" })
+  nnoremap("<leader>g", "<Cmd>FzfLua grep<CR>", { desc = "Grep" })
 end
 
 
@@ -307,9 +307,9 @@ end
 function M.neo_tree_keymaps()
   -- `reveal` will open NeoTree and highlight the file of the current buffer.
   -- Use `focus` or `show` to not highlight the file of the current buffer.
-  vim.keymap.set("n", "<leader>t", ":Neotree filesystem left toggle<CR>")
-  vim.keymap.set("n", "<leader>tf", ":Neotree filesystem reveal left<CR>")
-  -- :Neotree buffers reveal float
+  vim.keymap.set("n", "<leader>t", "<Cmd>Neotree filesystem left toggle<CR>")
+  vim.keymap.set("n", "<leader>tf", "<Cmd>Neotree filesystem reveal left<CR>")
+  -- <Cmd>Neotree buffers reveal float
 end
 
 
@@ -317,7 +317,7 @@ end
 
 -- Oil file manager keymaps
 function M.oil_keymaps()
-  nnoremap("-", ":Oil<CR>", { desc = "Open Oil file manager" })
+  nnoremap("-", "<Cmd>Oil<CR>", { desc = "Open Oil file manager" })
 end
 
 
@@ -357,7 +357,7 @@ end
 
 
 function M.lazygit_keymaps()
-  nnoremap("<leader>l", ":LazyGit<CR>", { desc = "LazyGit" })
+  nnoremap("<leader>l", "<Cmd>LazyGit<CR>", { desc = "LazyGit" })
 end
 
 
@@ -365,11 +365,11 @@ end
 
 -- Vim-test keymaps
 function M.vim_test_keymaps()
-  nnoremap("<leader>ut", ":TestNearest<CR>", { desc = "Run test nearest cursor" })
-  nnoremap("<leader>uT", ":TestFile<CR>", { desc = "Run tests in current file" })
-  nnoremap("<leader>ua", ":TestSuite<CR>", { desc = "Run all tests" })
-  nnoremap("<leader>ul", ":TestLast<CR>", { desc = "Run the last test" })
-  nnoremap("<leader>ug", ":TestVisit<CR>", { desc = "Visit test file from which tests were last run" })
+  nnoremap("<leader>ut", "<Cmd>TestNearest<CR>", { desc = "Run test nearest cursor" })
+  nnoremap("<leader>uT", "<Cmd>TestFile<CR>", { desc = "Run tests in current file" })
+  nnoremap("<leader>ua", "<Cmd>TestSuite<CR>", { desc = "Run all tests" })
+  nnoremap("<leader>ul", "<Cmd>TestLast<CR>", { desc = "Run the last test" })
+  nnoremap("<leader>ug", "<Cmd>TestVisit<CR>", { desc = "Visit test file from which tests were last run" })
 end
 
 
@@ -377,11 +377,11 @@ end
 
 -- Navigator keymaps
 function M.navigator_keymaps()
-  ntnoremap("<M-h>", ":NavigatorLeft<CR>", { desc = "Move mux focus to the left window" })
-  ntnoremap("<M-j>", ":NavigatorDown<CR>", { desc = "Move mux focus to the lower window" })
-  ntnoremap("<M-k>", ":NavigatorUp<CR>", { desc = "Move mux focus to the upper window" })
-  ntnoremap("<M-l>", ":NavigatorRight<CR>", { desc = "Move mux focus to the right window" })
-  ntnoremap("<M-p>", ":NavigatorPrevious<CR>", { desc = "Move mux focus to the previous window" })
+  ntnoremap("<M-h>", "<Cmd>NavigatorLeft<CR>", { desc = "Move mux focus to the left window" })
+  ntnoremap("<M-j>", "<Cmd>NavigatorDown<CR>", { desc = "Move mux focus to the lower window" })
+  ntnoremap("<M-k>", "<Cmd>NavigatorUp<CR>", { desc = "Move mux focus to the upper window" })
+  ntnoremap("<M-l>", "<Cmd>NavigatorRight<CR>", { desc = "Move mux focus to the right window" })
+  ntnoremap("<M-p>", "<Cmd>NavigatorPrevious<CR>", { desc = "Move mux focus to the previous window" })
 end
 
 
@@ -426,7 +426,7 @@ end
 
 -- Possession.nvim keymaps
 function M.possession_keymaps()
-    nnoremap("<leader>p", ":Telescope possession list<CR>", { desc = "Show saved sessions" })
+    nnoremap("<leader>p", "<Cmd>Telescope possession list<CR>", { desc = "Show saved sessions" })
 end
 
 
