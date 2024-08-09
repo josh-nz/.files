@@ -109,10 +109,14 @@ vim.opt.showmode = false
 -- Creates a backup file
 vim.opt.backup = false
 
--- Recommended settings for auto-session plugin
-vim.opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,options,localoptions"
+-- `options` and `localoptions` will save keymaps among other things, which because a session
+-- is loaded after the keymaps config, will override defined keymaps if the session has old
+-- keymaps saved in it. `nvim -V1` in conjunction with `:verbose [mode]map` can be helpful in
+-- diagnosing keymaps. The default sessionoptions should cover most things.
+-- vim.opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,options,localoptions"
 
 -- Don't insert comment leader when hitting `o` or `O` from normal mode
+-- (filetype specific settings might override these)
 -- vim.opt.formatoptions:remove("o")
 -- vim.o.formatoptions = "jcrql"
 -- vim.cmd("set formatoptions-=o")
