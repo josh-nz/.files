@@ -1,9 +1,22 @@
-local nnoremap = require("user.keymap_utils").nnoremap
-local vnoremap = require("user.keymap_utils").vnoremap
-local inoremap = require("user.keymap_utils").inoremap
-local tnoremap = require("user.keymap_utils").tnoremap
-local xnoremap = require("user.keymap_utils").xnoremap
-local ntnoremap = require("user.keymap_utils").ntnoremap
+-- https://github.com/dmmulroy/kickstart.nix/blob/main/config/nvim/lua/user/keymap_utils.lua
+local function bind(op, outer_opts)
+	outer_opts = vim.tbl_extend("force", { noremap = true, silent = true }, outer_opts or {})
+
+	return function(lhs, rhs, opts)
+		opts = vim.tbl_extend("force", outer_opts, opts or {})
+		vim.keymap.set(op, lhs, rhs, opts)
+	end
+end
+
+-- https://vim.fandom.com/wiki/Mapping_keys_in_Vim_-_Tutorial_(Part_1
+local map = bind("")
+local nmap = bind("n", { noremap = false })
+local nnoremap = bind("n")
+local vnoremap = bind("v")
+local xnoremap = bind("x")
+local inoremap = bind("i")
+local tnoremap = bind("t")
+local ntnoremap = bind({ "n", "t" })
 
 
 local M = {}
@@ -78,7 +91,7 @@ nnoremap("x", '"_x')
 
 -- Open alternate buffer in vertical split. Default is horizontal split.
 -- Doesn't seem to work reliably.
-nnoremap("<C-w><C-^>", "<C-w>v<C-^>")
+nnoremap("<C-w><C-^>", "<C-w>v<C-^>", { desc = "Open alt buffer in vsplit" })
 
 -- nnoremap('""', '<Cmd>registers "0123456789abcdefghijklmnopqrstuvwxyz*+.<CR>')
 
@@ -146,13 +159,13 @@ vnoremap("<Space>", "<nop>")
 --
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
-vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
+tnoremap("<Esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
 -- vim.keymap.set("t", "fj", [[<C-\><C-n>]],  { desc = "Exit terminal mode" })
 -- vim.keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
 -- vim.keymap.set("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opts)
 -- vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)
 -- vim.keymap.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
-vim.keymap.set("t", "<C-w>", [[<C-\><C-n><C-w>]])
+tnoremap("<C-w>", [[<C-\><C-n><C-w>]], { desc = "Terminal change window shortcut" })
 
 
 
@@ -160,39 +173,39 @@ vim.keymap.set("t", "<C-w>", [[<C-\><C-n><C-w>]])
 
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+nnoremap("<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 -- The following are now default mappings in 0.10.0, and can be removed:
-vim.keymap.set("n", "<C-w>d", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror message" })
-vim.keymap.set("n", "<C-w><C-d>", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror message" })
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
+nnoremap("<C-w>d", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror message" })
+nnoremap("<C-w><C-d>", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror message" })
+nnoremap("[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
+nnoremap("]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
 
 function M.lsp_keymaps(opts)
   -- Buffer local mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  -- vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts) -- <C-t> to jump back
-  -- vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-  -- vim.keymap.set("n", "gI", vim.lsp.buf.implementation, opts)
-  -- vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, opts)
+  -- nnoremap("gd", vim.lsp.buf.definition, opts) -- <C-t> to jump back
+  -- nnoremap("gr", vim.lsp.buf.references, opts)
+  -- nnoremap("gI", vim.lsp.buf.implementation, opts)
+  -- nnoremap("<leader>D", vim.lsp.buf.type_definition, opts)
 
-  -- vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+  -- nnoremap("<leader>rn", vim.lsp.buf.rename, opts)
   -- vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
-  -- vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+  -- nnoremap("K", vim.lsp.buf.hover, opts)
 
   -- https://www.reddit.com/r/neovim/comments/mbj8m5/how_to_setup_ctrlshiftkey_mappings_in_neovim_and/
   -- See also :h tui-input
-  vim.keymap.set("n", "<C-S-k>", vim.lsp.buf.signature_help, opts)
-  vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, opts)
+  nnoremap("<C-S-k>", vim.lsp.buf.signature_help, opts)
+  nnoremap("gs", vim.lsp.buf.signature_help, opts)
 
-  -- vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+  -- nnoremap("gD", vim.lsp.buf.declaration, opts)
 
-  -- -- vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts)
-  -- -- vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts)
-  -- -- vim.keymap.set("n", "<leader>wl", function()
+  -- -- nnoremap("<leader>wa", vim.lsp.buf.add_workspace_folder, opts)
+  -- -- nnoremap("<leader>wr", vim.lsp.buf.remove_workspace_folder, opts)
+  -- -- nnoremap("<leader>wl", function()
   -- --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   -- -- end, opts)
 
-  vim.keymap.set("n", "<leader>cf", function()
+  nnoremap("<leader>cf", function()
     vim.lsp.buf.format({ async = true })
   end, opts)
 
@@ -250,44 +263,44 @@ end
 function M.telescope_keymaps(builtin)
   -- find_files calls `rg --files --colour` as priority, see link for details.
   -- https://github.com/nvim-telescope/telescope.nvim/blob/master/lua/telescope/builtin/__files.lua#L272
-  -- vim.keymap.set("n", "<C-p>", builtin.find_files, {})
-  vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
+  -- nnoremap("<C-p>", builtin.find_files, {})
+  nnoremap("<leader>ff", builtin.find_files, { desc = "Telescope find files" })
   -- :help telescope.defaults.vimgrep_arguments
   -- will show the default arguments passed to ripgrep.
-  vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
-  vim.keymap.set("n", "<leader>fb", function()
+  nnoremap("<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
+  nnoremap("<leader>fb", function()
     builtin.buffers({
       -- ignore_current_buffer = true,
       sort_mru = true,
       -- sort_lastused = true,
     })
-  end, {})
-  vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
-  vim.keymap.set("n", "<leader>fo", builtin.oldfiles, {})
-  vim.keymap.set("n", "<leader>fv", builtin.vim_options, {})
-  vim.keymap.set("n", "<leader>fc", function()
+  end, { desc = "Telescope buffers" })
+  nnoremap("<leader>fh", builtin.help_tags, { desc = "Telescope help tags "})
+  nnoremap("<leader>fo", builtin.oldfiles, { desc = "Telescope old files" })
+  nnoremap("<leader>fv", builtin.vim_options, { desc = "Telescope vim options" })
+  nnoremap("<leader>fc", function()
     builtin.colorscheme({ enable_preview = true, initial_mode = "normal" })
-  end, {})
-  vim.keymap.set("n", "<leader>fk", builtin.keymaps, {})
-  vim.keymap.set("n", "<leader>fj", builtin.jumplist, {})
+  end, { desc = "Telescope colorscheme picker" })
+  nnoremap("<leader>fk", builtin.keymaps, { desc = "Telescope keymaps" })
+  nnoremap("<leader>fj", builtin.jumplist, { desc = "Telescope jumplist" })
   --  Duplicate of custom debug keymap <leader>ds
-  vim.keymap.set("n", "<leader>fs", function()
+  nnoremap("<leader>fs", function()
     builtin.lsp_document_symbols({ show_line = true })
-  end, {})
+  end, { desc = "Telescope lsp document symbols" })
 
   -- Shortcut for searching your neovim configuration files
-  vim.keymap.set("n", "<leader>fn", function()
+  nnoremap("<leader>fn", function()
     builtin.find_files { cwd = vim.fn.stdpath("config") }
-  end, { desc = "[F]ind in [N]eovim files" })
+  end, { desc = "Telescope nvim files" })
 
   -- Slightly advanced example of overriding default behavior and theme
-  vim.keymap.set('n', '<leader>/', function()
+  vim.keymap.set("n", "<leader>/", function()
     -- You can pass additional configuration to Telescope to change the theme, layout, etc.
-    builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown({
+    builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
       winblend = 10,
       previewer = false,
     }))
-  end, { desc = '[/] Fuzzily search in current buffer' })
+  end, { desc = "Telescope fuzzily search current buffer" })
 end
 
 
@@ -295,9 +308,9 @@ end
 
 -- Fzflua keymaps
 function M.fzflua_keymaps()
-  nnoremap("<C-p>", "<Cmd>FzfLua files<CR>", { desc = "Find files" })
-  nnoremap("<C-b>", "<Cmd>FzfLua buffers<CR>", { desc = "Find buffers" })
-  nnoremap("<leader>g", "<Cmd>FzfLua grep<CR>", { desc = "Grep" })
+  nnoremap("<C-p>", "<Cmd>FzfLua files<CR>", { desc = "Fzf find files" })
+  nnoremap("<C-b>", "<Cmd>FzfLua buffers<CR>", { desc = "Fzf find buffers" })
+  nnoremap("<leader>g", "<Cmd>FzfLua grep<CR>", { desc = "Fzf grep" })
 end
 
 
@@ -307,8 +320,8 @@ end
 function M.neo_tree_keymaps()
   -- `reveal` will open NeoTree and highlight the file of the current buffer.
   -- Use `focus` or `show` to not highlight the file of the current buffer.
-  vim.keymap.set("n", "<leader>t", "<Cmd>Neotree filesystem left toggle<CR>")
-  vim.keymap.set("n", "<leader>tf", "<Cmd>Neotree filesystem reveal left<CR>")
+  nnoremap("<leader>t", "<Cmd>Neotree filesystem left toggle<CR>", { desc = "Neotree toggle" })
+  nnoremap("<leader>tf", "<Cmd>Neotree filesystem reveal left<CR>", { desc = "Neotree reveal" })
   -- <Cmd>Neotree buffers reveal float
 end
 
@@ -325,31 +338,31 @@ end
 
 -- Debug keymaps - originally part of debugging.lua
 function M.dap_keymaps(dap)
-  vim.keymap.set("n", "<F5>", dap.continue, { desc = "Debug: start/continue" })
-  vim.keymap.set("n", "<F10>", dap.step_over, { desc = "Debug: step over" })
-  vim.keymap.set("n", "<F11>", dap.step_into, { desc = "Debug: step into" })
-  vim.keymap.set("n", "<F12>", dap.step_out, { desc = "Debug: step out" })
-  vim.keymap.set("n", "<Leader>b", dap.toggle_breakpoint, { desc = "Debug: toggle breakpoint" })
-  vim.keymap.set("n", "<Leader>B", dap.set_breakpoint, { desc = "Debug: set breakpoint" })
-  vim.keymap.set("n", "<Leader>lp", function()
+  nnoremap("<F5>", dap.continue, { desc = "Debug start/continue" })
+  nnoremap("<F10>", dap.step_over, { desc = "Debug step over" })
+  nnoremap("<F11>", dap.step_into, { desc = "Debug step into" })
+  nnoremap("<F12>", dap.step_out, { desc = "Debug step out" })
+  nnoremap("<Leader>b", dap.toggle_breakpoint, { desc = "Debug toggle breakpoint" })
+  nnoremap("<Leader>B", dap.set_breakpoint, { desc = "Debug set breakpoint" })
+  nnoremap("<Leader>lp", function()
     dap.set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
-  end, { desc = "Debug: ?some custom breakpoint?" })
-  vim.keymap.set("n", "<Leader>dr", dap.repl.open, { desc = "Debug: open REPL" })
-  vim.keymap.set("n", "<Leader>dl", dap.run_last, { desc = "Debug: ?run last?" })
+  end, { desc = "Debug ?some custom breakpoint?" })
+  nnoremap("<Leader>dr", dap.repl.open, { desc = "Debug open REPL" })
+  nnoremap("<Leader>dl", dap.run_last, { desc = "Debug ?run last?" })
 end
 
 function M.dap_ui_keymaps(dapui, widget)
   -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
-  vim.keymap.set("n", "<F7>", dapui.toggle, { desc = "Debug: see last session result" })
+  nnoremap("<F7>", dapui.toggle, { desc = "Debug see last session result" })
 
-  vim.keymap.set({ "n", "v" }, "<Leader>dh", widget.hover, { desc = "Debug: ?widget hover?" })
-  vim.keymap.set({ "n", "v" }, "<Leader>dp", widget.preview, { desc = "Debug: ?widget.preview?" })
-  vim.keymap.set("n", "<Leader>df", function()
+  vim.keymap.set({ "n", "v" }, "<Leader>dh", widget.hover, { desc = "Debug ?widget hover?" })
+  vim.keymap.set({ "n", "v" }, "<Leader>dp", widget.preview, { desc = "Debug ?widget.preview?" })
+  nnoremap("<Leader>df", function()
     widget.centered_float(widget.frames)
-  end, { desc = "Debug: ?widget.centered_float.frames?" })
-  vim.keymap.set("n", "<Leader>ds", function()
+  end, { desc = "Debug ?widget.centered_float.frames?" })
+  nnoremap("<Leader>ds", function()
     widget.centered_float(widget.scopes)
-  end, { desc = "Debug: ?widget.centered_float.scopes?" })
+  end, { desc = "Debug ?widget.centered_float.scopes?" })
 end
 
 
@@ -426,7 +439,7 @@ end
 
 -- Possession.nvim keymaps
 function M.possession_keymaps()
-    nnoremap("<leader>p", "<Cmd>Telescope possession list<CR>", { desc = "Show saved sessions" })
+    nnoremap("<leader>p", "<Cmd>Telescope possession list<CR>", { desc = "Telescope show saved sessions" })
 end
 
 
