@@ -5,6 +5,8 @@ local wezterm = require('wezterm')
 local config = wezterm.config_builder()
 
 -- https://github.com/wez/wezterm/discussions/5435
+-- alternative picker impl along with more WezTerm customizations:
+-- https://github.com/sravioli/wezterm
 local selector = require("config_selector")
 local pickers = {
   fonts = selector.new({ title = "Font selector", subdir = "fonts" }),
