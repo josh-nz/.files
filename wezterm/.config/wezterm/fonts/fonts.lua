@@ -16,7 +16,7 @@ M.init = function()
     { label = "Commit", value = "CommitMono" },
     { label = "Geist", value = "Geist Mono" },
     { label = "IBM Plex", value = "IBM Plex Mono" },
-    { label = "MonoLisa", value = "MonoLisa Trial" },
+    { label = "MonoLisa Trial", value = "MonoLisa Trial" },
     { label = "San Francisco", value = "SF Mono" },
   }
 end

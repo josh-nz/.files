@@ -13,9 +13,12 @@ local pickers = {
   inactive_panes = selector.new({ title = "Inactive pane selector", subdir = "inactivepanes" }),
 }
 
+pickers.fonts:select(config, "MonoLisa Trial")
 
 config.font_size = 13.0
 
+-- fonts:select(config, "CascadiaCode")
+-- config.font_size = 13.0
 
 pickers.colors:select(config, "Catppuccin Mocha")
 pickers.inactive_panes:select(config, "Slightly dimmed")
