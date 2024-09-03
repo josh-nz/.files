@@ -15,9 +15,17 @@ local pickers = {
   inactive_panes = selector.new({ title = "Inactive pane selector", subdir = "inactivepanes" }),
 }
 
-pickers.fonts:select(config, "MonoLisa Trial")
+pickers.fonts:select(config, "MonoLisa")
+config.font_size = 11.0
 
-config.font_size = 13.0
+-- https://github.com/wez/wezterm/issues/3774
+-- config.front_end = 'OpenGL'
+-- config.front_end = 'WebGPU'
+-- config.freetype_load_target = 'Light'
+-- config.freetype_load_target = 'VerticalLcd'
+-- config.freetype_load_flags = 'NO_BITMAP'
+-- config.freetype_render_target = 'HorizontalLcd'
+-- config.font = wezterm.font("MonoLisa", { weight = "Medium" })
 
 -- fonts:select(config, "CascadiaCode")
 -- config.font_size = 13.0

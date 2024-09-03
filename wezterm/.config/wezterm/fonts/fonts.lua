@@ -16,7 +16,7 @@ M.init = function()
     { label = "Commit", value = "CommitMono" },
     { label = "Geist", value = "Geist Mono" },
     { label = "IBM Plex", value = "IBM Plex Mono" },
-    { label = "MonoLisa Trial", value = "MonoLisa Trial" },
+    { label = "MonoLisa", value = "MonoLisa" },
     { label = "San Francisco", value = "SF Mono" },
   }
 end
@@ -28,16 +28,13 @@ M.activate = function(config, label, value)
     -- ss01 is italic script variant.
     -- ss19 is slashed zero instead of dotted zero.
     config.harfbuzz_features = { "calt=1", "ss01=1", "ss19=1" }
+  elseif label == "MonoLisa" then
+    -- ss02 is the script variant.
+    -- zero is slashed zero instead of dotted zero.
+    config.harfbuzz_features = { "ss02=1", "zero" }
   else
     config.harfbuzz_features = {}
   end
-  -- config.harfbuzz_features = { "ss02=1" }
-  -- config.font = wezterm.font(
-  -- {{
-  --     family = 'MonoLisa Trial',
-  --     -- https://wezfurlong.org/wezterm/config/font-shaping.html#advanced-font-shaping-options
-  --     harfbuzz_features = { 'zero' },
-  -- }})
 end
 
 return M
