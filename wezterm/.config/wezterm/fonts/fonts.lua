@@ -25,7 +25,7 @@ M.activate = function(config, label, value)
   config.font = wezterm.font(value)
 
   if label == "CascadiaCode" then
-    -- ss01 is italic script variant.
+    -- calt and ss01 is italic script variant.
     -- ss19 is slashed zero instead of dotted zero.
     config.harfbuzz_features = { "calt=1", "ss01=1", "ss19=1" }
   elseif label == "MonoLisa" then
