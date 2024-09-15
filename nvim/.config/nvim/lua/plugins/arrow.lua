@@ -40,7 +40,7 @@ return {
       height = "auto",
       row = "auto",
       col = "auto",
-      border = "double",
+      border = "single",
     },
     per_buffer_config = {
       lines = 4, -- Number of lines showed on preview.

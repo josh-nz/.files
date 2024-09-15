@@ -22,8 +22,6 @@ return {
   {
     "neovim/nvim-lspconfig",
     enabled = true,
-    event = { "BufReadPost" },
-    cmd = { "LspInfo", "LspInstall", "LspUninstall", "Mason" },
     dependencies = {
       -- Plugin and UI to automatically install LSPs to stdpath
       -- https://github.com/williamboman/mason.nvim
@@ -40,6 +38,8 @@ return {
       -- https://github.com/j-hui/fidget.nvim
       -- { "j-hui/fidget.nvim", opts = {} },
     },
+    event = { "BufReadPost" },
+    cmd = { "LspInfo", "LspInstall", "LspUninstall", "Mason" },
     config = function()
       -- Default handlers for LSP
       -- https://neovim.io/doc/user/lsp.html

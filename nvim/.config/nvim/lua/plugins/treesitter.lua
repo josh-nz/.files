@@ -3,8 +3,6 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   enabled = true,
-  build = ":TSUpdate",
-  event = { "BufEnter" },
   dependencies = {
     -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
     -- Good videos explaining this at https://www.youtube.com/watch?v=ff0GYrK3nT0
@@ -14,6 +12,8 @@ return {
     -- This pins the current scope to top of file
     -- "nvim-treesitter/nvim-treesitter-context",
   },
+  build = ":TSUpdate",
+  event = { "BufEnter" },
   config = function()
 ---@diagnostic disable-next-line: missing-fields
     require("nvim-treesitter.configs").setup({
@@ -40,11 +40,11 @@ return {
         -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
         -- If you are experiencing weird indenting issues, add the language to
         -- the list of additional_vim_regex_highlighting and disabled languages for indent.
-        additional_vim_regex_highlighting = { "ruby" },
+        additional_vim_regex_highlighting = { "ruby", "elixir" },
       },
       indent = {
         enable = true,
-        disable = { "ruby" },
+        disable = { "ruby", "elixir" },
       },
       autopairs = { enable = false },
 

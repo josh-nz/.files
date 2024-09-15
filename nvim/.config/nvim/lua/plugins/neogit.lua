@@ -2,7 +2,6 @@
 return {
   "NeogitOrg/neogit",
   enabled = true,
-  event = "VeryLazy",
   dependencies = {
     "nvim-lua/plenary.nvim",         -- required
     -- https://github.com/sindrets/diffview.nvim
@@ -14,5 +13,8 @@ return {
     -- https://github.com/ibhagwan/fzf-lua
     "ibhagwan/fzf-lua",              -- optional
   },
-  config = true
+  cmd = {
+    "Neogit",
+  },
+  config = true,
 }

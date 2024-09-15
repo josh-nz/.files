@@ -2,8 +2,8 @@
 return {
   "folke/todo-comments.nvim",
   enabled = true,
-  event = "VeryLazy",
   dependencies = { "nvim-lua/plenary.nvim" },
+  event = "VeryLazy",
   opts = {
     highlight = {
       multiline = false,

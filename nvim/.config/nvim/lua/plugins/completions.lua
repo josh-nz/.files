@@ -2,7 +2,6 @@
 return {
   "hrsh7th/nvim-cmp",
   enabled = true,
-  event = { "InsertEnter", "CmdlineEnter" },
   dependencies = {
     -- https://github.com/L3MON4D3/LuaSnip
     {
@@ -39,6 +38,7 @@ return {
     -- https://github.com/hrsh7th/cmp-nvim-lua
     -- "hrsh7th/cmp-nvim-lua",  -- folke/neodev.nvim as used in lsp_config.lua might provide these completions as an alternative
   },
+  event = { "InsertEnter", "CmdlineEnter" },
   config = function()
     local cmp = require("cmp")
     local luasnip = require("luasnip")

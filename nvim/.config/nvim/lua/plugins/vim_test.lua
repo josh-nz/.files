@@ -2,11 +2,11 @@
 return {
   "vim-test/vim-test",
   enabled = true,
-  lazy = true,
   dependencies = {
     -- https://github.com/preservim/vimux
     "preservim/vimux",
   },
+  lazy = true,
   config = function()
     require("user.keymaps").vim_test_keymaps()
     -- vim.cmd("let test#strategy = 'vimux'")

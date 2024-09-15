@@ -2,12 +2,12 @@
 return {
   "nvim-lualine/lualine.nvim",
   enabled = true,
-  event = "VeryLazy",
   dependencies = {
     "nvim-tree/nvim-web-devicons",
     -- https://github.com/ThePrimeagen/harpoon
     -- "ThePrimeagen/harpoon",
   },
+  event = "VeryLazy",
   config = function()
     -- Doesn't work with Harpoon 2 as API is very different.
     -- local harpoon = require("harpoon.list")

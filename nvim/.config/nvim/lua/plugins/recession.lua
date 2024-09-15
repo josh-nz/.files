@@ -1,7 +1,7 @@
 -- https://github.com/stevearc/resession.nvim
 return {
   "stevearc/resession.nvim",
-  enabled = true,
+  enabled = false,
   lazy = true,
   opts = {},
 }
