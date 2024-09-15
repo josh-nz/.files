@@ -39,6 +39,7 @@ require("user.wezterm_nvim_move")
 
 -- Hide all semantic highlights until upstream issues are resolved.
 -- https://github.com/catppuccin/nvim/issues/480
+-- https://gist.github.com/swarn/fb37d9eefe1bc616c2a7e476c0bc0316
 -- for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
 --   vim.api.nvim_set_hl(0, group, {})
 -- end
