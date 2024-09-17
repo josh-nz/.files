@@ -1,4 +1,3 @@
--- https://github.com/neovim/nvim-lspconfig
 return {
   {
     -- Configures Lua LSP for Neovim config, runtime, and plugins
@@ -20,6 +19,7 @@ return {
   },
 
   {
+    -- https://github.com/neovim/nvim-lspconfig
     "neovim/nvim-lspconfig",
     enabled = true,
     dependencies = {
@@ -41,6 +41,21 @@ return {
     event = { "BufReadPost" },
     cmd = { "LspInfo", "LspInstall", "LspUninstall", "Mason" },
     config = function()
+      -- Setup mason so it can manage 3rd party LSP servers
+      require("mason").setup({
+        ui = {
+          border = "rounded",
+        },
+      })
+
+      require("mason-lspconfig").setup({
+        ensure_installed = {
+          "lua_ls",
+          "elixirls",
+          "tailwindcss",
+        },
+      })
+
       -- Default handlers for LSP
       -- https://neovim.io/doc/user/lsp.html
       local rounded_corner_handlers = {
@@ -85,36 +100,19 @@ return {
             },
           },
         },
+        tailwindcss = {},
         gleam = {},
       }
 
-      -- Setup mason so it can manage 3rd party LSP servers
-      require("mason").setup({
-        ui = {
-          border = "rounded",
-        },
-      })
-
       local lsp = require("lspconfig")
-      require("mason-lspconfig").setup({
-        ensure_installed = {
-          "lua_ls",
-          "elixirls",
-          "tailwindcss",
-        },
-        -- See `:h mason-lspconfig.setup_handlers()`
-        handlers = {
-          function(server_name)
-            local server = servers[server_name] or {}
-            -- This handles overriding only values explicitly passed
-            -- by the server configuration above. Useful when disabling
-            -- certain features of an LSP (for example, turning off formatting for tsserver)
-            server.handlers = vim.tbl_deep_extend("force", {}, rounded_corner_handlers, server.handlers or {})
-            server.capabilities = vim.tbl_deep_extend('force', {}, extended_capabilities, server.capabilities or {})
-            lsp[server_name].setup(server)
-          end,
-        },
-      })
+      for server_name, server_settings in pairs(servers) do
+        -- This handles overriding only values explicitly passed
+        -- by the server configuration above. Useful when disabling
+        -- certain features of an LSP (for example, turning off formatting for tsserver)
+        server_settings.handlers = vim.tbl_deep_extend("force", {}, rounded_corner_handlers, server_settings.handlers or {})
+        server_settings.capabilities = vim.tbl_deep_extend('force', {}, extended_capabilities, server_settings.capabilities or {})
+        lsp[server_name].setup(server_settings)
+      end
 
       -- This function gets run when an LSP attaches to a particular buffer.
       -- That is to say, every time a new file is opened that is associated with
