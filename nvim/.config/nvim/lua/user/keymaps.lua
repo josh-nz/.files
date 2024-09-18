@@ -195,7 +195,7 @@ function M.lsp_keymaps(opts)
   -- https://www.reddit.com/r/neovim/comments/mbj8m5/how_to_setup_ctrlshiftkey_mappings_in_neovim_and/
   -- See also :h tui-input
   nnoremap("<C-S-k>", vim.lsp.buf.signature_help, opts)
-  nnoremap("gs", vim.lsp.buf.signature_help, opts)
+  -- nnoremap("gs", vim.lsp.buf.signature_help, opts)
 
   -- nnoremap("gD", vim.lsp.buf.declaration, opts)
 

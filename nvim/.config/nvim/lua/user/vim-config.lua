@@ -123,7 +123,7 @@ vim.opt.backup = false
 
 -- Sets how Neovim will display certain whitespace in the editor
 vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 -- Configure tab behaviour in commoand mode
 vim.opt.wildmode = "longest:full,full"
@@ -131,8 +131,11 @@ vim.opt.wildmode = "longest:full,full"
 vim.opt.spelllang = "en_nz,en_gb"
 
 vim.diagnostic.config({
+  virtual_text = {
+    prefix = "■ ", -- Could be "●", "▎", "x", "■", , 
+  },
   float = {
-    border = 'rounded',
+    border = "rounded",
   },
 })
 

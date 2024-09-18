@@ -56,19 +56,6 @@ return {
         },
       })
 
-      -- Default handlers for LSP
-      -- https://neovim.io/doc/user/lsp.html
-      local rounded_corner_handlers = {
-        ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
-        ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
-      }
-
-      -- LSP servers and clients are able to communicate to each other what features they support.
-      -- By default, Neovim doesn't support everything that is in the LSP specification.
-      -- When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
-      -- So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
-      local default_capabilities = vim.lsp.protocol.make_client_capabilities()
-      local extended_capabilities = require("cmp_nvim_lsp").default_capabilities(default_capabilities)
 
       -- Enable the following language servers
       -- Add any additional override configuration in the following tables. Available keys are:
@@ -104,15 +91,50 @@ return {
         gleam = {},
       }
 
-      local lsp = require("lspconfig")
+      -- Specify what the border looks like
+      local border = {
+          { "┌", "FloatBorder" },
+          { "─", "FloatBorder" },
+          { "┐", "FloatBorder" },
+          { "│", "FloatBorder" },
+          { "┘", "FloatBorder" },
+          { "─", "FloatBorder" },
+          { "└", "FloatBorder" },
+          { "│", "FloatBorder" },
+      }
+
+      -- local border = "rounded"
+
+      -- Default handlers for LSP
+      -- https://neovim.io/doc/user/lsp.html
+      local handlers = {
+        ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
+        ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
+      }
+
+      -- LSP servers and clients are able to communicate to each other what features they support.
+      -- By default, Neovim doesn't support everything that is in the LSP specification.
+      -- When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
+      -- So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
+      local default_capabilities = vim.lsp.protocol.make_client_capabilities()
+      local extended_capabilities = require("cmp_nvim_lsp").default_capabilities(default_capabilities)
+
+      local lspconfig = require("lspconfig")
       for server_name, server_settings in pairs(servers) do
         -- This handles overriding only values explicitly passed
         -- by the server configuration above. Useful when disabling
         -- certain features of an LSP (for example, turning off formatting for tsserver)
-        server_settings.handlers = vim.tbl_deep_extend("force", {}, rounded_corner_handlers, server_settings.handlers or {})
-        server_settings.capabilities = vim.tbl_deep_extend('force', {}, extended_capabilities, server_settings.capabilities or {})
-        lsp[server_name].setup(server_settings)
+        server_settings.handlers = vim.tbl_deep_extend("force", {}, handlers, server_settings.handlers or {})
+        server_settings.capabilities = vim.tbl_deep_extend("force", {}, extended_capabilities, server_settings.capabilities or {})
+        lspconfig[server_name].setup(server_settings)
       end
+
+      -- require("lspconfig.ui.windows").default_options.border = "single"
+
+
+
+
+
 
       -- This function gets run when an LSP attaches to a particular buffer.
       -- That is to say, every time a new file is opened that is associated with
