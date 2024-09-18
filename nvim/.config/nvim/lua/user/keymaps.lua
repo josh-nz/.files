@@ -183,31 +183,155 @@ nnoremap("]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic messa
 function M.lsp_keymaps(opts)
   -- Buffer local mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  -- nnoremap("gd", vim.lsp.buf.definition, opts) -- <C-t> to jump back
-  -- nnoremap("gr", vim.lsp.buf.references, opts)
-  -- nnoremap("gI", vim.lsp.buf.implementation, opts)
-  -- nnoremap("<leader>D", vim.lsp.buf.type_definition, opts)
 
-  -- nnoremap("<leader>rn", vim.lsp.buf.rename, opts)
-  -- vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
-  -- nnoremap("K", vim.lsp.buf.hover, opts)
+  -- Opens a popup that displays documentation about the word under your cursor
+  --  See `:help K` for why this keymap.
+  -- This is now a default mapping in 0.10.0 and can be removed:
+  -- nnoremap("K", vim.lsp.buf.hover, { desc = "Hover Documentation" })
 
   -- https://www.reddit.com/r/neovim/comments/mbj8m5/how_to_setup_ctrlshiftkey_mappings_in_neovim_and/
   -- See also :h tui-input
   nnoremap("<C-S-k>", vim.lsp.buf.signature_help, opts)
   -- nnoremap("gs", vim.lsp.buf.signature_help, opts)
 
-  -- nnoremap("gD", vim.lsp.buf.declaration, opts)
-
-  -- -- nnoremap("<leader>wa", vim.lsp.buf.add_workspace_folder, opts)
-  -- -- nnoremap("<leader>wr", vim.lsp.buf.remove_workspace_folder, opts)
-  -- -- nnoremap("<leader>wl", function()
-  -- --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  -- -- end, opts)
 
   nnoremap("<leader>cf", function()
     vim.lsp.buf.format({ async = true })
   end, opts)
+
+  -- Rename the variable under your cursor.
+  --  Most Language Servers support renaming across files, etc.
+  nnoremap("<leader>rn", vim.lsp.buf.rename, opts)
+
+  -- Execute a code action, usually your cursor needs to be on top of an error
+  -- or a suggestion from your LSP for this to activate.
+  nnoremap("<leader>ca", vim.lsp.buf.code_action, { desc = "[C]ode [A]ction" })
+
+
+  -- WARN: This is not Goto Definition, this is Goto Declaration.
+  --  For example, in C this would take you to the header.
+  nnoremap("gD", vim.lsp.buf.declaration, { desc = "[G]oto [D]eclaration" })
+
+  -- nnoremap("<leader>wa", vim.lsp.buf.add_workspace_folder, opts)
+  -- nnoremap("<leader>wr", vim.lsp.buf.remove_workspace_folder, opts)
+  -- nnoremap("<leader>wl", function()
+  --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+  -- end, opts)
+
+  -- Jump to the definition of the word under your cursor.
+  --  This is where a variable was first declared, or where a function is defined, etc.
+  --  To jump back, press <C-t>.
+  nnoremap("gd", vim.lsp.buf.definition, opts) -- <C-t> to jump back
+
+  -- Find references for the word under your cursor.
+  nnoremap("gr", vim.lsp.buf.references, opts)
+
+  -- Jump to the implementation of the word under your cursor.
+  --  Useful when your language has ways of declaring types without an actual implementation.
+  nnoremap("gI", vim.lsp.buf.implementation, opts)
+
+  -- Jump to the type of the word under your cursor.
+  --  Useful when you"re not sure what type a variable is and you want to see
+  --  the definition of its *type*, not where it was *defined*.
+  nnoremap("<leader>D", vim.lsp.buf.type_definition, opts)
+
+  -- Find all the symbols in your current document.
+  nnoremap("<leader>ds", vim.lsp.buf.document_symbol, opts)
+
+  -- Find all the symbols in your current workspace.
+  nnoremap("<leader>ws", vim.lsp.buf.workspace_symbol, opts)
+end
+
+
+function M.lsp_fzf_keymaps(opts)
+  -- Buffer local mappings.
+  -- See `:help vim.lsp.*` for documentation on any of the below functions
+
+  -- Opens a popup that displays documentation about the word under your cursor
+  --  See `:help K` for why this keymap.
+  -- This is now a default mapping in 0.10.0 and can be removed:
+  -- nnoremap("K", vim.lsp.buf.hover, { desc = "Hover Documentation" })
+
+  -- https://www.reddit.com/r/neovim/comments/mbj8m5/how_to_setup_ctrlshiftkey_mappings_in_neovim_and/
+  -- See also :h tui-input
+  nnoremap("<C-S-k>", vim.lsp.buf.signature_help, opts)
+  -- nnoremap("gs", vim.lsp.buf.signature_help, opts)
+
+  nnoremap("<leader>cf", function()
+    vim.lsp.buf.format({ async = true })
+  end, opts)
+
+  -- Rename the variable under your cursor.
+  --  Most Language Servers support renaming across files, etc.
+  nnoremap("<leader>rn", vim.lsp.buf.rename, { desc = "[R]e[n]ame" })
+
+  -- Execute a code action, usually your cursor needs to be on top of an error
+  -- or a suggestion from your LSP for this to activate.
+  nnoremap("<leader>ca", vim.lsp.buf.code_action, { desc = "[C]ode [A]ction" })
+
+
+  -- WARN: This is not Goto Definition, this is Goto Declaration.
+  --  For example, in C this would take you to the header.
+  nnoremap("gD", vim.lsp.buf.declaration, { desc = "[G]oto [D]eclaration" })
+
+  -- Jump to the definition of the word under your cursor.
+  --  This is where a variable was first declared, or where a function is defined, etc.
+  --  To jump back, press <C-t>.
+  nnoremap("gd", "<Cmd>FzfLua lsp_definitions<CR>", { desc = "[G]oto [D]efinition" })
+
+  -- Find references for the word under your cursor.
+  nnoremap("gr", "<Cmd>FzfLua lsp_references<CR>", { desc = "[G]oto [R]eferences" })
+
+  -- Jump to the implementation of the word under your cursor.
+  --  Useful when your language has ways of declaring types without an actual implementation.
+  nnoremap("gI", "<Cmd>FzfLua lsp_implementations<CR>", { desc = "[G]oto [I]mplementation" })
+
+  -- Jump to the type of the word under your cursor.
+  --  Useful when you"re not sure what type a variable is and you want to see
+  --  the definition of its *type*, not where it was *defined*.
+  nnoremap("<leader>D", "<Cmd>FzfLua lsp_typedefs<CR>", { desc = "Type [D]efinition" })
+
+  -- Fuzzy find all the symbols in your current document.
+  --  Symbols are things like variables, functions, types, etc.
+  --  Duplicate of custom Telescope keymap <leader>fs
+  nnoremap("<leader>ds", "<Cmd>FzfLua lsp_document_symbols<CR>", { desc = "[D]ocument [S]ymbols" })
+
+  -- Fuzzy find all the symbols in your current workspace.
+  --  Similar to document symbols, except searches over your entire project.
+  nnoremap("<leader>ws", "<Cmd>FzfLua lsp_live_workspace_symbols<CR>", { desc = "[W]orkspace [S]ymbols" })
+end
+
+
+function M.lsp_telescope_keymaps(opts)
+  -- Buffer local mappings.
+  -- See `:help vim.lsp.*` for documentation on any of the below functions
+
+  -- Opens a popup that displays documentation about the word under your cursor
+  --  See `:help K` for why this keymap.
+  -- This is now a default mapping in 0.10.0 and can be removed:
+  -- nnoremap("K", vim.lsp.buf.hover, { desc = "Hover Documentation" })
+
+  -- https://www.reddit.com/r/neovim/comments/mbj8m5/how_to_setup_ctrlshiftkey_mappings_in_neovim_and/
+  -- See also :h tui-input
+  nnoremap("<C-S-k>", vim.lsp.buf.signature_help, opts)
+  -- nnoremap("gs", vim.lsp.buf.signature_help, opts)
+
+  nnoremap("<leader>cf", function()
+    vim.lsp.buf.format({ async = true })
+  end, opts)
+
+  -- Rename the variable under your cursor.
+  --  Most Language Servers support renaming across files, etc.
+  nnoremap("<leader>rn", vim.lsp.buf.rename, { desc = "[R]e[n]ame" })
+
+  -- Execute a code action, usually your cursor needs to be on top of an error
+  -- or a suggestion from your LSP for this to activate.
+  nnoremap("<leader>ca", vim.lsp.buf.code_action, { desc = "[C]ode [A]ction" })
+
+
+  -- WARN: This is not Goto Definition, this is Goto Declaration.
+  --  For example, in C this would take you to the header.
+  nnoremap("gD", vim.lsp.buf.declaration, { desc = "[G]oto [D]eclaration" })
 
   local ts = require("telescope.builtin")
 
@@ -236,23 +360,6 @@ function M.lsp_keymaps(opts)
   -- Fuzzy find all the symbols in your current workspace.
   --  Similar to document symbols, except searches over your entire project.
   nnoremap("<leader>ws", ts.lsp_dynamic_workspace_symbols, { desc = "[W]orkspace [S]ymbols" })
-
-  -- Rename the variable under your cursor.
-  --  Most Language Servers support renaming across files, etc.
-  nnoremap("<leader>rn", vim.lsp.buf.rename, { desc = "[R]e[n]ame" })
-
-  -- Execute a code action, usually your cursor needs to be on top of an error
-  -- or a suggestion from your LSP for this to activate.
-  nnoremap("<leader>ca", vim.lsp.buf.code_action, { desc = "[C]ode [A]ction" })
-
-  -- Opens a popup that displays documentation about the word under your cursor
-  --  See `:help K` for why this keymap.
-  -- This is now a default mapping in 0.10.0 and can be removed:
-  nnoremap("K", vim.lsp.buf.hover, { desc = "Hover Documentation" })
-
-  -- WARN: This is not Goto Definition, this is Goto Declaration.
-  --  For example, in C this would take you to the header.
-  nnoremap("gD", vim.lsp.buf.declaration, { desc = "[G]oto [D]eclaration" })
 end
 
 
@@ -308,6 +415,7 @@ end
 
 -- Fzflua keymaps
 function M.fzflua_keymaps()
+  -- https://github.com/ibhagwan/fzf-lua?tab=readme-ov-file#commands
   nnoremap("<C-p>", "<Cmd>FzfLua files<CR>", { desc = "Fzf find files" })
   nnoremap("<C-b>", "<Cmd>FzfLua buffers<CR>", { desc = "Fzf find buffers" })
   nnoremap("<leader>g", "<Cmd>FzfLua grep<CR>", { desc = "Fzf grep" })
