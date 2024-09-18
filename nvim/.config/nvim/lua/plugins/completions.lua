@@ -52,7 +52,6 @@ return {
       local line, col = unpack(vim.api.nvim_win_get_cursor(0))
       return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
     end
-
     -- Set up nvim-cmp.
     cmp.setup({
       -- enabled = function()
@@ -69,8 +68,18 @@ return {
         end,
       },
       window = {
+        -- https://github.com/hrsh7th/nvim-cmp/blob/main/lua/cmp/config/window.lua
+        -- https://github.com/hrsh7th/nvim-cmp/blob/main/lua/cmp/config/default.lua#L107
+        -- The use of the bordered() function changes some of the highlight groups.
         -- completion = cmp.config.window.bordered(),
         -- documentation = cmp.config.window.bordered(),
+        -- completion = {
+        --   border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" }
+        -- },
+        documentation = {
+          -- border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
+          winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuSel,Search:None",
+        },
       },
       performance = {
         -- max_view_entries = 100,

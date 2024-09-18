@@ -129,7 +129,8 @@ return {
         lspconfig[server_name].setup(server_settings)
       end
 
-      -- require("lspconfig.ui.windows").default_options.border = "single"
+      -- Adds a border to lspconfig windows, such as :LspInfo
+      require("lspconfig.ui.windows").default_options.border = "single"
 
 
 
