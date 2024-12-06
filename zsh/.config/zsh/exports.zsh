@@ -14,8 +14,7 @@ export CLICOLOR=1
 # for dark background
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 
-# Adjust path for Homebrew usage.
-export PATH="/usr/local/bin:$PATH:/usr/local/sbin"
+# No homebrew analytics
 export HOMEBREW_NO_ANALYTICS=1
 
 # Add WezTerm binary for WezTerm CLI features.

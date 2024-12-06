@@ -48,6 +48,9 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # Case insensitive com
 compinit
 _comp_options+=(globdots)		# Include hidden files in completion.
 
+# homebrew init
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 source $ZDOTDIR/prompt.zsh
 source $ZDOTDIR/aliases.zsh
 source $ZDOTDIR/functions.zsh
@@ -68,7 +71,8 @@ source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 eval "$(mise activate zsh)"
 
 # https://github.com/ajeetdsouza/zoxide
-eval "$(zoxide init zsh)"
+#eval "$(zoxide init zsh)"
 
 # https://github.com/junegunn/fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
