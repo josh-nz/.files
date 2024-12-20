@@ -1,6 +1,6 @@
 -- Require my vim config first so leader is
 -- correctly mapped before any lazy config occurs.
-require("user.vim-config")
+require("user.vim_config")
 
 require("user.lazy")
 
