@@ -16,7 +16,7 @@ local pickers = {
 }
 
 pickers.fonts:select(config, "MonoLisa")
-config.font_size = 11.0
+config.font_size = 13.0
 
 -- https://github.com/wez/wezterm/issues/3774
 -- config.front_end = 'OpenGL'
