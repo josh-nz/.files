@@ -1,0 +1,5 @@
+# Include hidden files in search.
+# The .git folder will continue to be ignored by the global .ignore file.
+--hidden
+
+--ignore-case

@@ -40,3 +40,5 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 # Eldritch theme for fzf
 # https://github.com/eldritch-theme/fzf
 # export FZF_DEFAULT_OPTS='--color=fg:#ebfafa,bg:#282a36,hl:#37f499 --color=fg+:#ebfafa,bg+:#212337,hl+:#37f499 --color=info:#f7c67f,prompt:#04d1f9,pointer:#7081d0 --color=marker:#7081d0,spinner:#f7c67f,header:#323449'
+
+export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/.ripgreprc"
