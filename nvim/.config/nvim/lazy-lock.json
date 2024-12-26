@@ -47,6 +47,7 @@
   "neomodern.nvim": { "branch": "main", "commit": "f4ad6945f037688d211551ec704c02ce580f69cc" },
   "neovim-ayu": { "branch": "master", "commit": "2839c88cd297a069e93df1aab542c087e8f6e8c0" },
   "nightfox.nvim": { "branch": "main", "commit": "7557f26defd093c4e9bc17f28b08403f706f5a44" },
+  "nightwolf.nvim": { "branch": "main", "commit": "8778d0fa090d9a55004cac1d35cd30ed0d8ada1a" },
   "nord.nvim": { "branch": "master", "commit": "80c1e5321505aeb22b7a9f23eb82f1e193c12470" },
   "nordic.nvim": { "branch": "main", "commit": "1ee4044077059b34eacd18d93613495a602c131f" },
   "nvim-cmp": { "branch": "main", "commit": "ca4d3330d386e76967e53b85953c170658255ecb" },
