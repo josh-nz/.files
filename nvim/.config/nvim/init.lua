@@ -29,7 +29,8 @@ vim.o.background = "dark"
 -- vim.cmd.colorscheme("darkvoid")
 -- vim.cmd.colorscheme("serene")
 -- vim.cmd.colorscheme("eidolon")
-vim.cmd.colorscheme("nightwolf")
+-- vim.cmd.colorscheme("nightwolf")
+vim.cmd.colorscheme("retro-theme")
 
 -- vim.api.nvim_set_hl(0, "Comment", { italic = true })
 
