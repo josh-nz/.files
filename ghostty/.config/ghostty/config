@@ -1,0 +1,12 @@
+font-family=Monolisa
+font-feature=ss02
+font-feature=zero
+font-size=13
+theme=catppuccin-mocha
+cursor-color=red
+cursor-style=block
+shell-integration-features=no-cursor
+cursor-style-blink=false
+cursor-text=white
+clipboard-read=allow
+copy-on-select=true
