@@ -3,21 +3,24 @@ local M = {}
 
 M.init = function()
   return {
-    { label = "0xProto", value = "0xProto Nerd Font Mono" },
-    { label = "FiraCode", value = "FiraMono Nerd Font Mono" },
-    { label = "Hack", value = "Hack Nerd Font Mono" },
-    { label = "Hasklig", value = "Hasklug Nerd Font Mono" },
-    { label = "Inconsolata", value = "Inconsolata Nerd Font Mono" },
-    { label = "JetBrains", value = "JetBrainsMono Nerd Font Mono" },
-    { label = "SourceCodePro", value = "SauceCodePro Nerd Font Mono" },
-    { label = "Meslo", value = "MesloLGL Nerd Font Mono" },
-    { label = "CascadiaCode", value = "Cascadia Code NF" },
-
+    { label = "0xProto", value = "0xProto" },
+    { label = "CascadiaCode", value = "Cascadia Code" },
     { label = "Commit", value = "CommitMono" },
-    { label = "Geist", value = "Geist Mono" },
+    { label = "FiraCode", value = "Fira Code" },
+    { label = "Geist", value = "Geist" },
+    { label = "Hack", value = "Hack" },
+    { label = "Hasklig", value = "Hasklig" },
     { label = "IBM Plex", value = "IBM Plex Mono" },
+    { label = "Inconsolata", value = "Inconsolata" },
+    { label = "JetBrains", value = "JetBrains Mono" },
+    { label = "Maple", value = "Maple Mono" },
+    { label = "Meslo", value = "Meslo LG L" },
     { label = "MonoLisa", value = "MonoLisa" },
     { label = "San Francisco", value = "SF Mono" },
+    { label = "SourceCodePro", value = "Source Code Pro" },
+
+
+
   }
 end
 
@@ -48,3 +51,26 @@ M.activate = function(config, label, value)
 end
 
 return M
+
+
+-- Different fonts example:
+-- https://github.com/folke/dot/blob/cb1d6f956e0ef1848e57a57c1678d8635980d6c5/config/wezterm/wezterm.lua#L52
+-- config.font = wezterm.font({ family = "Fira Code" })
+-- config.bold_brightens_ansi_colors = true
+-- config.font_rules = {
+--   {
+--     intensity = "Bold",
+--     italic = true,
+--     font = wezterm.font({ family = "Maple Mono", weight = "Bold", style = "Italic" }),
+--   },
+--   {
+--     italic = true,
+--     intensity = "Half",
+--     font = wezterm.font({ family = "Maple Mono", weight = "DemiBold", style = "Italic" }),
+--   },
+--   {
+--     italic = true,
+--     intensity = "Normal",
+--     font = wezterm.font({ family = "Maple Mono", style = "Italic" }),
+--   },
+-- }
