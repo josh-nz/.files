@@ -146,7 +146,9 @@ return {
           vim.bo[event.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
           local opts = { buffer = event.buf }
-          require("user.keymaps").lsp_keymaps(opts)
+          local keymaps = require("user.keymaps")
+          keymaps.lsp_bultins(opts)
+          keymaps.lsp_nvim_native(opts)
 
           -- The following two autocommands are used to highlight references of the
           -- word under your cursor when your cursor rests there for a little while.

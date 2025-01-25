@@ -211,7 +211,7 @@ nnoremap("<C-w><C-d>", vim.diagnostic.open_float, { desc = "Show diagnostic [E]r
 nnoremap("[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
 nnoremap("]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
 
-function M.lsp_keymaps(opts)
+function M.lsp_bultins(opts)
   -- Buffer local mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
 
@@ -225,24 +225,25 @@ function M.lsp_keymaps(opts)
   nnoremap("<C-S-k>", vim.lsp.buf.signature_help, opts)
   -- nnoremap("gs", vim.lsp.buf.signature_help, opts)
 
-
   nnoremap("<leader>cf", function()
     vim.lsp.buf.format({ async = true })
   end, opts)
 
   -- Rename the variable under your cursor.
   --  Most Language Servers support renaming across files, etc.
-  nnoremap("<leader>rn", vim.lsp.buf.rename, opts)
+  nnoremap("<leader>rn", vim.lsp.buf.rename, { desc = "Rename" })
 
   -- Execute a code action, usually your cursor needs to be on top of an error
   -- or a suggestion from your LSP for this to activate.
-  nnoremap("<leader>ca", vim.lsp.buf.code_action, { desc = "[C]ode [A]ction" })
+  nnoremap("<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
 
 
   -- WARN: This is not Goto Definition, this is Goto Declaration.
   --  For example, in C this would take you to the header.
-  nnoremap("gD", vim.lsp.buf.declaration, { desc = "[G]oto [D]eclaration" })
+  nnoremap("gD", vim.lsp.buf.declaration, { desc = "Goto declaration" })
+end
 
+function M.lsp_nvim_native(opts)
   -- nnoremap("<leader>wa", vim.lsp.buf.add_workspace_folder, opts)
   -- nnoremap("<leader>wr", vim.lsp.buf.remove_workspace_folder, opts)
   -- nnoremap("<leader>wl", function()
@@ -274,123 +275,62 @@ function M.lsp_keymaps(opts)
 end
 
 
-function M.lsp_fzf_keymaps(opts)
-  -- Buffer local mappings.
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
-
-  -- Opens a popup that displays documentation about the word under your cursor
-  --  See `:help K` for why this keymap.
-  -- This is now a default mapping in 0.10.0 and can be removed:
-  -- nnoremap("K", vim.lsp.buf.hover, { desc = "Hover Documentation" })
-
-  -- https://www.reddit.com/r/neovim/comments/mbj8m5/how_to_setup_ctrlshiftkey_mappings_in_neovim_and/
-  -- See also :h tui-input
-  nnoremap("<C-S-k>", vim.lsp.buf.signature_help, opts)
-  -- nnoremap("gs", vim.lsp.buf.signature_help, opts)
-
-  nnoremap("<leader>cf", function()
-    vim.lsp.buf.format({ async = true })
-  end, opts)
-
-  -- Rename the variable under your cursor.
-  --  Most Language Servers support renaming across files, etc.
-  nnoremap("<leader>rn", vim.lsp.buf.rename, { desc = "[R]e[n]ame" })
-
-  -- Execute a code action, usually your cursor needs to be on top of an error
-  -- or a suggestion from your LSP for this to activate.
-  nnoremap("<leader>ca", vim.lsp.buf.code_action, { desc = "[C]ode [A]ction" })
-
-
-  -- WARN: This is not Goto Definition, this is Goto Declaration.
-  --  For example, in C this would take you to the header.
-  nnoremap("gD", vim.lsp.buf.declaration, { desc = "[G]oto [D]eclaration" })
+function M.lsp_fzf_picker(opts)
 
   -- Jump to the definition of the word under your cursor.
   --  This is where a variable was first declared, or where a function is defined, etc.
   --  To jump back, press <C-t>.
-  nnoremap("gd", "<Cmd>FzfLua lsp_definitions<CR>", { desc = "[G]oto [D]efinition" })
+  nnoremap("gd", "<Cmd>FzfLua lsp_definitions<CR>", { desc = "Goto definition" })
 
   -- Find references for the word under your cursor.
-  nnoremap("gr", "<Cmd>FzfLua lsp_references<CR>", { desc = "[G]oto [R]eferences" })
+  nnoremap("gr", "<Cmd>FzfLua lsp_references<CR>", { desc = "Goto references" })
 
   -- Jump to the implementation of the word under your cursor.
   --  Useful when your language has ways of declaring types without an actual implementation.
-  nnoremap("gI", "<Cmd>FzfLua lsp_implementations<CR>", { desc = "[G]oto [I]mplementation" })
+  nnoremap("gI", "<Cmd>FzfLua lsp_implementations<CR>", { desc = "Goto implementation" })
 
   -- Jump to the type of the word under your cursor.
   --  Useful when you"re not sure what type a variable is and you want to see
   --  the definition of its *type*, not where it was *defined*.
-  nnoremap("<leader>D", "<Cmd>FzfLua lsp_typedefs<CR>", { desc = "Type [D]efinition" })
+  nnoremap("<leader>D", "<Cmd>FzfLua lsp_typedefs<CR>", { desc = "Goto type definition" })
 
   -- Fuzzy find all the symbols in your current document.
   --  Symbols are things like variables, functions, types, etc.
   --  Duplicate of custom Telescope keymap <leader>fs
-  nnoremap("<leader>ds", "<Cmd>FzfLua lsp_document_symbols<CR>", { desc = "[D]ocument [S]ymbols" })
+  nnoremap("<leader>ds", "<Cmd>FzfLua lsp_document_symbols<CR>", { desc = "Document symbols" })
 
   -- Fuzzy find all the symbols in your current workspace.
   --  Similar to document symbols, except searches over your entire project.
-  nnoremap("<leader>ws", "<Cmd>FzfLua lsp_live_workspace_symbols<CR>", { desc = "[W]orkspace [S]ymbols" })
+  nnoremap("<leader>ws", "<Cmd>FzfLua lsp_live_workspace_symbols<CR>", { desc = "Workspace symbols" })
 end
 
 
-function M.lsp_telescope_keymaps(opts)
-  -- Buffer local mappings.
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
-
-  -- Opens a popup that displays documentation about the word under your cursor
-  --  See `:help K` for why this keymap.
-  -- This is now a default mapping in 0.10.0 and can be removed:
-  -- nnoremap("K", vim.lsp.buf.hover, { desc = "Hover Documentation" })
-
-  -- https://www.reddit.com/r/neovim/comments/mbj8m5/how_to_setup_ctrlshiftkey_mappings_in_neovim_and/
-  -- See also :h tui-input
-  nnoremap("<C-S-k>", vim.lsp.buf.signature_help, opts)
-  -- nnoremap("gs", vim.lsp.buf.signature_help, opts)
-
-  nnoremap("<leader>cf", function()
-    vim.lsp.buf.format({ async = true })
-  end, opts)
-
-  -- Rename the variable under your cursor.
-  --  Most Language Servers support renaming across files, etc.
-  nnoremap("<leader>rn", vim.lsp.buf.rename, { desc = "[R]e[n]ame" })
-
-  -- Execute a code action, usually your cursor needs to be on top of an error
-  -- or a suggestion from your LSP for this to activate.
-  nnoremap("<leader>ca", vim.lsp.buf.code_action, { desc = "[C]ode [A]ction" })
-
-
-  -- WARN: This is not Goto Definition, this is Goto Declaration.
-  --  For example, in C this would take you to the header.
-  nnoremap("gD", vim.lsp.buf.declaration, { desc = "[G]oto [D]eclaration" })
-
-  local ts = require("telescope.builtin")
-
+function M.lsp_snacks_picker(opts)
   -- Jump to the definition of the word under your cursor.
   --  This is where a variable was first declared, or where a function is defined, etc.
   --  To jump back, press <C-t>.
-  nnoremap("gd", ts.lsp_definitions, { desc = "[G]oto [D]efinition" })
+  nnoremap("gd", function() Snacks.picker.lsp_definitions() end, { desc = "Goto definition" })
 
   -- Find references for the word under your cursor.
-  nnoremap("gr", ts.lsp_references, { desc = "[G]oto [R]eferences" })
+  nnoremap("gr", function() Snacks.picker.lsp_references() end, { desc = "Goto references" })
 
   -- Jump to the implementation of the word under your cursor.
   --  Useful when your language has ways of declaring types without an actual implementation.
-  nnoremap("gI", ts.lsp_implementations, { desc = "[G]oto [I]mplementation" })
+  nnoremap("gI", function() Snacks.picker.lsp_implementations() end, { desc = "Goto implementations" })
 
   -- Jump to the type of the word under your cursor.
   --  Useful when you"re not sure what type a variable is and you want to see
   --  the definition of its *type*, not where it was *defined*.
-  nnoremap("<leader>D", ts.lsp_type_definitions, { desc = "Type [D]efinition" })
+  nnoremap("<leader>D", function() Snacks.picker.lsp_type_definitions() end, { desc = "Goto type definition" })
 
   -- Fuzzy find all the symbols in your current document.
   --  Symbols are things like variables, functions, types, etc.
   --  Duplicate of custom Telescope keymap <leader>fs
-  nnoremap("<leader>ds", ts.lsp_document_symbols, { desc = "[D]ocument [S]ymbols" })
+  nnoremap("<leader>ds", function() Snacks.picker.lsp_symbols() end, { desc = "Document symbols" })
 
   -- Fuzzy find all the symbols in your current workspace.
   --  Similar to document symbols, except searches over your entire project.
-  nnoremap("<leader>ws", ts.lsp_dynamic_workspace_symbols, { desc = "[W]orkspace [S]ymbols" })
+  nnoremap("<leader>ws", function() Snacks.picker.lsp_workspace_symbols() end, { desc = "Workspace symbols" })
 end
 
 
@@ -463,6 +403,9 @@ function M.neo_tree_keymaps()
   nnoremap("<leader>tf", "<Cmd>Neotree filesystem reveal left<CR>", { desc = "Neotree reveal" })
   -- <Cmd>Neotree buffers reveal float
 end
+
+
+
 
 function M.oil()
   return lazy_keymap({
@@ -597,6 +540,42 @@ function M.snacks()
       { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit" },
       { "<leader>gl", function() Snacks.lazygit.log() end, desc = "Lazygit Log (cwd)" },
       -- { "<c-/>", function() Snacks.terminal() end, desc = "Toggle Terminal" },
+
+
+      { "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers" },
+      { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
+      { "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
+      { "<leader><space>", function() Snacks.picker.files({ hidden = true, layout = { width = 0, height = 0 } }) end, desc = "Find Files" },
+      -- find
+      { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
+      { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
+      { "<leader>ff", function() Snacks.picker.files({ hidden = true }) end, desc = "Find Files" },
+      { "<leader>fg", function() Snacks.picker.git_files() end, desc = "Find Git Files" },
+      { "<leader>fr", function() Snacks.picker.recent() end, desc = "Recent" },
+      -- git
+      { "<leader>gc", function() Snacks.picker.git_log() end, desc = "Git Log" },
+      { "<leader>gs", function() Snacks.picker.git_status() end, desc = "Git Status" },
+      -- Grep
+      { "<leader>sb", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
+      { "<leader>sB", function() Snacks.picker.grep_buffers() end, desc = "Grep Open Buffers" },
+      { "<leader>sg", function() Snacks.picker.grep() end, desc = "Grep" },
+      -- search
+      { '<leader>s"', function() Snacks.picker.registers() end, desc = "Registers" },
+      { "<leader>sa", function() Snacks.picker.autocmds() end, desc = "Autocmds" },
+      { "<leader>sc", function() Snacks.picker.command_history() end, desc = "Command History" },
+      { "<leader>sC", function() Snacks.picker.commands() end, desc = "Commands" },
+      { "<leader>sd", function() Snacks.picker.diagnostics() end, desc = "Diagnostics" },
+      { "<leader>sh", function() Snacks.picker.help() end, desc = "Help Pages" },
+      { "<leader>sH", function() Snacks.picker.highlights() end, desc = "Highlights" },
+      { "<leader>sj", function() Snacks.picker.jumps() end, desc = "Jumps" },
+      { "<leader>sk", function() Snacks.picker.keymaps() end, desc = "Keymaps" },
+      { "<leader>sl", function() Snacks.picker.loclist() end, desc = "Location List" },
+      { "<leader>sM", function() Snacks.picker.man() end, desc = "Man Pages" },
+      { "<leader>sm", function() Snacks.picker.marks() end, desc = "Marks" },
+      { "<leader>sR", function() Snacks.picker.resume() end, desc = "Resume" },
+      { "<leader>sq", function() Snacks.picker.qflist() end, desc = "Quickfix List" },
+      { "<leader>uC", function() Snacks.picker.colorschemes() end, desc = "Colorschemes" },
+      { "<leader>qp", function() Snacks.picker.projects() end, desc = "Projects" },
     },
     [{ "n", "v" }] = {
       -- { "<leader>gB", function() Snacks.gitbrowse() end, desc = "Git Browse" },
@@ -604,6 +583,9 @@ function M.snacks()
     [{ "n", "t" }] = {
       -- { "]]", function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference" },
       -- { "[[", function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference" },
+    },
+    [{ "n", "x"}] = {
+      { "<leader>sw", function() Snacks.picker.grep_word() end, desc = "Visual selection or word" },
     },
   })
 end
