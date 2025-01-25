@@ -17,7 +17,12 @@ return {
     -- Open the current file, branch, commit, or repo in a browser (e.g. GitHub, GitLab, Bitbucket)
     gitbrowse = { enabled = true },
     -- Indent guides and scopes
-    indent = { enabled = true },
+    indent = {
+      enabled = true,
+      animate = {
+        enabled = false,
+      },
+    },
     -- Better vim.ui.input
     input = { enabled = false },
     -- Window layouts
@@ -39,7 +44,7 @@ return {
     -- Scratch buffers with a persistent file
     scratch = { enabled = false },
     -- Smooth scrolling
-    scroll = { enabled = true },
+    scroll = { enabled = false },
     -- Pretty status column
     statuscolumn = { enabled = false },
     -- Create and toggle floating/split terminals

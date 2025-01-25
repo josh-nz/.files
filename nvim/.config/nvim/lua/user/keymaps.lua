@@ -576,24 +576,30 @@ function M.wezterm_nvim_move_keymaps(move)
   -- nnoremap("<C-;>", function() move_fn("j") end, { desc = "Move WezTerm focus to the lower window" })
 end
 
+
+
+
 -- Possession.nvim keymaps
 function M.possession_keymaps()
   nnoremap("<leader>p", "<Cmd>Telescope possession list<CR>", { desc = "Telescope show saved sessions" })
 end
+
+
+
 
 -- Snacks keymaps
 function M.snacks()
   return lazy_keymap({
     [{ "n" }] = {
       { "<leader>bd", function() Snacks.bufdelete() end, desc = "Delete Buffer" },
-      { "<leader>gb", function() Snacks.git.blame_line() end, desc = "Git Blame Line" },
+      -- { "<leader>gb", function() Snacks.git.blame_line() end, desc = "Git Blame Line" },
       { "<leader>gf", function() Snacks.lazygit.log_file() end, desc = "Lazygit Current File History" },
       { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit" },
       { "<leader>gl", function() Snacks.lazygit.log() end, desc = "Lazygit Log (cwd)" },
-      { "<c-/>", function() Snacks.terminal() end, desc = "Toggle Terminal" },
+      -- { "<c-/>", function() Snacks.terminal() end, desc = "Toggle Terminal" },
     },
     [{ "n", "v" }] = {
-      { "<leader>gB", function() Snacks.gitbrowse() end, desc = "Git Browse" },
+      -- { "<leader>gB", function() Snacks.gitbrowse() end, desc = "Git Browse" },
     },
     [{ "n", "t" }] = {
       -- { "]]", function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference" },
@@ -605,17 +611,18 @@ end
 
 -- Snacks toggle keymaps
 function M.snacks_toggles()
-  Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>us")
+  Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>uS")
   Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>uw")
   Snacks.toggle.option("relativenumber", { name = "Relative Number" }):map("<leader>uL")
+  -- Snacks.toggle.line_number():map("<leader>ul")
   Snacks.toggle.diagnostics():map("<leader>ud")
-  Snacks.toggle.line_number():map("<leader>ul")
   Snacks.toggle.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):map("<leader>uc")
   Snacks.toggle.treesitter():map("<leader>uT")
   Snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark Background" }):map("<leader>ub")
   Snacks.toggle.inlay_hints():map("<leader>uh")
   Snacks.toggle.indent():map("<leader>ug")
-  Snacks.toggle.dim():map("<leader>uD")
+  -- Snacks.toggle.dim():map("<leader>uD")
+  Snacks.toggle.scroll():map("<leader>us")
 end
 
 
