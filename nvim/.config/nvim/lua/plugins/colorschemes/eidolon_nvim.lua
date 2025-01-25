@@ -2,6 +2,6 @@
 return {
   "Vallen217/eidolon.nvim",
   enabled = true,
-  lazy = false,
+  lazy = true,
   priority = 1000,
 }

@@ -2,6 +2,6 @@
 return {
   "samharju/serene.nvim",
   enabled = true,
-  lazy = false,
+  lazy = true,
   priority = 1000,
 }
