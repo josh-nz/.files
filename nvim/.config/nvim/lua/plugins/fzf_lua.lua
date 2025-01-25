@@ -2,6 +2,7 @@
 -- https://www.reddit.com/r/neovim/comments/113ewaf/fzflua_quickstart_its_never_been_easier_to_try/
 
 -- https://github.com/ibhagwan/fzf-lua
+-- https://github.com/ibhagwan/fzf-lua/blob/main/OPTIONS.md
 return {
   "ibhagwan/fzf-lua",
   enabled = true,
