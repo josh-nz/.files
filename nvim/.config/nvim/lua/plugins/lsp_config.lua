@@ -148,7 +148,9 @@ return {
           local opts = { buffer = event.buf }
           local keymaps = require("user.keymaps")
           keymaps.lsp_bultins(opts)
-          keymaps.lsp_nvim_native(opts)
+          -- keymaps.lsp_nvim_native(opts)
+          -- keymaps.lsp_fzf_picker(opts)
+          keymaps.lsp_snacks_picker(opts)
 
           -- The following two autocommands are used to highlight references of the
           -- word under your cursor when your cursor rests there for a little while.

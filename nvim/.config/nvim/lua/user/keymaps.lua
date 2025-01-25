@@ -1,10 +1,15 @@
 -- https://github.com/dmmulroy/kickstart.nix/blob/main/config/nvim/lua/user/keymap_utils.lua
-local function bind(op, outer_opts)
-  outer_opts = vim.tbl_extend("force", { noremap = true, silent = true }, outer_opts or {})
+local function bind(op, baked_opts)
+  baked_opts = vim.tbl_extend("force", { noremap = true, silent = true }, baked_opts or {})
 
-  return function(lhs, rhs, opts)
-    opts = vim.tbl_extend("force", outer_opts, opts or {})
-    vim.keymap.set(op, lhs, rhs, opts)
+  -- inline_opts are the options defined in the keymap itself.
+  -- forwarded_opts are options that might be passed to the keymap defintion by callers.
+  --   This can be seen used in the lsp keymaps, where the lsp_config forwards
+  --   the buffer number to create a buffer local keymap.
+  return function(lhs, rhs, inline_opts, forwarded_opts)
+    local net_opts = vim.tbl_extend("force", forwarded_opts or {}, inline_opts or {})
+    net_opts = vim.tbl_extend("force", baked_opts, net_opts)
+    vim.keymap.set(op, lhs, rhs, net_opts)
   end
 end
 
@@ -203,12 +208,13 @@ tnoremap("<C-w>", [[<C-\><C-n><C-w>]], { desc = "Terminal change window shortcut
 
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-nnoremap("<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+nnoremap("<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic quickfix list" })
 -- The following are now default mappings in 0.10.0, and can be removed:
-nnoremap("<C-w>d", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror message" })
-nnoremap("<C-w><C-d>", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror message" })
-nnoremap("[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
-nnoremap("]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
+nnoremap("<C-w>d", vim.diagnostic.open_float, { desc = "Show diagnostic error message" })
+nnoremap("<C-w><C-d>", vim.diagnostic.open_float, { desc = "Show diagnostic error message" })
+nnoremap("[d", vim.diagnostic.goto_prev, { desc = "Goto previous diagnostic message" })
+nnoremap("]d", vim.diagnostic.goto_next, { desc = "Goto next diagnostic message" })
+
 
 function M.lsp_bultins(opts)
   -- Buffer local mappings.
@@ -217,119 +223,98 @@ function M.lsp_bultins(opts)
   -- Opens a popup that displays documentation about the word under your cursor
   --  See `:help K` for why this keymap.
   -- This is now a default mapping in 0.10.0 and can be removed:
-  -- nnoremap("K", vim.lsp.buf.hover, { desc = "Hover Documentation" })
+  -- nnoremap("K", vim.lsp.buf.hover, { desc = "Hover Documentation" }, opts)
 
   -- https://www.reddit.com/r/neovim/comments/mbj8m5/how_to_setup_ctrlshiftkey_mappings_in_neovim_and/
   -- See also :h tui-input
-  nnoremap("<C-S-k>", vim.lsp.buf.signature_help, opts)
+  nnoremap("<C-S-k>", vim.lsp.buf.signature_help, { desc = "Signature help" }, opts)
   -- nnoremap("gs", vim.lsp.buf.signature_help, opts)
 
   nnoremap("<leader>cf", function()
     vim.lsp.buf.format({ async = true })
-  end, opts)
+  end, { desc = "Code format" }, opts)
 
   -- Rename the variable under your cursor.
   --  Most Language Servers support renaming across files, etc.
-  nnoremap("<leader>rn", vim.lsp.buf.rename, { desc = "Rename" })
+  nnoremap("<leader>rn", vim.lsp.buf.rename, { desc = "Rename" }, opts)
 
   -- Execute a code action, usually your cursor needs to be on top of an error
   -- or a suggestion from your LSP for this to activate.
-  nnoremap("<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
+  nnoremap("<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" }, opts)
 
 
   -- WARN: This is not Goto Definition, this is Goto Declaration.
   --  For example, in C this would take you to the header.
-  nnoremap("gD", vim.lsp.buf.declaration, { desc = "Goto declaration" })
-end
+  nnoremap("gD", vim.lsp.buf.declaration, { desc = "Goto declaration" }, opts)
 
-function M.lsp_nvim_native(opts)
   -- nnoremap("<leader>wa", vim.lsp.buf.add_workspace_folder, opts)
   -- nnoremap("<leader>wr", vim.lsp.buf.remove_workspace_folder, opts)
   -- nnoremap("<leader>wl", function()
   --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   -- end, opts)
+end
+
+local function lsp_keymaps(fns, forwarded_opts)
 
   -- Jump to the definition of the word under your cursor.
   --  This is where a variable was first declared, or where a function is defined, etc.
   --  To jump back, press <C-t>.
-  nnoremap("gd", vim.lsp.buf.definition, opts) -- <C-t> to jump back
+  nnoremap("gd", fns.def, { desc = "Goto definition" }, forwarded_opts) -- <C-t> to jump back
 
   -- Find references for the word under your cursor.
-  nnoremap("gr", vim.lsp.buf.references, opts)
+  nnoremap("gr", fns.refs, { desc = "Goto references" }, forwarded_opts)
 
   -- Jump to the implementation of the word under your cursor.
   --  Useful when your language has ways of declaring types without an actual implementation.
-  nnoremap("gI", vim.lsp.buf.implementation, opts)
+  nnoremap("gI", fns.impl, { desc = "Goto implementation" }, forwarded_opts)
 
   -- Jump to the type of the word under your cursor.
   --  Useful when you"re not sure what type a variable is and you want to see
   --  the definition of its *type*, not where it was *defined*.
-  nnoremap("<leader>D", vim.lsp.buf.type_definition, opts)
+  nnoremap("<leader>D", fns.type_def, { desc = "Goto type definition" }, forwarded_opts)
 
   -- Find all the symbols in your current document.
-  nnoremap("<leader>ds", vim.lsp.buf.document_symbol, opts)
+  nnoremap("<leader>ds", fns.doc_sym, { desc = "Document symbols" }, forwarded_opts)
 
   -- Find all the symbols in your current workspace.
-  nnoremap("<leader>ws", vim.lsp.buf.workspace_symbol, opts)
+  nnoremap("<leader>ws", fns.ws_sym, { desc = "Workspace symbols" }, forwarded_opts)
+end
+
+function M.lsp_nvim_native(opts)
+  lsp_keymaps({
+    def = vim.lsp.buf.definition,
+    refs = vim.lsp.buf.references,
+    impl = vim.lsp.buf.implementation,
+    type_def = vim.lsp.buf.type_definition,
+    doc_sym = vim.lsp.buf.document_symbol,
+    ws_sym = vim.lsp.buf.workspace_symbol,
+  }, opts)
 end
 
 
 function M.lsp_fzf_picker(opts)
+  local f = require("fzf-lua")
 
-  -- Jump to the definition of the word under your cursor.
-  --  This is where a variable was first declared, or where a function is defined, etc.
-  --  To jump back, press <C-t>.
-  nnoremap("gd", "<Cmd>FzfLua lsp_definitions<CR>", { desc = "Goto definition" })
-
-  -- Find references for the word under your cursor.
-  nnoremap("gr", "<Cmd>FzfLua lsp_references<CR>", { desc = "Goto references" })
-
-  -- Jump to the implementation of the word under your cursor.
-  --  Useful when your language has ways of declaring types without an actual implementation.
-  nnoremap("gI", "<Cmd>FzfLua lsp_implementations<CR>", { desc = "Goto implementation" })
-
-  -- Jump to the type of the word under your cursor.
-  --  Useful when you"re not sure what type a variable is and you want to see
-  --  the definition of its *type*, not where it was *defined*.
-  nnoremap("<leader>D", "<Cmd>FzfLua lsp_typedefs<CR>", { desc = "Goto type definition" })
-
-  -- Fuzzy find all the symbols in your current document.
-  --  Symbols are things like variables, functions, types, etc.
-  --  Duplicate of custom Telescope keymap <leader>fs
-  nnoremap("<leader>ds", "<Cmd>FzfLua lsp_document_symbols<CR>", { desc = "Document symbols" })
-
-  -- Fuzzy find all the symbols in your current workspace.
-  --  Similar to document symbols, except searches over your entire project.
-  nnoremap("<leader>ws", "<Cmd>FzfLua lsp_live_workspace_symbols<CR>", { desc = "Workspace symbols" })
+  lsp_keymaps({
+    def = f.lsp_definitions,
+    refs = f.lsp_references,
+    impl = f.lsp_implementations,
+    type_def = f.lsp_typedefs,
+    doc_sym = f.lsp_document_symbols,
+    ws_sym = f.lsp_workspace_symbols,
+  }, opts)
 end
 
 
 function M.lsp_snacks_picker(opts)
-  -- Jump to the definition of the word under your cursor.
-  --  This is where a variable was first declared, or where a function is defined, etc.
-  --  To jump back, press <C-t>.
-  nnoremap("gd", function() Snacks.picker.lsp_definitions() end, { desc = "Goto definition" })
-
-  -- Find references for the word under your cursor.
-  nnoremap("gr", function() Snacks.picker.lsp_references() end, { desc = "Goto references" })
-
-  -- Jump to the implementation of the word under your cursor.
-  --  Useful when your language has ways of declaring types without an actual implementation.
-  nnoremap("gI", function() Snacks.picker.lsp_implementations() end, { desc = "Goto implementations" })
-
-  -- Jump to the type of the word under your cursor.
-  --  Useful when you"re not sure what type a variable is and you want to see
-  --  the definition of its *type*, not where it was *defined*.
-  nnoremap("<leader>D", function() Snacks.picker.lsp_type_definitions() end, { desc = "Goto type definition" })
-
-  -- Fuzzy find all the symbols in your current document.
-  --  Symbols are things like variables, functions, types, etc.
-  --  Duplicate of custom Telescope keymap <leader>fs
-  nnoremap("<leader>ds", function() Snacks.picker.lsp_symbols() end, { desc = "Document symbols" })
-
-  -- Fuzzy find all the symbols in your current workspace.
-  --  Similar to document symbols, except searches over your entire project.
-  nnoremap("<leader>ws", function() Snacks.picker.lsp_workspace_symbols() end, { desc = "Workspace symbols" })
+  lsp_keymaps({
+    def = Snacks.picker.lsp_definitions,
+    refs = Snacks.picker.lsp_references,
+    impl = Snacks.picker.lsp_implementations,
+    type_def = Snacks.picker.lsp_type_definitions,
+    doc_sym = Snacks.picker.lsp_symbols,
+    ws_sym = Snacks.picker.lsp_workspace_symbols,
+  }, opts)
 end
 
 
