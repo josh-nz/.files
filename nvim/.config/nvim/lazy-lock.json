@@ -71,6 +71,7 @@
   "rose-pine": { "branch": "main", "commit": "42f0724e0bca9f57f0bcfa688787c37b8d4befe8" },
   "sakura.nvim": { "branch": "main", "commit": "5fe66d2fc0b6ecbea2c4fd672817f036b2a3370e" },
   "serene.nvim": { "branch": "master", "commit": "e44be3b1c8a824c4c33d851fc92b02c3e893ec66" },
+  "snacks.nvim": { "branch": "main", "commit": "b96bd540f785c725289f9f15f0147b1b2dac5a35" },
   "snipe.nvim": { "branch": "main", "commit": "0d0a482ac713370196e4fc0025d5aaac5030104d" },
   "sonokai": { "branch": "master", "commit": "622aa3cfeacaa3b51565a089404df3afa0187ed7" },
   "tartessos.nvim": { "branch": "main", "commit": "7e80dd9e76a388c471bd970380299581ca81de3a" },

@@ -1,11 +1,11 @@
 -- https://github.com/dmmulroy/kickstart.nix/blob/main/config/nvim/lua/user/keymap_utils.lua
 local function bind(op, outer_opts)
-	outer_opts = vim.tbl_extend("force", { noremap = true, silent = true }, outer_opts or {})
+  outer_opts = vim.tbl_extend("force", { noremap = true, silent = true }, outer_opts or {})
 
-	return function(lhs, rhs, opts)
-		opts = vim.tbl_extend("force", outer_opts, opts or {})
-		vim.keymap.set(op, lhs, rhs, opts)
-	end
+  return function(lhs, rhs, opts)
+    opts = vim.tbl_extend("force", outer_opts, opts or {})
+    vim.keymap.set(op, lhs, rhs, opts)
+  end
 end
 
 -- https://vim.fandom.com/wiki/Mapping_keys_in_Vim_-_Tutorial_(Part_1
@@ -18,8 +18,39 @@ local inoremap = bind("i")
 local tnoremap = bind("t")
 local ntnoremap = bind({ "n", "t" })
 
+-- Original source https://github.com/pynappo/dotfiles/blob/main/.config/nvim/lua/pynappo/keymaps/init.lua
+local function foo(keymaps, keymap_opts, extra_opts)
+  extra_opts = extra_opts or {}
+  local lazy_keymaps = extra_opts.lazy and {}
+  keymap_opts = keymap_opts or {}
+  for modes, maps in pairs(keymaps) do
+    for _, m in pairs(maps) do
+      local opts = vim.tbl_extend('force', keymap_opts, m[3] or {})
+      if extra_opts.lazy then
+        table.insert(lazy_keymaps, vim.tbl_extend('force', { m[1], m[2], mode = modes }, opts))
+      else
+        vim.keymap.set(modes, m[1], m[2], opts)
+      end
+    end
+  end
+  return lazy_keymaps
+end
+
+local function lazy_keymap(keymaps)
+  local lazy_keymaps = {}
+  for modes, mappings in pairs(keymaps) do
+    for _, mapping in ipairs(mappings) do
+      local final_mapping = vim.tbl_extend('force', { mode = modes, silent = true, noremap = true }, mapping)
+      
+      table.insert(lazy_keymaps, final_mapping)
+    end
+  end
+  return lazy_keymaps
+end
+
 
 local M = {}
+
 
 -- Normal --
 
@@ -382,7 +413,7 @@ function M.telescope_keymaps(builtin)
       -- sort_lastused = true,
     })
   end, { desc = "Telescope buffers" })
-  nnoremap("<leader>fh", builtin.help_tags, { desc = "Telescope help tags "})
+  nnoremap("<leader>fh", builtin.help_tags, { desc = "Telescope help tags " })
   nnoremap("<leader>fo", builtin.oldfiles, { desc = "Telescope old files" })
   nnoremap("<leader>fv", builtin.vim_options, { desc = "Telescope vim options" })
   nnoremap("<leader>fc", function()
@@ -542,13 +573,48 @@ function M.wezterm_nvim_move_keymaps(move)
   -- nnoremap("<C-;>", function() move_fn("j") end, { desc = "Move WezTerm focus to the lower window" })
 end
 
-
-
-
 -- Possession.nvim keymaps
 function M.possession_keymaps()
-    nnoremap("<leader>p", "<Cmd>Telescope possession list<CR>", { desc = "Telescope show saved sessions" })
+  nnoremap("<leader>p", "<Cmd>Telescope possession list<CR>", { desc = "Telescope show saved sessions" })
 end
+
+-- Snacks keymaps
+function M.snacks()
+  return lazy_keymap({
+    [{ "n" }] = {
+      { "<leader>bd", function() Snacks.bufdelete() end, desc = "Delete Buffer" },
+      { "<leader>gb", function() Snacks.git.blame_line() end, desc = "Git Blame Line" },
+      { "<leader>gf", function() Snacks.lazygit.log_file() end, desc = "Lazygit Current File History" },
+      { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit" },
+      { "<leader>gl", function() Snacks.lazygit.log() end, desc = "Lazygit Log (cwd)" },
+      { "<c-/>", function() Snacks.terminal() end, desc = "Toggle Terminal" },
+    },
+    [{ "n", "v" }] = {
+      { "<leader>gB", function() Snacks.gitbrowse() end, desc = "Git Browse" },
+    },
+    [{ "n", "t" }] = {
+      -- { "]]", function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference" },
+      -- { "[[", function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference" },
+    },
+  })
+end
+
+
+-- Snacks toggle keymaps
+function M.snacks_toggles()
+  Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>us")
+  Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>uw")
+  Snacks.toggle.option("relativenumber", { name = "Relative Number" }):map("<leader>uL")
+  Snacks.toggle.diagnostics():map("<leader>ud")
+  Snacks.toggle.line_number():map("<leader>ul")
+  Snacks.toggle.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):map("<leader>uc")
+  Snacks.toggle.treesitter():map("<leader>uT")
+  Snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark Background" }):map("<leader>ub")
+  Snacks.toggle.inlay_hints():map("<leader>uh")
+  Snacks.toggle.indent():map("<leader>ug")
+  Snacks.toggle.dim():map("<leader>uD")
+end
+
 
 
 return M
