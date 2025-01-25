@@ -1,27 +1,26 @@
 return {
   {
-    -- Configures Lua LSP for Neovim config, runtime, and plugins
-    -- used for completion, annotations, and signatures of Neovim APIs
-    -- https://github.com/folke/lazydev.nvim
-    "folke/lazydev.nvim",
-    enabled = true,
-    ft = "lua", -- only load on lua files
-    opts = {
-      library = {
-        -- See the configuration section for more details
-        -- Load luvit types when the `vim.uv` word is found
-        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-        { path = "snacks.nvim", words = { "Snacks" } },
-        { path = "lazy.nvim", words = { "LazyVim" } },
-      },
-    },
-  },
-
-  {
     -- https://github.com/neovim/nvim-lspconfig
     "neovim/nvim-lspconfig",
     enabled = true,
     dependencies = {
+      {
+        -- Configures Lua LSP for Neovim config, runtime, and plugins
+        -- used for completion, annotations, and signatures of Neovim APIs
+        -- https://github.com/folke/lazydev.nvim
+        "folke/lazydev.nvim",
+        enabled = true,
+        ft = "lua", -- only load on lua files
+        opts = {
+          library = {
+            -- See the configuration section for more details
+            -- Load luvit types when the `vim.uv` word is found
+            { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+            { path = "snacks.nvim", words = { "Snacks" } },
+            { path = "lazy.nvim", words = { "LazyVim" } },
+          },
+        },
+      },
       -- Plugin and UI to automatically install LSPs to stdpath
       -- https://github.com/williamboman/mason.nvim
       "williamboman/mason.nvim",
@@ -38,7 +37,7 @@ return {
       -- { "j-hui/fidget.nvim", opts = {} },
     },
     event = { "BufReadPost" },
-    cmd = { "LspInfo", "LspInstall", "LspUninstall", "Mason" },
+    cmd = { "LspInfo", "LspInstall", "LspUninstall" },
     config = function()
       -- Setup mason so it can manage 3rd party LSP servers
       require("mason").setup({
