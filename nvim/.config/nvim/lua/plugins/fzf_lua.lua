@@ -13,7 +13,9 @@ return {
   config = function()
     -- calling `setup` is optional for customization
     local fzflua = require("fzf-lua")
-    local rg_opts_default = fzflua.config.defaults.grep.rg_opts
+    local files_rg_opts_default = fzflua.config.defaults.files.rg_opts
+    local files_fd_opts_default = fzflua.config.defaults.files.fd_opts
+    local grep_rg_opts_default = fzflua.config.defaults.grep.rg_opts
 
     fzflua.setup({
       -- utilizes fzf's native previewing ability in the terminal where
@@ -26,6 +28,9 @@ return {
       -- preview is to be consistent in color with Neovim, when changing
       -- the Neovim colorscheme.
       "default",  -- This profile allows the following option to work, fzf-native calls bat and will therefore use whatever bat is configured for
+      defaults = {
+        git_icons = false,
+      },
       fzf_colors = true,  -- Auto generate colors based on colorscheme
       -- fzf_colors = {
       --   ["fg"]          = { "fg", "CursorLine" },
@@ -55,7 +60,7 @@ return {
         -- back to buffers I was just in. If you missed this from Telescope,
         -- give it a try.
         include_current_session = true,
-      },
+      },
       previewers = {
         -- bat = { theme = "Catppuccin Mocha" },
 
@@ -69,9 +74,12 @@ return {
       },
       files = {
         formatter = "path.filename_first",
+        rg_opts = "--hidden " .. files_rg_opts_default, -- may want to add --follow which was also removed: https://github.com/ibhagwan/fzf-lua/commit/f95bb0ea1b45b1fb7d83cc5bf7b437f170ea4cbf#diff-5b07a3b3b4c05c2c95bf98379d9d3fcfbfc34306ca6c74796736a79d806c375b
+        fd_opts = "--hidden " .. files_fd_opts_default, -- may want to add --follow which was also removed: https://github.com/ibhagwan/fzf-lua/commit/f95bb0ea1b45b1fb7d83cc5bf7b437f170ea4cbf#diff-5b07a3b3b4c05c2c95bf98379d9d3fcfbfc34306ca6c74796736a79d806c375b
+        -- git_icons = true, -- changed to false in the commit https://github.com/ibhagwan/fzf-lua/commit/f95bb0ea1b45b1fb7d83cc5bf7b437f170ea4cbf#diff-5b07a3b3b4c05c2c95bf98379d9d3fcfbfc34306ca6c74796736a79d806c375b
       },
       grep = {
-        rg_opts = "--hidden " .. rg_opts_default,
+        rg_opts = "--hidden " .. grep_rg_opts_default,
       },
     })
 
