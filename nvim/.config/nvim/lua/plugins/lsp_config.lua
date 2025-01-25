@@ -28,7 +28,10 @@ return {
       "williamboman/mason-lspconfig.nvim",
 
       -- https://github.com/hrsh7th/cmp-nvim-lsp
-      "hrsh7th/cmp-nvim-lsp",
+      -- "hrsh7th/cmp-nvim-lsp",
+
+      -- https://cmp.saghen.dev/
+      "saghen/blink.cmp",
 
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
       -- Doesn't support a lot of LSPs that I'd use:
@@ -110,20 +113,21 @@ return {
         ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
       }
 
-      -- LSP servers and clients are able to communicate to each other what features they support.
-      -- By default, Neovim doesn't support everything that is in the LSP specification.
-      -- When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
-      -- So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
-      local default_capabilities = vim.lsp.protocol.make_client_capabilities()
-      local extended_capabilities = require("cmp_nvim_lsp").default_capabilities(default_capabilities)
 
       local lspconfig = require("lspconfig")
+      local blink = require("blink.cmp")
       for server_name, server_settings in pairs(servers) do
         -- This handles overriding only values explicitly passed
         -- by the server configuration above. Useful when disabling
         -- certain features of an LSP (for example, turning off formatting for tsserver)
         server_settings.handlers = vim.tbl_deep_extend("force", {}, handlers, server_settings.handlers or {})
-        server_settings.capabilities = vim.tbl_deep_extend("force", {}, extended_capabilities, server_settings.capabilities or {})
+
+        -- LSP servers and clients are able to communicate to each other what features they support.
+        -- By default, Neovim doesn't support everything that is in the LSP specification.
+        -- When you add blink, luasnip, etc. Neovim now has *more* capabilities.
+        -- So, we create new capabilities with blink and the specific LSP configuration,
+        -- and then broadcast that to the servers.
+        server_settings.capabilities = blink.get_lsp_capabilities(server_settings.capabilities, true) -- ture will include the nvim default capabilities.
         lspconfig[server_name].setup(server_settings)
       end
 
@@ -159,12 +163,12 @@ return {
           -- When you move your cursor, the highlights will be cleared (the second autocommand).
           local client = vim.lsp.get_client_by_id(event.data.client_id)
           if client and client.server_capabilities.documentHighlightProvider then
-            vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+            vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
               buffer = event.buf,
               callback = vim.lsp.buf.document_highlight,
             })
 
-            vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+            vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
               buffer = event.buf,
               callback = vim.lsp.buf.clear_references,
             })
