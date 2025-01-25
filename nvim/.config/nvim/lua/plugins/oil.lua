@@ -11,8 +11,12 @@
 return {
   "stevearc/oil.nvim",
   enabled = true,
-  event = "VeryLazy",
+  lazy = true,
   dependencies = { "nvim-tree/nvim-web-devicons" },
+  cmd = {
+    "Oil",
+  },
+  keys = require("user.keymaps").oil(),
   config = function()
     require("oil").setup({
       -- Oil will take over directory buffers (e.g. `vim .` or `:e src/`)
@@ -47,7 +51,5 @@ return {
         end,
       },
     })
-
-    require("user.keymaps").oil_keymaps()
   end,
 }

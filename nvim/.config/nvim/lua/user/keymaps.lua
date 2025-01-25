@@ -464,12 +464,15 @@ function M.neo_tree_keymaps()
   -- <Cmd>Neotree buffers reveal float
 end
 
+function M.oil()
+  return lazy_keymap({
+    [{ "n" }] = {
 
 
 
--- Oil file manager keymaps
-function M.oil_keymaps()
-  nnoremap("-", "<Cmd>Oil<CR>", { desc = "Open Oil file manager" })
+      { "-", function() require("oil").open() end, desc = "Open Oil file manager" },
+    },
+  })
 end
 
 
