@@ -75,7 +75,6 @@
   "snacks.nvim": { "branch": "main", "commit": "b96bd540f785c725289f9f15f0147b1b2dac5a35" },
   "snipe.nvim": { "branch": "main", "commit": "0d0a482ac713370196e4fc0025d5aaac5030104d" },
   "sonokai": { "branch": "master", "commit": "622aa3cfeacaa3b51565a089404df3afa0187ed7" },
-  "tartessos.nvim": { "branch": "main", "commit": "7e80dd9e76a388c471bd970380299581ca81de3a" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "dae2eac9d91464448b584c7949a31df8faefec56" },
   "telescope-ui-select.nvim": { "branch": "master", "commit": "6e51d7da30bd139a6950adf2a47fda6df9fa06d2" },
   "telescope.nvim": { "branch": "0.1.x", "commit": "a0bbec21143c7bc5f8bb02e0005fa0b982edc026" },
