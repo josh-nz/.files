@@ -75,7 +75,7 @@ return {
       },
       telescope = {
         previewer = {
-          enabled = true,
+          enabled = false,
           previewer = "pretty", -- or "raw" or fun(opts): Previewer
           wrap_lines = true,
           include_empty_plugin_data = false,
@@ -95,9 +95,5 @@ return {
         },
       },
     })
-
-    -- pcall(require("telescope").load_extension, "possession")
-
-    -- require("user.keymaps").possession_keymaps()
   end,
 }

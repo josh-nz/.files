@@ -1,7 +1,7 @@
 -- https://github.com/nvim-telescope/telescope.nvim
 return {
   "nvim-telescope/telescope.nvim",
-  enabled = true,
+  enabled = false,
   event = "VeryLazy",
   branch = "0.1.x",
   dependencies = {

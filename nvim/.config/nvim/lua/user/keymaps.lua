@@ -41,7 +41,6 @@ local function lazy_keymap(keymaps)
   for modes, mappings in pairs(keymaps) do
     for _, mapping in ipairs(mappings) do
       local final_mapping = vim.tbl_extend('force', { mode = modes, silent = true, noremap = true }, mapping)
-      
       table.insert(lazy_keymaps, final_mapping)
     end
   end
@@ -517,14 +516,6 @@ function M.wezterm_nvim_move_keymaps(move)
   nnoremap("<C-l>", function() move("l") end, { desc = "Move WezTerm focus to the right window" })
 
   -- nnoremap("<C-;>", function() move_fn("j") end, { desc = "Move WezTerm focus to the lower window" })
-end
-
-
-
-
--- Possession.nvim keymaps
-function M.possession_keymaps()
-  nnoremap("<leader>p", "<Cmd>Telescope possession list<CR>", { desc = "Telescope show saved sessions" })
 end
 
 
