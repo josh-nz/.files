@@ -518,14 +518,16 @@ function M.snacks()
       -- { "<c-/>", function() Snacks.terminal() end, desc = "Toggle Terminal" },
 
 
-      { "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers" },
       { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
-      { "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
+      { "<leader>g", function() Snacks.picker.grep() end, desc = "Grep" },
       { "<leader><space>", function() Snacks.picker.files({ hidden = true, layout = { width = 0, height = 0 } }) end, desc = "Find Files" },
       -- find
-      { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
+      { "<leader>,", function() Snacks.picker.buffers({ current = false }) end, desc = "Buffers" },
+      { "<leader>fb", function() Snacks.picker.buffers({ current = false }) end, desc = "Buffers" },
+      { "<C-b>", function() Snacks.picker.buffers({ current = false }) end, desc = "Buffers" },
       { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
       { "<leader>ff", function() Snacks.picker.files({ hidden = true }) end, desc = "Find Files" },
+      { "<C-p>", function() Snacks.picker.files({ hidden = true }) end, desc = "Find Files" },
       { "<leader>fg", function() Snacks.picker.git_files() end, desc = "Find Git Files" },
       { "<leader>fr", function() Snacks.picker.recent() end, desc = "Recent" },
       -- git
@@ -538,6 +540,7 @@ function M.snacks()
       -- search
       { '<leader>s"', function() Snacks.picker.registers() end, desc = "Registers" },
       { "<leader>sa", function() Snacks.picker.autocmds() end, desc = "Autocmds" },
+      { "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
       { "<leader>sc", function() Snacks.picker.command_history() end, desc = "Command History" },
       { "<leader>sC", function() Snacks.picker.commands() end, desc = "Commands" },
       { "<leader>sd", function() Snacks.picker.diagnostics() end, desc = "Diagnostics" },

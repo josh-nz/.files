@@ -3,13 +3,45 @@
 
 -- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md
 local picker_config = {
-  enabled = true,
+  ---@class snacks.picker.matcher.Config
+  matcher = {
+    fuzzy = true, -- use fuzzy matching
+    smartcase = true, -- use smartcase
+    ignorecase = true, -- use ignorecase
+    sort_empty = true, -- sort results when the search string is empty
+    filename_bonus = true, -- give bonus for matching file names (last part of the path)
+    file_pos = true, -- support patterns like `file:line:col` and `file:line`
+    -- the bonusses below, possibly require string concatenation and path normalization,
+    -- so this can have a performance impact for large lists and increase memory usage
+    cwd_bonus = false, -- give bonus for matching files in the cwd
+    frecency = false, -- frecency bonus
+  },
+  sort = {
+    -- default sort is by score, text length and index
+    fields = { "score:desc", "#text", "idx" },
+  },
+  ui_select = false, -- replace `vim.ui.select` with the snacks picker
+  ---@class snacks.picker.formatters.Config
+  formatters = {
+    text = {
+      ft = nil, ---@type string? filetype for highlighting
+    },
+    file = {
+      filename_first = false, -- display filename before the file path
+      truncate = 40, -- truncate the file path to (roughly) this length
+      filename_only = false, -- only show the filename
+    },
+    selected = {
+      show_always = false, -- only show the selected column when there are multiple selections
+      unselected = true, -- use the unselected icon for unselected items
+    },
+  },
   win = {
     -- input window
     input = {
       keys = {
         ["<Esc>"] = "close",
-        ["<C-c>"] = { "close", mode = "i" },
+        ["<C-c>"] = { "close", mode = { "n", "i" } },
         -- to close the picker on ESC instead of going to normal mode,
         -- add the following keymap to your config
         -- ["<Esc>"] = { "close", mode = { "n", "i" } },
@@ -125,10 +157,10 @@ return {
     dashboard = { enabled = false },
     -- Focus on the active scope by dimming the rest
     dim = { enabled = false },
-    -- Git utilities
-    git = { enabled = true },
+    -- Git utilities - blame, Git root
+    git = { enabled = false },
     -- Open the current file, branch, commit, or repo in a browser (e.g. GitHub, GitLab, Bitbucket)
-    gitbrowse = { enabled = true },
+    gitbrowse = { enabled = false },
     -- Indent guides and scopes
     indent = {
       enabled = true,
