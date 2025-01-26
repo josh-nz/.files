@@ -1,7 +1,7 @@
 -- https://github.com/otavioschwanck/arrow.nvim
 return {
   "otavioschwanck/arrow.nvim",
-  enabled = true,
+  enabled = false,
   event = "VeryLazy",
   opts = {
     leader_key = ";", -- Recommended to be a single key

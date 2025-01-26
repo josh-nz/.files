@@ -1,7 +1,7 @@
 -- https://github.com/JohanChane/wsnavigator.nvim
 return {
   "JohanChane/wsnavigator.nvim",
-  enabled = true,
+  enabled = false,
   event = "VeryLazy",
   config = function()
     require("wsnavigator").setup {
