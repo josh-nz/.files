@@ -5,7 +5,7 @@ return {
   enabled = true,
   -- optional: provides snippets for the snippet source
   -- dependencies = "rafamadriz/friendly-snippets",
-  version = '0.10.0',
+  version = "0.10.0",
   opts = {
     -- "default" for mappings similar to built-in completion
     -- "super-tab" for mappings similar to vscode (tab to accept, arrow keys to navigate)
@@ -23,16 +23,53 @@ return {
       nerd_font_variant = "mono"
     },
 
+    completion = {
+      list = {
+        selection = {
+          auto_insert = false,
+        },
+      },
+      menu = {
+        border = "single",
+        draw = {
+          columns = { { "label", "label_description", gap = 1 }, { "kind" }, { "source_name" }  },
+        },
+      },
+      documentation = {
+        auto_show = true,
+        auto_show_delay_ms = 0, -- default 500
+        window = {
+          border = "single",
+          max_width = 180,  -- default 80
+          max_height = 50,  -- default 20
+        },
+      },
+      ghost_text = { enabled = false },
+    },
+    signature = {
+      enabled = true,
+      window = { border = "single" }
+    },
     -- Default list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, due to `opts_extend`
     sources = {
       default = { "lsp", "path", "snippets", "buffer" },
+      cmdline = function()
+        local type = vim.fn.getcmdtype()
+        -- Search forward and backward
+        if type == "/" or type == "?" then return { "buffer" } end
+        -- Commands
+        if type == ":" or type == "@" then return { "cmdline", "path", } end  -- added path source
+        return {}
+      end,
+      providers = {
+        path = {
+          opts = {
+            show_hidden_files_by_default = true,
+          },
+        },
+      },
     },
-    completion = {
-      menu = { border = 'single' },
-      documentation = { window = { border = 'single' } },
-    },
-    signature = { window = { border = 'single' } },
   },
   opts_extend = { "sources.default" }
 }
