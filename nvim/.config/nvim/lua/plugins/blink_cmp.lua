@@ -51,7 +51,7 @@ return {
         border = "single",
         draw = {
           columns = { { "label", "label_description", gap = 1 }, { "kind" }, { "source_name" }  },
-          treesitter = { "lsp" },
+          -- treesitter = { "lsp" },
         },
       },
       documentation = {
