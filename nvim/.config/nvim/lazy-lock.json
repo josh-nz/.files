@@ -33,6 +33,7 @@
   "mellifluous.nvim": { "branch": "main", "commit": "ecd3bffaec58ef79d27cfa36ac351ab7fc222df8" },
   "modes.nvim": { "branch": "main", "commit": "326cff3282419b3bcc745061978c1e592cae055d" },
   "monet.nvim": { "branch": "main", "commit": "af6c8fb9faaae2fa7aa16dd83b1b425c2b372891" },
+  "monokai-pro.nvim": { "branch": "master", "commit": "6c15e36834a624a32f46c6db8f9fc063995b24b6" },
   "neofusion.nvim": { "branch": "main", "commit": "82267203b44ec5c54291dc9bd3a0ef9faba05638" },
   "neogit": { "branch": "master", "commit": "63124cf520ff24d09deb3b850e053908ab0fc66a" },
   "neomodern.nvim": { "branch": "main", "commit": "d4edfe0f4d30442a2727f6ba0505c2666be80b93" },
@@ -77,6 +78,7 @@
   "vim-phoenix": { "branch": "master", "commit": "c1b429574c4405192227bf341048d645c7692dcb" },
   "vim-test": { "branch": "master", "commit": "d317336c4022c272e74cfe11e277483183dd0b5f" },
   "vimux": { "branch": "master", "commit": "7db6b2f79d432ee3820668b1d4625311dbe1d0ad" },
+  "white-chocolate.nvim": { "branch": "master", "commit": "ac60d8b6b3e73f1a3f8570c9275cb4b645ec3822" },
   "wsnavigator.nvim": { "branch": "main", "commit": "5165b8d75dedf1b77a1c048c96e0c274eeec46e3" },
   "zenbones.nvim": { "branch": "main", "commit": "9ef4241c50ea24026b732512223dbc55589ce2c4" }
 }
