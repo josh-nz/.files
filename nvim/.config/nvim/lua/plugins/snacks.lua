@@ -8,7 +8,7 @@ local picker_config = {
     fuzzy = true, -- use fuzzy matching
     smartcase = true, -- use smartcase
     ignorecase = true, -- use ignorecase
-    sort_empty = true, -- sort results when the search string is empty
+    sort_empty = false, -- sort results when the search string is empty
     filename_bonus = true, -- give bonus for matching file names (last part of the path)
     file_pos = true, -- support patterns like `file:line:col` and `file:line`
     -- the bonusses below, possibly require string concatenation and path normalization,
