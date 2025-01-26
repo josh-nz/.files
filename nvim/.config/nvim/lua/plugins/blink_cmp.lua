@@ -11,7 +11,21 @@ return {
     -- "super-tab" for mappings similar to vscode (tab to accept, arrow keys to navigate)
     -- "enter" for mappings similar to "super-tab" but with "enter" to accept
     -- See the full "keymap" documentation for information on defining your own keymap.
-    keymap = { preset = "default" },
+    keymap = {
+      preset = "default",
+      ["<C-p>"] = { "select_prev", "fallback" },
+      ["<C-n>"] = { "select_next", "fallback" },
+      ["<C-b>"] = { "scroll_documentation_up", "fallback" },
+      ["<C-f>"] = { "scroll_documentation_down", "fallback" },
+      ["<Tab>"] = { "snippet_forward", "fallback" },
+      ["<S-Tab>"] = { "snippet_backward", "fallback" },
+
+      -- My custom keymaps
+      ["<C-k>"] = { "scroll_documentation_up", "fallback" },  -- default <C-b>
+      ["<C-j>"] = { "scroll_documentation_down", "fallback" },  -- default <C-f>
+      ["<C-l>"] = { "snippet_forward", "fallback" },  -- default <Tab>
+      ["<C-h>"] = { "snippet_backward", "fallback" }, -- default <S-Tab>
+    },
 
     appearance = {
       -- Sets the fallback highlight groups to nvim-cmp"s highlight groups
@@ -33,6 +47,7 @@ return {
         border = "single",
         draw = {
           columns = { { "label", "label_description", gap = 1 }, { "kind" }, { "source_name" }  },
+          treesitter = { "lsp" },
         },
       },
       documentation = {
