@@ -52,6 +52,14 @@ return {
         draw = {
           columns = { { "label", "label_description", gap = 1 }, { "kind" }, { "source_name" }  },
           -- treesitter = { "lsp" },
+          components = {
+            kind = {
+              text = function(ctx) return ctx.source_name == "cmdline" and "" or ctx.kind end,
+            },
+            source_name = {
+              text = function(ctx) return ctx.source_name == "cmdline" and "" or ctx.source_name end,
+            },
+          },
         },
       },
       documentation = {
