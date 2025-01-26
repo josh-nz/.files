@@ -21,7 +21,7 @@ vim.o.background = "dark"
 -- This will help maximise Neovim startup while also
 -- ensuring that the desired colorscheme is loaded
 -- first for correct colours.
--- vim.cmd.colorscheme("catppuccin")
+vim.cmd.colorscheme("catppuccin")
 -- vim.cmd.colorscheme("rose-pine-moon")
 -- vim.cmd.colorscheme("nordic")
 -- vim.cmd.colorscheme("blue")
@@ -29,7 +29,7 @@ vim.o.background = "dark"
 -- vim.cmd.colorscheme("darkvoid")
 -- vim.cmd.colorscheme("serene")
 -- vim.cmd.colorscheme("eidolon")
-vim.cmd.colorscheme("nightwolf")
+-- vim.cmd.colorscheme("nightwolf")
 -- vim.cmd.colorscheme("retro-theme")
 
 -- vim.api.nvim_set_hl(0, "Comment", { italic = true })

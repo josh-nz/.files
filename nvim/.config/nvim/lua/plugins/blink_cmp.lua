@@ -1,5 +1,9 @@
 -- https://cmp.saghen.dev/
 
+
+-- Can use this to test completion highlighting. Delete and retype `bc`.
+-- vim.api.bc
+
 return {
   "saghen/blink.cmp",
   enabled = true,

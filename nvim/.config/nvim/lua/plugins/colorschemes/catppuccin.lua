@@ -3,7 +3,7 @@ return {
   "catppuccin/nvim",
   enabled = true,
   name = "catppuccin",
-  lazy = true,
+  lazy = false,
   priority = 1000,
   -- opts = {
   --  integrations = {
