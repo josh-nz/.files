@@ -5,7 +5,7 @@
 -- https://github.com/ibhagwan/fzf-lua/blob/main/OPTIONS.md
 return {
   "ibhagwan/fzf-lua",
-  enabled = true,
+  enabled = false,
   event = "VeryLazy",
   dependencies = {
     -- https://github.com/nvim-tree/nvim-web-devicons
