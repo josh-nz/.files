@@ -1,7 +1,7 @@
 -- https://github.com/hrsh7th/nvim-cmp
 return {
   "hrsh7th/nvim-cmp",
-  enabled = false,
+  enabled = vim.g.cmp_plugin == "nvim-cmp",
   dependencies = {
     -- https://github.com/L3MON4D3/LuaSnip
     {

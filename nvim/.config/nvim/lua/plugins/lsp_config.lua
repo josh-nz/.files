@@ -27,12 +27,18 @@ return {
       -- https://github.com/williamboman/mason-lspconfig.nvim
       "williamboman/mason-lspconfig.nvim",
 
-      -- https://github.com/hrsh7th/cmp-nvim-lsp
-      -- "hrsh7th/cmp-nvim-lsp",
+      {
+        -- https://github.com/hrsh7th/cmp-nvim-lsp
+        "hrsh7th/cmp-nvim-lsp",
+        enabled = vim.g.cmp_plugin == "nvim-cmp",
+      },
 
-      -- https://cmp.saghen.dev/
-      "saghen/blink.cmp",
-
+      {
+        -- https://cmp.saghen.dev/
+        "saghen/blink.cmp",
+        enabled = vim.g.cmp_plugin == "blink",
+      },
+      
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
       -- Doesn't support a lot of LSPs that I'd use:
       -- https://github.com/j-hui/fidget.nvim/wiki/Known-compatible-LSP-servers
@@ -115,7 +121,6 @@ return {
 
 
       local lspconfig = require("lspconfig")
-      local blink = require("blink.cmp")
       for server_name, server_settings in pairs(servers) do
         -- This handles overriding only values explicitly passed
         -- by the server configuration above. Useful when disabling
@@ -127,7 +132,14 @@ return {
         -- When you add blink, luasnip, etc. Neovim now has *more* capabilities.
         -- So, we create new capabilities with blink and the specific LSP configuration,
         -- and then broadcast that to the servers.
-        server_settings.capabilities = blink.get_lsp_capabilities(server_settings.capabilities, true) -- ture will include the nvim default capabilities.
+        if vim.g.cmp_plugin == "blink" then
+          server_settings.capabilities = require("blink.cmp").get_lsp_capabilities(server_settings.capabilities, true) -- true will include the nvim default capabilities.
+        else
+          local default_capabilities = vim.lsp.protocol.make_client_capabilities()
+          local extended_capabilities = require("cmp_nvim_lsp").default_capabilities(default_capabilities)
+          server_settings.capabilities = vim.tbl_deep_extend("force", {}, extended_capabilities, server_settings.capabilities or {})
+        end
+
         lspconfig[server_name].setup(server_settings)
       end
 

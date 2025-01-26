@@ -1,3 +1,6 @@
+vim.g.cmp_plugin = "blink"
+-- vim.g.cmp_plugin = "nvim-cmp"
+
 -- Require my vim config first so leader is
 -- correctly mapped before any lazy config occurs.
 require("user.vim_config")
