@@ -73,15 +73,25 @@ return {
     -- elsewhere in your config, without redefining it, due to `opts_extend`
     sources = {
       default = { "lsp", "path", "snippets", "buffer" },
-      cmdline = function()
-        local type = vim.fn.getcmdtype()
-        -- Search forward and backward
-        if type == "/" or type == "?" then return { "buffer" } end
-        -- Commands
-        if type == ":" or type == "@" then return { "cmdline", "path", } end  -- added path source
-        return {}
-      end,
+      -- https://github.com/Saghen/blink.cmp/discussions/564
+      -- default = function()
+      --     local node = vim.treesitter.get_node()
+      --     if
+      --       node and vim.tbl_contains({ "comment", "line_comment", "comment_content", "block_comment" }, node:type())
+      --     then
+      --       return { "buffer" }
+      --     else
+      --       return {  "lsp", "path", "snippets", "buffer"  }
+      --     end
+      --   end,
       providers = {
+        lsp = {
+          -- Remove buffer as the default fallback, so buffer completions
+          -- will show alongside the LSP suggestions. Instead, fallback to
+          -- snippets. Could probably just leave this table empty.
+          -- https://github.com/Saghen/blink.cmp/discussions/1021
+          fallbacks = { "snippets" },
+        },
         path = {
           opts = {
             show_hidden_files_by_default = true,
