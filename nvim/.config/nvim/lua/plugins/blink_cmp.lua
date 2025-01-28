@@ -9,7 +9,7 @@ return {
   enabled = vim.g.cmp_plugin == "blink",
   -- optional: provides snippets for the snippet source
   -- dependencies = "rafamadriz/friendly-snippets",
-  version = "0.10.0",
+  version = "*",
   opts = {
     -- "default" for mappings similar to built-in completion
     -- "super-tab" for mappings similar to vscode (tab to accept, arrow keys to navigate)
@@ -50,16 +50,19 @@ return {
       menu = {
         border = "single",
         draw = {
-          columns = { { "label", "label_description", gap = 1 }, { "kind" }, { "source_name" }  },
-          -- treesitter = { "lsp" },
+          columns = function(ctx)
+            if ctx.mode == "cmdline" then
+              return { { "label", "label_description" } }
+            else
+              return { { "label", "label_description", gap = 1 }, { "kind" }, { "source_name" }  }
+            end
+          end,
           components = {
-            kind = {
-              text = function(ctx) return ctx.source_name == "cmdline" and "" or ctx.kind end,
-            },
-            source_name = {
-              text = function(ctx) return ctx.source_name == "cmdline" and "" or ctx.source_name end,
-            },
+            -- label = {
+            --   width = { max = function(ctx) return ctx.mode == "cmdline" and 20 or 60 end },
+            -- },
           },
+          -- treesitter = { "lsp" },
         },
       },
       documentation = {
