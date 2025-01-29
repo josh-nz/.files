@@ -394,9 +394,6 @@ end
 function M.oil()
   return lazy_keymap({
     [{ "n" }] = {
-
-
-
       { "-", function() require("oil").open() end, desc = "Open Oil file manager" },
     },
   })
