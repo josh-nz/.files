@@ -30,7 +30,12 @@ return {
       ["<C-l>"] = { "snippet_forward", "fallback" },  -- default <Tab>
       ["<C-h>"] = { "snippet_backward", "fallback" }, -- default <S-Tab>
     },
-
+    enabled = function()
+      -- Disable for some filetypes
+      return not vim.tbl_contains({ "typr" }, vim.bo.filetype)
+        and vim.bo.buftype ~= "prompt"
+        and vim.b.completion ~= false
+    end,
     appearance = {
       -- Sets the fallback highlight groups to nvim-cmp"s highlight groups
       -- Useful for when your theme doesn"t support blink.cmp
@@ -40,7 +45,6 @@ return {
       -- Adjusts spacing to ensure icons are aligned
       nerd_font_variant = "mono"
     },
-
     completion = {
       list = {
         selection = {
