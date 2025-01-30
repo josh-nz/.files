@@ -4,4 +4,5 @@ return {
   enabled = true,
   lazy = true,
   priority = 1000,
+  opts = {},
 }
