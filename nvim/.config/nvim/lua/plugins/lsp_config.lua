@@ -36,9 +36,8 @@ return {
       {
         -- https://cmp.saghen.dev/
         "saghen/blink.cmp",
-        enabled = vim.g.cmp_plugin == "blink",
       },
-      
+
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
       -- Doesn't support a lot of LSPs that I'd use:
       -- https://github.com/j-hui/fidget.nvim/wiki/Known-compatible-LSP-servers
