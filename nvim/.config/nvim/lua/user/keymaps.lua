@@ -515,8 +515,8 @@ function M.snacks()
       -- { "<c-/>", function() Snacks.terminal() end, desc = "Toggle Terminal" },
 
 
-      { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
-      { "<leader>g", function() Snacks.picker.grep() end, desc = "Grep" },
+      { "<leader>/", function() Snacks.picker.grep({ hidden = true }) end, desc = "Grep" },
+      { "<leader>g", function() Snacks.picker.grep({ hidden = true }) end, desc = "Grep" },
       { "<leader><space>", function() Snacks.picker.files({ hidden = true, layout = { width = 0, height = 0 } }) end, desc = "Find Files" },
       -- find
       { "<leader>,", function() Snacks.picker.buffers({ current = false }) end, desc = "Buffers" },
@@ -533,7 +533,7 @@ function M.snacks()
       -- Grep
       { "<leader>sb", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
       { "<leader>sB", function() Snacks.picker.grep_buffers() end, desc = "Grep Open Buffers" },
-      { "<leader>sg", function() Snacks.picker.grep() end, desc = "Grep" },
+      { "<leader>sg", function() Snacks.picker.grep({ hidden = true }) end, desc = "Grep" },
       -- search
       { '<leader>s"', function() Snacks.picker.registers() end, desc = "Registers" },
       { "<leader>sa", function() Snacks.picker.autocmds() end, desc = "Autocmds" },
