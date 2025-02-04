@@ -1,3 +1,4 @@
+# Examples of globbing syntax here:
 # https://www.atlassian.com/git/tutorials/saving-changes/gitignore
 .git/
 .DS_Store
