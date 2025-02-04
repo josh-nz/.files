@@ -61,7 +61,7 @@ return {
         -- back to buffers I was just in. If you missed this from Telescope,
         -- give it a try.
         include_current_session = true,
-      },
+      },
       previewers = {
         -- bat = { theme = "Catppuccin Mocha" },
 
