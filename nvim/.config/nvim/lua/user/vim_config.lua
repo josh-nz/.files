@@ -18,6 +18,7 @@ vim.opt.expandtab = true
 
 -- Enable auto indenting and set it to spaces
 vim.opt.smartindent = true
+vim.opt.autoindent = true
 vim.opt.shiftwidth = 2
 
 -- Enable smart indenting (see https://stackoverflow.com/questions/1204149/smart-wrap-in-vim)
@@ -62,11 +63,11 @@ vim.opt.undofile = true
 -- Enable 24-bit color
 vim.opt.termguicolors = true
 
--- Enable the sign column to prevent the screen from jumping
-vim.opt.signcolumn = "yes"
-
 -- Set number column width to 4 {default 4}
 -- vim.opt.numberwidth = 4
+
+-- Enable the sign column to prevent the screen from jumping
+vim.opt.signcolumn = "yes"
 
 -- Enable access to system clipboard
 vim.opt.clipboard = "unnamed,unnamedplus"
@@ -129,6 +130,11 @@ vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 vim.opt.wildmode = "longest:full,full"
 
 vim.opt.spelllang = "en_nz,en_gb"
+
+-- Better diff options than the default:
+vim.opt.diffopt = "internal,filler,closeoff,linematch:60"
+-- vim.opt.diffopt="filler,internal,closeoff,algorithm:histogram,context:5,linematch:60"
+-- vim.opt.diffopt="internal,filler,closeoff,indent-heuristic,linematch:60,algorithm:histogram"
 
 vim.diagnostic.config({
   virtual_text = {
