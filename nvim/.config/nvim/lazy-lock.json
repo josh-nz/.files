@@ -20,6 +20,8 @@
   "eldritch.nvim": { "branch": "master", "commit": "adedead3423c58cc2e2ebf30001fe4055ad0e416" },
   "everforest": { "branch": "master", "commit": "7c4894b64f8d98862153515ceb2a31fc58b9a5b1" },
   "evergarden": { "branch": "mega", "commit": "09ccf4adef91d0380c173ffe5cd3775ab226e1cd" },
+  "embark": { "branch": "main", "commit": "3456e3c23981aeb951e8a804ce6358569023c96e" },
+  "farout.nvim": { "branch": "main", "commit": "ebfcb874c3ebdb86fff8f22de4ae0944c3fa2bbc" },
   "flow.nvim": { "branch": "main", "commit": "d8b2bc1a76325361fdbb2cdadbfe242d24370edd" },
   "fluoromachine.nvim": { "branch": "main", "commit": "d638ea221b4c6636978f49c1987d10ff2733c23d" },
   "fzf-lua": { "branch": "main", "commit": "b3ca8af8795c28d600569c25c13fea244013a054" },
