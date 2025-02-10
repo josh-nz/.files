@@ -1,4 +1,5 @@
 -- https://github.com/arp242/undofile_warn.vim
+-- Alternative Lua version: https://github.com/mvllow/session-undo.nvim
 return {
   "arp242/undofile_warn.vim",
   enabled = true,
