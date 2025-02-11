@@ -1,6 +1,5 @@
 -- https://github.com/folke/snacks.nvim
 
-
 -- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md
 local picker_config = {
   ---@class snacks.picker.matcher.Config
@@ -17,24 +16,54 @@ local picker_config = {
     frecency = false, -- frecency bonus
     history_bonus = false, -- give more weight to chronological order
   },
-  sort = {
-    -- default sort is by score, text length and index
-    fields = { "score:desc", "#text", "idx" },
-  },
   ui_select = false, -- replace `vim.ui.select` with the snacks picker
-  ---@class snacks.picker.formatters.Config
-  formatters = {
-    text = {
-      ft = nil, ---@type string? filetype for highlighting
+  sources = {
+    buffers = {
+      current = false,  -- don't show current buffer in list
     },
-    file = {
-      filename_first = false, -- display filename before the file path
-      truncate = 40, -- truncate the file path to (roughly) this length
-      filename_only = false, -- only show the filename
+    -- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#explorer
+    explorer = {
+      hidden = true,
+      follow_file = false,
+      win = {
+        list = {
+          keys = {
+            ["<BS>"] = "explorer_up",
+            ["l"] = "confirm",
+            ["h"] = "explorer_close", -- close directory
+            ["a"] = "explorer_add",
+            ["d"] = "explorer_del",
+            ["r"] = "explorer_rename",
+            ["c"] = "explorer_copy",
+            ["m"] = "explorer_move",
+            ["o"] = "explorer_open", -- open with system application
+            ["P"] = "toggle_preview",
+            ["y"] = "explorer_yank",
+            ["u"] = "explorer_update",
+            ["<c-c>"] = "tcd",
+            ["<leader>/"] = "picker_grep",
+            ["<c-t>"] = "terminal",
+            ["."] = "explorer_focus",
+            ["I"] = "toggle_ignored",
+            ["H"] = "toggle_hidden",
+            ["Z"] = "explorer_close_all",
+            ["]g"] = "explorer_git_next",
+            ["[g"] = "explorer_git_prev",
+            ["]d"] = "explorer_diagnostic_next",
+            ["[d"] = "explorer_diagnostic_prev",
+            ["]w"] = "explorer_warn_next",
+            ["[w"] = "explorer_warn_prev",
+            ["]e"] = "explorer_error_next",
+            ["[e"] = "explorer_error_prev",
+          },
+        },
+      },
     },
-    selected = {
-      show_always = false, -- only show the selected column when there are multiple selections
-      unselected = true, -- use the unselected icon for unselected items
+    files = {
+      hidden = true,
+    },
+    grep = {
+      hidden = true,
     },
   },
   win = {
@@ -46,83 +75,92 @@ local picker_config = {
         -- to close the picker on ESC instead of going to normal mode,
         -- add the following keymap to your config
         -- ["<Esc>"] = { "close", mode = { "n", "i" } },
-        ["<CR>"] = { "confirm", mode = { "n", "i" } },
-        ["G"] = "list_bottom",
-        ["gg"] = "list_top",
-        ["j"] = "list_down",
-        ["k"] = "list_up",
         ["/"] = "toggle_focus",
-        ["q"] = "close",
-        ["?"] = "toggle_help",
+        ["<C-Down>"] = { "history_forward", mode = { "i", "n" } },
+        ["<C-Up>"] = { "history_back", mode = { "i", "n" } },
+        ["<C-w>"] = { "<c-s-w>", mode = { "i" }, expr = true, desc = "delete word" },
+        ["<CR>"] = { "confirm", mode = { "n", "i" } },
+        ["<Down>"] = { "list_down", mode = { "i", "n" } },
+        ["<S-CR>"] = { { "pick_win", "jump" }, mode = { "n", "i" } },
+        ["<S-Tab>"] = { "select_and_prev", mode = { "i", "n" } },
+        ["<Tab>"] = { "select_and_next", mode = { "i", "n" } },
+        ["<Up>"] = { "list_up", mode = { "i", "n" } },
         ["<a-d>"] = { "inspect", mode = { "n", "i" } },
-        ["<c-a>"] = { "select_all", mode = { "n", "i" } },
+        ["<a-f>"] = { "toggle_follow", mode = { "i", "n" } },
+        ["<a-h>"] = { "toggle_hidden", mode = { "i", "n" } },
+        ["<a-i>"] = { "toggle_ignored", mode = { "i", "n" } },
         ["<a-m>"] = { "toggle_maximize", mode = { "i", "n" } },
         ["<a-p>"] = { "toggle_preview", mode = { "i", "n" } },
         ["<a-w>"] = { "cycle_win", mode = { "i", "n" } },
-        ["<C-w>"] = { "<c-s-w>", mode = { "i" }, expr = true, desc = "delete word" },
-        ["<C-Up>"] = { "history_back", mode = { "i", "n" } },
-        ["<C-Down>"] = { "history_forward", mode = { "i", "n" } },
-        ["<Tab>"] = { "select_and_next", mode = { "i", "n" } },
-        ["<S-Tab>"] = { "select_and_prev", mode = { "i", "n" } },
-        ["<Down>"] = { "list_down", mode = { "i", "n" } },
-        ["<Up>"] = { "list_up", mode = { "i", "n" } },
-        ["<c-j>"] = { "list_down", mode = { "i", "n" } },
-        ["<c-k>"] = { "list_up", mode = { "i", "n" } },
-        ["<c-n>"] = { "list_down", mode = { "i", "n" } },
-        ["<c-p>"] = { "list_up", mode = { "i", "n" } },
-        ["<c-l>"] = { "preview_scroll_left", mode = { "i", "n" } },
-        ["<c-h>"] = { "preview_scroll_right", mode = { "i", "n" } },
+        ["<c-a>"] = { "select_all", mode = { "n", "i" } },
         ["<c-b>"] = { "preview_scroll_up", mode = { "i", "n" } },
         ["<c-d>"] = { "list_scroll_down", mode = { "i", "n" } },
         ["<c-f>"] = { "preview_scroll_down", mode = { "i", "n" } },
         ["<c-g>"] = { "toggle_live", mode = { "i", "n" } },
-        ["<c-u>"] = { "list_scroll_up", mode = { "i", "n" } },
-        ["<ScrollWheelDown>"] = { "list_scroll_wheel_down", mode = { "i", "n" } },
-        ["<ScrollWheelUp>"] = { "list_scroll_wheel_up", mode = { "i", "n" } },
-        ["<c-v>"] = { "edit_vsplit", mode = { "i", "n" } },
-        ["<c-s>"] = { "edit_split", mode = { "i", "n" } },
+        ["<c-j>"] = { "list_down", mode = { "i", "n" } },
+        ["<c-k>"] = { "list_up", mode = { "i", "n" } },
+        ["<c-n>"] = { "list_down", mode = { "i", "n" } },
+        ["<c-p>"] = { "list_up", mode = { "i", "n" } },
         ["<c-q>"] = { "qflist", mode = { "i", "n" } },
-        ["<a-i>"] = { "toggle_ignored", mode = { "i", "n" } },
-        ["<a-h>"] = { "toggle_hidden", mode = { "i", "n" } },
-        ["<a-f>"] = { "toggle_follow", mode = { "i", "n" } },
+        ["<c-s>"] = { "edit_split", mode = { "i", "n" } },
+        ["<c-u>"] = { "list_scroll_up", mode = { "i", "n" } },
+        ["<c-v>"] = { "edit_vsplit", mode = { "i", "n" } },
+        ["<c-w>H"] = "layout_left",
+        ["<c-w>J"] = "layout_bottom",
+        ["<c-w>K"] = "layout_top",
+        ["<c-w>L"] = "layout_right",
+        ["?"] = "toggle_help_input",
+        ["G"] = "list_bottom",
+        ["gg"] = "list_top",
+        ["j"] = "list_down",
+        ["k"] = "list_up",
+        ["q"] = "close",
       },
     },
     -- result list window
     list = {
       keys = {
+        ["/"] = "toggle_focus",
+        ["<2-LeftMouse>"] = "confirm",
         ["<CR>"] = "confirm",
-        ["gg"] = "list_top",
-        ["G"] = "list_bottom",
-        ["i"] = "focus_input",
-        ["j"] = "list_down",
-        ["k"] = "list_up",
-        ["q"] = "close",
-        ["<Tab>"] = "select_and_next",
-        ["<S-Tab>"] = "select_and_prev",
         ["<Down>"] = "list_down",
+        ["<Esc>"] = "close",
+        ["<S-CR>"] = { { "pick_win", "jump" } },
+        ["<S-Tab>"] = { "select_and_prev", mode = { "n", "x" } },
+        ["<Tab>"] = { "select_and_next", mode = { "n", "x" } },
         ["<Up>"] = "list_up",
         ["<a-d>"] = "inspect",
-        ["<c-d>"] = "list_scroll_down",
-        ["<c-u>"] = "list_scroll_up",
-        ["zt"] = "list_scroll_top",
-        ["zb"] = "list_scroll_bottom",
-        ["zz"] = "list_scroll_center",
-        ["/"] = "toggle_focus",
-        ["<ScrollWheelDown>"] = "list_scroll_wheel_down",
-        ["<ScrollWheelUp>"] = "list_scroll_wheel_up",
+        ["<a-f>"] = "toggle_follow",
+        ["<a-h>"] = "toggle_hidden",
+        ["<a-i>"] = "toggle_ignored",
+        ["<a-m>"] = "toggle_maximize",
+        ["<a-p>"] = "toggle_preview",
+        ["<a-w>"] = "cycle_win",
         ["<c-a>"] = "select_all",
-        ["<c-f>"] = "preview_scroll_down",
         ["<c-b>"] = "preview_scroll_up",
-        ["<c-l>"] = "preview_scroll_right",
-        ["<c-h>"] = "preview_scroll_left",
-        ["<c-v>"] = "edit_vsplit",
-        ["<c-s>"] = "edit_split",
+        ["<c-d>"] = "list_scroll_down",
+        ["<c-f>"] = "preview_scroll_down",
         ["<c-j>"] = "list_down",
         ["<c-k>"] = "list_up",
         ["<c-n>"] = "list_down",
         ["<c-p>"] = "list_up",
-        ["<a-w>"] = "cycle_win",
-        ["<Esc>"] = "close",
+        ["<c-s>"] = "edit_split",
+        ["<c-u>"] = "list_scroll_up",
+        ["<c-v>"] = "edit_vsplit",
+        ["<c-w>H"] = "layout_left",
+        ["<c-w>J"] = "layout_bottom",
+        ["<c-w>K"] = "layout_top",
+        ["<c-w>L"] = "layout_right",
+        ["?"] = "toggle_help_list",
+        ["G"] = "list_bottom",
+        ["gg"] = "list_top",
+        ["i"] = "focus_input",
+        ["j"] = "list_down",
+        ["k"] = "list_up",
+        ["q"] = "close",
+        ["zb"] = "list_scroll_bottom",
+        ["zt"] = "list_scroll_top",
+        ["zz"] = "list_scroll_center",
       },
     },
     -- preview window
@@ -143,7 +181,6 @@ local picker_config = {
 
 
 
-
 return {
   "folke/snacks.nvim",
   priority = 1000,
@@ -158,10 +195,17 @@ return {
     dashboard = { enabled = false },
     -- Focus on the active scope by dimming the rest
     dim = { enabled = false },
+    -- A file explorer (picker in disguise)
+    explorer = {
+      enabled = true,
+      replace_netrw = false,
+    },
     -- Git utilities - blame, Git root
     git = { enabled = false },
     -- Open the current file, branch, commit, or repo in a browser (e.g. GitHub, GitLab, Bitbucket)
     gitbrowse = { enabled = false },
+    -- Image viewer using Kitty Graphics Protocol, supported by kitty, weztermn and ghostty
+    image = { enabled = false },
     -- Indent guides and scopes
     indent = {
       enabled = true,

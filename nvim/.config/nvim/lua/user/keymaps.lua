@@ -508,32 +508,37 @@ function M.snacks()
   return lazy_keymap({
     [{ "n" }] = {
       { "<leader>bd", function() Snacks.bufdelete() end, desc = "Delete Buffer" },
+      { "<leader>bp", function() Snacks.bufdelete.other() end, desc = "Delete all other buffers" },
       -- { "<leader>gb", function() Snacks.git.blame_line() end, desc = "Git Blame Line" },
       { "<leader>gf", function() Snacks.lazygit.log_file() end, desc = "Lazygit Current File History" },
       { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit" },
       { "<leader>gl", function() Snacks.lazygit.log() end, desc = "Lazygit Log (cwd)" },
       -- { "<c-/>", function() Snacks.terminal() end, desc = "Toggle Terminal" },
+      { "<leader>n", function() Snacks.picker.notifications() end, desc = "Notification History" },
+      { "<leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
+      { "<leader>eo", function() Snacks.explorer.open() end, desc = "File Explorer" },
+      { "<leader>er", function() Snacks.explorer.reveal() end, desc = "Reveal File in Explorer" },
 
 
-      { "<leader>/", function() Snacks.picker.grep({ hidden = true }) end, desc = "Grep" },
-      { "<leader>g", function() Snacks.picker.grep({ hidden = true }) end, desc = "Grep" },
-      { "<leader><space>", function() Snacks.picker.files({ hidden = true, layout = { width = 0, height = 0 } }) end, desc = "Find Files" },
+      { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
+      { "<leader>g", function() Snacks.picker.grep() end, desc = "Grep" },
+      { "<leader><space>", function() Snacks.picker.files({ layout = { width = 0, height = 0 } }) end, desc = "Find Files" },
       -- find
       { "<leader>,", function() Snacks.picker.buffers({ current = false }) end, desc = "Buffers" },
       { "<leader>fb", function() Snacks.picker.buffers({ current = false }) end, desc = "Buffers" },
       { "<C-b>", function() Snacks.picker.buffers({ current = false }) end, desc = "Buffers" },
       { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
-      { "<leader>ff", function() Snacks.picker.files({ hidden = true }) end, desc = "Find Files" },
-      { "<C-p>", function() Snacks.picker.files({ hidden = true }) end, desc = "Find Files" },
+      { "<leader>ff", function() Snacks.picker.files() end, desc = "Find Files" },
+      { "<C-p>", function() Snacks.picker.files() end, desc = "Find Files" },
       { "<leader>fg", function() Snacks.picker.git_files() end, desc = "Find Git Files" },
       { "<leader>fr", function() Snacks.picker.recent() end, desc = "Recent" },
       -- git
       { "<leader>gc", function() Snacks.picker.git_log() end, desc = "Git Log" },
       { "<leader>gs", function() Snacks.picker.git_status() end, desc = "Git Status" },
-      -- Grep
+      -- grep
       { "<leader>sb", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
       { "<leader>sB", function() Snacks.picker.grep_buffers() end, desc = "Grep Open Buffers" },
-      { "<leader>sg", function() Snacks.picker.grep({ hidden = true }) end, desc = "Grep" },
+      { "<leader>sg", function() Snacks.picker.grep() end, desc = "Grep" },
       -- search
       { '<leader>s"', function() Snacks.picker.registers() end, desc = "Registers" },
       { "<leader>sa", function() Snacks.picker.autocmds() end, desc = "Autocmds" },
