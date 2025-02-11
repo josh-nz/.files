@@ -3,6 +3,10 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   enabled = true,
+  -- Might need to be not lazy loaded, if any issues encountered with BufEnter event. Refer:
+  -- https://github.com/nvim-treesitter/nvim-treesitter/discussions/5289
+  -- lazy = false,  
+  event = "BufEnter",
   dependencies = {
     -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
     -- Good videos explaining this at https://www.youtube.com/watch?v=ff0GYrK3nT0
@@ -13,24 +17,32 @@ return {
     -- "nvim-treesitter/nvim-treesitter-context",
   },
   build = ":TSUpdate",
-  event = "BufEnter",
   config = function()
 ---@diagnostic disable-next-line: missing-fields
     require("nvim-treesitter.configs").setup({
       ensure_installed = {
+        -- There parsers are bundled with NeoVim. We must install them via Treesitter
+        -- so that we have the correct versions for the Treesitter queries. Refer:
+        -- https://github.com/nvim-treesitter/nvim-treesitter/issues/3092
+        "c",
         "lua",
         "vim",
         "vimdoc",
+        "markdown",
+        -- Might need to install the `query` language if :checkhealth reports a query error. Refer to link above.
+        -- "query",
+
+        -- Other parsers I've chosen to install:
         "elixir",
         "heex",
         "eex",
         "gleam",
         "javascript",
         "json",
-        "markdown",
         "typescript",
         "html",
         "comment",
+        -- Requrired for Snacks plugin:
         "regex",
       },
       -- Install parsers synchronously (only applied to `ensure_installed`)
