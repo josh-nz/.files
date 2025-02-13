@@ -65,6 +65,9 @@ local picker_config = {
     grep = {
       hidden = true,
     },
+    todo_comments = {
+      hidden = true,
+    },
   },
   win = {
     -- input window
@@ -185,7 +188,6 @@ return {
   "folke/snacks.nvim",
   priority = 1000,
   lazy = false,
-  import = "plugins.snacks",
   opts = {
     -- Deal with big files
     bigfile = { enabled = true },

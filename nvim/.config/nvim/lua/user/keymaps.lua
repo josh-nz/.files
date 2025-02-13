@@ -503,6 +503,19 @@ end
 
 
 
+-- Todo-comments keymaps
+function M.todo_comments()
+  return {}
+  -- return lazy_keymap({
+  --   [{ "n" }] = {
+  --     { "]t", function() require("todo-comments").jump_next() end, desc = "Next todo comment" },
+  --     { "[t", function() require("todo-comments").jump_prev() end, desc = "Previous todo comment" },
+  --   },
+  -- })
+end
+
+
+
 -- Snacks keymaps
 function M.snacks()
   return lazy_keymap({
@@ -515,9 +528,17 @@ function M.snacks()
       { "<leader>gl", function() Snacks.lazygit.log() end, desc = "Lazygit Log (cwd)" },
       -- { "<c-/>", function() Snacks.terminal() end, desc = "Toggle Terminal" },
       { "<leader>n", function() Snacks.picker.notifications() end, desc = "Notification History" },
+
+
       { "<leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
       { "<leader>eo", function() Snacks.explorer.open() end, desc = "File Explorer" },
       { "<leader>er", function() Snacks.explorer.reveal() end, desc = "Reveal File in Explorer" },
+
+
+      -- Without passing the keywords property, will find all keywords defined by the todo-comments plugin.
+      { "<leader>sT", function() Snacks.picker.todo_comments() end, desc = "Todo" },
+      -- Keywords can be used to find a subset of defined todo-comments keywords.
+      { "<leader>st", function () Snacks.picker.todo_comments({ keywords = { "TODO", "HACK", "WARNING", "BUG", "NOTE", "INFO", "PERF", "ERROR" } }) end, desc = "Todo Comment Tags" },
 
 
       { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
