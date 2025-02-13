@@ -61,9 +61,11 @@ local picker_config = {
     },
     files = {
       hidden = true,
+      layout = { fullscreen = true, },
     },
     grep = {
       hidden = true,
+      layout = { fullscreen = true, },
     },
     todo_comments = {
       hidden = true,
