@@ -1,5 +1,8 @@
 -- https://cmp.saghen.dev/
 
+-- https://github.com/Saghen/blink.cmp/discussions/279
+
+
 
 -- Can use this to test completion highlighting. Delete and retype `bc`.
 -- vim.api.bc
