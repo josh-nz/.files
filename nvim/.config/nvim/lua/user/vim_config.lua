@@ -122,6 +122,10 @@ vim.opt.backup = false
 -- vim.o.formatoptions = "jcrql"
 -- vim.cmd("set formatoptions-=o")
 
+-- In insert mode, C-u will undo everything entered on current line, leaving you in insert mode.
+-- This can be used as an alternative to adjusting the formatoptions. When a new line automatically
+-- adds a comment, press C-u to undo it and carry on typing.
+
 -- https://www.reddit.com/r/neovim/comments/1iofs0r/disable_o_r_formatoption_globally/
 -- vim.api.nvim_create_autocmd("FileType", {
 --     group = vim.api.nvim_create_augroup("user_formatoptions", { clear = true }),
