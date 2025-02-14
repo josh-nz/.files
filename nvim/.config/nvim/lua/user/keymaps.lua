@@ -392,6 +392,15 @@ end
 
 
 function M.oil()
+  vim.api.nvim_create_autocmd("FileType", {
+    desc = "Oil local keymaps",
+    group = vim.api.nvim_create_augroup("user_oil_autocmd", { clear = true }),
+    pattern = "oil",
+    callback = function(e)
+      nnoremap("q", function() require("oil").close() end, { buffer = e.buf, desc = "Close Oil file manager" })
+    end
+  })
+
   return lazy_keymap({
     [{ "n" }] = {
       { "-", function() require("oil").open() end, desc = "Open Oil file manager" },
@@ -533,6 +542,12 @@ function M.snacks()
       { "<leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
       { "<leader>eo", function() Snacks.explorer.open() end, desc = "File Explorer" },
       { "<leader>er", function() Snacks.explorer.reveal() end, desc = "Reveal File in Explorer" },
+      { "<leader>ec", function()
+          local es = Snacks.picker.get({ source = "explorer" })
+          for _, e in ipairs(es) do
+            e:close()
+          end
+      end, desc = "Close all file explorers" },
 
 
       -- Without passing the keywords property, will find all keywords defined by the todo-comments plugin.
