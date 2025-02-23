@@ -92,7 +92,11 @@ return {
           },
         },
       },
-      tailwindcss = {},
+      tailwindcss = {
+        -- filetypes = {
+        --   "html",
+        -- },
+      },
       gleam = {},
     }
 
