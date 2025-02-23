@@ -39,6 +39,7 @@ local picker_config = {
             ["o"] = "explorer_open", -- open with system application
             ["P"] = "toggle_preview",
             ["y"] = "explorer_yank",
+            ["p"] = "explorer_paste",
             ["u"] = "explorer_update",
             ["<c-c>"] = "tcd",
             ["<leader>/"] = "picker_grep",
@@ -75,17 +76,17 @@ local picker_config = {
     -- input window
     input = {
       keys = {
-        ["<Esc>"] = "close",
-        ["<C-c>"] = { "close", mode = { "n", "i" } },
         -- to close the picker on ESC instead of going to normal mode,
         -- add the following keymap to your config
         -- ["<Esc>"] = { "close", mode = { "n", "i" } },
         ["/"] = "toggle_focus",
         ["<C-Down>"] = { "history_forward", mode = { "i", "n" } },
         ["<C-Up>"] = { "history_back", mode = { "i", "n" } },
+        ["<C-c>"] = { "close", mode = { "n", "i" } },
         ["<C-w>"] = { "<c-s-w>", mode = { "i" }, expr = true, desc = "delete word" },
         ["<CR>"] = { "confirm", mode = { "n", "i" } },
         ["<Down>"] = { "list_down", mode = { "i", "n" } },
+        ["<Esc>"] = "close",
         ["<S-CR>"] = { { "pick_win", "jump" }, mode = { "n", "i" } },
         ["<S-Tab>"] = { "select_and_prev", mode = { "i", "n" } },
         ["<Tab>"] = { "select_and_next", mode = { "i", "n" } },
@@ -108,6 +109,7 @@ local picker_config = {
         ["<c-p>"] = { "list_up", mode = { "i", "n" } },
         ["<c-q>"] = { "qflist", mode = { "i", "n" } },
         ["<c-s>"] = { "edit_split", mode = { "i", "n" } },
+        ["<c-t>"] = { "tab", mode = { "n", "i" } },
         ["<c-u>"] = { "list_scroll_up", mode = { "i", "n" } },
         ["<c-v>"] = { "edit_vsplit", mode = { "i", "n" } },
         ["<c-w>H"] = "layout_left",
@@ -149,7 +151,9 @@ local picker_config = {
         ["<c-k>"] = "list_up",
         ["<c-n>"] = "list_down",
         ["<c-p>"] = "list_up",
+        ["<c-q>"] = "qflist",
         ["<c-s>"] = "edit_split",
+        ["<c-t>"] = "tab",
         ["<c-u>"] = "list_scroll_up",
         ["<c-v>"] = "edit_vsplit",
         ["<c-w>H"] = "layout_left",
