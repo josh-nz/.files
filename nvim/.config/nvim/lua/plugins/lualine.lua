@@ -36,6 +36,57 @@ return {
       return name and "[" .. name .. "]" or ""
     end
 
+
+    -- https://github.com/spacian/nvim/blob/lsp-zero/lua/plugins/lualine.lua
+    local function diagnostic(level)
+      if (vim.diagnostic.count(0)[level] or 0) > 0 then
+        return "●"
+      else
+        -- return "◌"
+        return "○"
+      end
+    end
+    local function error_ind()
+      return diagnostic(vim.diagnostic.severity.ERROR)
+    end
+    local function warn_ind()
+      return diagnostic(vim.diagnostic.severity.WARN)
+    end
+    local function info_ind()
+      return diagnostic(vim.diagnostic.severity.INFO)
+    end
+    local function hint_ind()
+      return diagnostic(vim.diagnostic.severity.HINT)
+    end
+    local function diagnostic_color(hl_name)
+      return string.format(
+        "#%06X",
+        vim.api.nvim_get_hl(0, { name = hl_name, link = false }).fg
+          or vim.api.nvim_get_hl(0, { name = hl_name, link = false }).sp
+      )
+    end
+
+    local diagnostics_ind = {
+      error = {
+        error_ind,
+        color = { fg = diagnostic_color("DiagnosticError") },
+      },
+      warn = {
+        warn_ind,
+        color = { fg = diagnostic_color("DiagnosticWarn") },
+      },
+      info = {
+        info_ind,
+        color = { fg = diagnostic_color("DiagnosticInfo") },
+      },
+      hint = {
+        hint_ind,
+        color = { fg = diagnostic_color("DiagnosticHint") },
+      },
+    }
+
+
+
     require("lualine").setup({
       options = {
         theme = "auto",
@@ -66,6 +117,10 @@ return {
           --     unix = "",
           --   },
           -- },
+          diagnostics_ind.error,
+          diagnostics_ind.warn,
+          diagnostics_ind.info,
+          diagnostics_ind.hint,
           session_name,
           "filetype",
         },
