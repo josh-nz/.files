@@ -57,13 +57,7 @@ return {
       menu = {
         border = "single",
         draw = {
-          columns = function(ctx)
-            if ctx.mode == "cmdline" then
-              return { { "label", "label_description" } }
-            else
-              return { { "label", "label_description", gap = 1 }, { "kind" }, { "source_name" }  }
-            end
-          end,
+          columns = { { "label", "label_description", gap = 1 }, { "kind" }, { "source_name" }  },
           components = {
             -- label = {
             --   width = { max = function(ctx) return ctx.mode == "cmdline" and 20 or 60 end },
@@ -86,6 +80,16 @@ return {
     signature = {
       enabled = true,
       window = { border = "single" }
+    },
+    cmdline = {
+      completion = {
+        menu = {
+          auto_show = true,
+          draw = {
+            columns = { { "label", "label_description" } },
+          },
+        },
+      },
     },
     -- Default list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, due to `opts_extend`
