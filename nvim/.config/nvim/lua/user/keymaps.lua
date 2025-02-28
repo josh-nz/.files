@@ -539,15 +539,42 @@ function M.snacks()
       { "<leader>n", function() Snacks.picker.notifications() end, desc = "Notification History" },
 
 
-      { "<leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
+      -- { "<leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
       { "<leader>eo", function() Snacks.explorer.open() end, desc = "File Explorer" },
       { "<leader>er", function() Snacks.explorer.reveal() end, desc = "Reveal File in Explorer" },
+
+      { "<leader>ef", function()
+        Snacks.explorer.reveal()
+        local explorer_pickers = Snacks.picker.get({ source = "explorer" })
+        for _, e in pairs(explorer_pickers) do
+          e:focus()
+        end
+      end, desc = "Reveal File in Explorer" },
+
       { "<leader>ec", function()
           local es = Snacks.picker.get({ source = "explorer" })
           for _, e in ipairs(es) do
             e:close()
           end
       end, desc = "Close all file explorers" },
+
+      -- https://github.com/folke/snacks.nvim/discussions/1273
+      {
+        "<leader>e",
+        function()
+          local explorer_pickers = Snacks.picker.get({ source = "explorer" })
+          for _, e in pairs(explorer_pickers) do
+            if e:is_focused() then
+              e:close()
+            else
+              e:focus()
+            end
+          end
+          if #explorer_pickers == 0 then
+            Snacks.picker.explorer()
+          end
+        end,
+      },
 
 
       -- Without passing the keywords property, will find all keywords defined by the todo-comments plugin.
