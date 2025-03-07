@@ -142,6 +142,7 @@ nnoremap("<C-w><C-^>", "<C-w>v<C-^>", { desc = "Open alt buffer in vsplit" })
 nnoremap("<M-l>", "<Cmd>Lazy reload poss<CR>")
 
 
+nnoremap("<leader>by", "ggyG", { desc = "Yank buffer" })
 
 
 
