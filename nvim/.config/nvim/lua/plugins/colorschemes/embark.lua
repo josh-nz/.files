@@ -2,7 +2,7 @@
 return {
   "embark-theme/vim",
   enabled = true,
+  name = "embark",
   lazy = true,
   priority = 1000,
-  name = "embark",
 }
