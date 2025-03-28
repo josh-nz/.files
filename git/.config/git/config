@@ -2,28 +2,28 @@
 [include]
   path = ~/.gitconfig_private
 [core]
-	quotepath = false
-	editor = vim
+  quotepath = false
+  editor = vim
 [alias]
-	c = commit -m
-	co = checkout
-	s = status
-	cam = commit -am
-	l = log --no-merges
-	l1 = log --no-merges --pretty=oneline
-	b = branch
-	di = diff
-	dc = diff --cached
-	amend = commit --amend
-	aa = add --all
-	lg = log --color --graph --pretty=format:'%C(auto)%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
+  c = commit -m
+  co = checkout
+  s = status
+  cam = commit -am
+  l = log --no-merges
+  l1 = log --no-merges --pretty=oneline
+  b = branch
+  di = diff
+  dc = diff --cached
+  amend = commit --amend
+  aa = add --all
+  lg = log --color --graph --pretty=format:'%C(auto)%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
 [color]
-	ui = true
+  ui = true
 [filter "lfs"]
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
 [push]
   default = simple # Default since 2.0. Pushes the current branch to the same name on the remote.
   autoSetupRemote = true # Creates upstream branch on push if it doesn't exist, and sets local branch to track. No more `git push -u origin branch` required. Just `git push origin`.
@@ -59,12 +59,12 @@
   enabled = true # Records the before and after state of rebase conflicts.
   autoupdate = true # Automatically re-apply saved rebase conflict resolutions from the feature in the line above.
 [init]
-	defaultBranch = main
+  defaultBranch = main
 [credential]
-	helper = 
-	helper = /usr/local/share/gcm-core/git-credential-manager
+  helper = 
+  helper = /usr/local/share/gcm-core/git-credential-manager
 [credential "https://dev.azure.com"]
-	useHttpPath = true
+  useHttpPath = true
 [include]
   path = ~/.config/delta/themes/catppuccin.gitconfig
 [delta]
