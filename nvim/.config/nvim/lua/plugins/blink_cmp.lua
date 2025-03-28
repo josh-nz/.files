@@ -1,3 +1,4 @@
+-- https://github.com/saghen/blink.cmp
 -- https://cmp.saghen.dev/
 
 -- https://github.com/Saghen/blink.cmp/discussions/279
