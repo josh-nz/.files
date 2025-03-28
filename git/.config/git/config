@@ -1,0 +1,71 @@
+# https://blog.gitbutler.com/how-git-core-devs-configure-git/
+[include]
+  path = ~/.gitconfig_private
+[core]
+	quotepath = false
+	editor = vim
+[alias]
+	c = commit -m
+	co = checkout
+	s = status
+	cam = commit -am
+	l = log --no-merges
+	l1 = log --no-merges --pretty=oneline
+	b = branch
+	di = diff
+	dc = diff --cached
+	amend = commit --amend
+	aa = add --all
+	lg = log --color --graph --pretty=format:'%C(auto)%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
+[color]
+	ui = true
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[push]
+  default = simple # Default since 2.0. Pushes the current branch to the same name on the remote.
+  autoSetupRemote = true # Creates upstream branch on push if it doesn't exist, and sets local branch to track. No more `git push -u origin branch` required. Just `git push origin`.
+  followTags = true # Automatically push all local tags that aren't on the remote everything anything is pushed. Basically, it's an auto-push for tags.
+[pull]
+  rebase = true # Automatically rebases during a pull via `git pull --rebase`. Default is `git pull --merge` which creates a merge commit.
+[fetch]
+  prune = true
+  pruneTags = true
+  all = true # Fetch from all remotes by default, I think.
+[rebase]
+  # https://stackoverflow.com/a/27117335
+  autoStash = false # Automatically stashes files during a rebase and pops them after. Docs also state "use with care: the final stash application after a successful rebase might result in non-trivial conflicts.".
+  autoSquash = true # Automatically squashes fixup commits for you during a rebase.
+  updateRefs = true # Automatically updates refs in stacked branches when a dependent branch changes.
+[diff]
+  algorithm = histogram # Probably better in most cases than the default 'myers' which is from 1986.
+  colorMoved = plain # Shows moved lines in a different colour instead of the regular added/removed colour.
+  mnemonicPrefix = true # Better source location in diff output. Will replace the a/ and b/ in your diff header output with where the diff is coming from, so i/ (index), w/ (working directory) or c/ commit.
+  renames = true # Detects if a file has been renamed. Unsure how this helps for diffs.
+[mergetool]
+  keepBackup = false
+[column]
+  ui = auto # Put some things in columns so can fit more on screen. Affects branches, clean, status, tags, and maybe other things.
+[branch]
+  sort = -committerdate # Sort branches by the most recent commit date.
+[tag]
+  sort = version:refname # If using version numbers in tags, this will sort more as expected than an alpha sort.
+[help]
+  autocorrect = prompt # If you mistype a command and Git thinks it can autocorrect it, it will ask if you want to run the guessed command first.
+[rerere]
+  # These two settings are helpful if rebasing with conflicts over and over again. No real issues if these settings are enabled but this is not a common workflow.
+  enabled = true # Records the before and after state of rebase conflicts.
+  autoupdate = true # Automatically re-apply saved rebase conflict resolutions from the feature in the line above.
+[init]
+	defaultBranch = main
+[credential]
+	helper = 
+	helper = /usr/local/share/gcm-core/git-credential-manager
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+[include]
+  path = ~/.config/delta/themes/catppuccin.gitconfig
+[delta]
+  features = catppuccin-mocha
