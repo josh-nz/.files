@@ -13,10 +13,31 @@ end)
 
 function M.setup(config, pickers)
   config.mouse_bindings = {
+    -- Right click to paste.
     {
       event = { Down = { streak = 1, button = "Right" } },
       mods = "NONE",
       action = wezterm.action.PasteFrom("Clipboard"),
+    },
+
+    -- Change the default click behavior so that it only selects and copies text and doesn't open hyperlinks.
+    {
+      event = { Up = { streak = 1, button = "Left" } },
+      mods = "NONE",
+      action = wezterm.action.CompleteSelection("ClipboardAndPrimarySelection"),
+    },
+    -- Bind 'Up' event of CTRL-Click to open hyperlinks.
+    {
+      event = { Up = { streak = 1, button = 'Left' } },
+      mods = 'CTRL',
+      action = wezterm.action.OpenLinkAtMouseCursor,
+    },
+    -- Disable the 'Down' event of CTRL-Click to avoid weird program behaviors.
+    -- https://wezterm.org/config/mouse.html#gotcha-on-binding-an-up-event-only
+    {
+      event = { Down = { streak = 1, button = 'Left' } },
+      mods = 'CTRL',
+      action = wezterm.action.Nop,
     },
   }
 
