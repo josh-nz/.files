@@ -34,7 +34,7 @@ The `search` folder contains a `.ignore` file.
 
 This file is used by tools such as [ripgrep](https://github.com/BurntSushi/ripgrep) and [fd](https://github.com/sharkdp/fd).
 
-The current `.ignore` contents allows the `--hidden` argument to be passed to ripgrep so that it will show hidden files (eg those starting with a `.`) while still ignoring the contents of a `.git` folder. This is how NeoVim Telescope is currently configured, for example.
+The current `.ignore` contents allows the `--hidden` argument to be passed to ripgrep so that it will show hidden files (eg those starting with a `.`) while still ignoring the contents of a `.git` folder. This is necessary when working in folders that contain a lot of hidden files, such as this repo, otherwise many tools will fail to return any results.
 
 More specifics on the use of this file [here](https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#automatic-filtering).
 
