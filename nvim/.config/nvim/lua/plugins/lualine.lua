@@ -123,6 +123,7 @@ return {
           diagnostics_ind.hint,
           session_name,
           "filetype",
+          "lsp_status",
         },
         lualine_y = {
           "progress", -- % through file indicator.
