@@ -14,6 +14,7 @@ M.init = function()
     { label = "Inconsolata", value = "Inconsolata" },
     { label = "JetBrains", value = "JetBrains Mono" },
     { label = "Maple", value = "Maple Mono" },
+    { label = "Maple v6", value = "Maple Mono v6" },
     { label = "Meslo", value = "Meslo LG L" },
     { label = "MonoLisa", value = "MonoLisa" },
     { label = "San Francisco", value = "SF Mono" },
