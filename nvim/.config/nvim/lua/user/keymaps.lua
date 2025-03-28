@@ -590,7 +590,7 @@ function M.snacks()
       -- find
       { "<leader>,", function() Snacks.picker.buffers({ current = false }) end, desc = "Buffers" },
       { "<leader>fb", function() Snacks.picker.buffers({ current = false }) end, desc = "Buffers" },
-      { "<C-b>", function() Snacks.picker.buffers({ current = false }) end, desc = "Buffers" },
+      -- { "<C-b>", function() Snacks.picker.buffers({ current = false }) end, desc = "Buffers" },
       { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
       { "<leader>ff", function() Snacks.picker.files() end, desc = "Find Files" },
       { "<C-p>", function() Snacks.picker.files() end, desc = "Find Files" },
