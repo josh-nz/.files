@@ -1,4 +1,16 @@
 -- https://github.com/dmmulroy/kickstart.nix/blob/main/config/nvim/lua/user/keymap_utils.lua
+
+
+
+-- Added as defaults in 0.11.0:
+-- [q, ]q, [Q, ]Q, [CTRL-Q, ]CTRL-Q navigate through the quickfix list
+-- [l, ]l, [L, ]L, [CTRL-L, ]CTRL-L navigate through the location list
+-- [t, ]t, [T, ]T, [CTRL-T, ]CTRL-T navigate through the tag matchlist
+-- [a, ]a, [A, ]A navigate through the argument list
+-- [b, ]b, [B, ]B navigate through the buffer list
+-- [<Space>, ]<Space> add an empty line above and below the cursor
+
+
 local function bind(op, baked_opts)
   baked_opts = vim.tbl_extend("force", { noremap = true, silent = true }, baked_opts or {})
 
@@ -213,8 +225,9 @@ nnoremap("<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic quick
 -- The following are now default mappings in 0.10.0, and can be removed:
 nnoremap("<C-w>d", vim.diagnostic.open_float, { desc = "Show diagnostic error message" })
 nnoremap("<C-w><C-d>", vim.diagnostic.open_float, { desc = "Show diagnostic error message" })
-nnoremap("[d", vim.diagnostic.goto_prev, { desc = "Goto previous diagnostic message" })
-nnoremap("]d", vim.diagnostic.goto_next, { desc = "Goto next diagnostic message" })
+  -- These two are now a default mapping in 0.11.0 and can be removed:
+-- nnoremap("[d", vim.diagnostic.goto_prev, { desc = "Goto previous diagnostic message" })
+-- nnoremap("]d", vim.diagnostic.goto_next, { desc = "Goto next diagnostic message" })
 
 
 function M.lsp_bultins(opts)
@@ -228,8 +241,8 @@ function M.lsp_bultins(opts)
 
   -- https://www.reddit.com/r/neovim/comments/mbj8m5/how_to_setup_ctrlshiftkey_mappings_in_neovim_and/
   -- See also :h tui-input
+  -- Now mapped to C-s for insert and select, in 0.11.0, but the below is helpful for normal mode signature help.
   nnoremap("<C-S-k>", vim.lsp.buf.signature_help, { desc = "Signature help" }, opts)
-  -- nnoremap("gs", vim.lsp.buf.signature_help, opts)
 
   nnoremap("<leader>cf", function()
     vim.lsp.buf.format({ async = true })
@@ -237,22 +250,19 @@ function M.lsp_bultins(opts)
 
   -- Rename the variable under your cursor.
   --  Most Language Servers support renaming across files, etc.
-  nnoremap("<leader>rn", vim.lsp.buf.rename, { desc = "Rename" }, opts)
+  -- Now mapped to grn in 0.11.0
+  -- nnoremap("<leader>rn", vim.lsp.buf.rename, { desc = "Rename" }, opts)
 
   -- Execute a code action, usually your cursor needs to be on top of an error
   -- or a suggestion from your LSP for this to activate.
-  nnoremap("<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" }, opts)
+  -- Now mapped to gra in 0.11.0
+  -- nnoremap("<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" }, opts)
 
 
   -- WARN: This is not Goto Definition, this is Goto Declaration.
   --  For example, in C this would take you to the header.
   nnoremap("gD", vim.lsp.buf.declaration, { desc = "Goto declaration" }, opts)
 
-  -- nnoremap("<leader>wa", vim.lsp.buf.add_workspace_folder, opts)
-  -- nnoremap("<leader>wr", vim.lsp.buf.remove_workspace_folder, opts)
-  -- nnoremap("<leader>wl", function()
-  --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  -- end, opts)
 end
 
 local function lsp_keymaps(fns, forwarded_opts)
@@ -263,11 +273,11 @@ local function lsp_keymaps(fns, forwarded_opts)
   nnoremap("gd", fns.def, { desc = "Goto definition" }, forwarded_opts) -- <C-t> to jump back
 
   -- Find references for the word under your cursor.
-  nnoremap("gr", fns.refs, { desc = "Goto references" }, forwarded_opts)
+  nnoremap("grr", fns.refs, { desc = "Goto references" }, forwarded_opts)
 
   -- Jump to the implementation of the word under your cursor.
   --  Useful when your language has ways of declaring types without an actual implementation.
-  nnoremap("gI", fns.impl, { desc = "Goto implementation" }, forwarded_opts)
+  nnoremap("gri", fns.impl, { desc = "Goto implementation" }, forwarded_opts)
 
   -- Jump to the type of the word under your cursor.
   --  Useful when you"re not sure what type a variable is and you want to see
@@ -275,7 +285,8 @@ local function lsp_keymaps(fns, forwarded_opts)
   nnoremap("<leader>D", fns.type_def, { desc = "Goto type definition" }, forwarded_opts)
 
   -- Find all the symbols in your current document.
-  nnoremap("<leader>ds", fns.doc_sym, { desc = "Document symbols" }, forwarded_opts)
+  -- g0 here is analogous to the gO mappings in help buffers and :Man page buffers to show a “table of contents”
+  nnoremap("g0", fns.doc_sym, { desc = "Document symbols" }, forwarded_opts)
 
   -- Find all the symbols in your current workspace.
   nnoremap("<leader>ws", fns.ws_sym, { desc = "Workspace symbols" }, forwarded_opts)
