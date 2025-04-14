@@ -1,0 +1,1 @@
+-- https://www.reddit.com/r/neovim/comments/1jlsemj/the_gq_operator_no_longer_works_in_go_files/
