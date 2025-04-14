@@ -16,7 +16,7 @@ require("lazy").setup({
     { import = "plugins.navigation" },
   },
   ui = {
-    border = "rounded",
+    border = "single",
   },
   -- defaults = {
   --   -- lazy = true

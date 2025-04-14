@@ -8,7 +8,7 @@ return {
     title = "Bafa",
     title_pos = "center",
     relative = "editor",
-    border = "rounded",
+    border = "single",
     style = "minimal",
     diagnostics = true,
   }

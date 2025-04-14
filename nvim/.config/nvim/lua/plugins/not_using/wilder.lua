@@ -48,7 +48,7 @@ return {
         min_width = "100%",
         min_height = "25%",
         max_height = "25%",
-        border = "rounded",
+        border = "single",
         left = { " ", wilder.popupmenu_devicons() },
         right = { " ", wilder.popupmenu_scrollbar() },
       }))

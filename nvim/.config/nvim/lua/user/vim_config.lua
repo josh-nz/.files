@@ -159,13 +159,21 @@ vim.opt.diffopt = "internal,filler,closeoff,linematch:60"
 -- vim.opt.diffopt="filler,internal,closeoff,algorithm:histogram,context:5,linematch:60"
 -- vim.opt.diffopt="internal,filler,closeoff,indent-heuristic,linematch:60,algorithm:histogram"
 
+-- https://neovim.io/doc/user/options.html#'winborder'
+vim.opt.winborder = "single" -- bold, double, none, rounded, shadow, single, solid
+
 vim.diagnostic.config({
   virtual_text = {
-    prefix = "■ ", -- Could be "●", "▎", "x", "■", , 
+    prefix = "■ ", -- This square is the default, can be anything for eg "●", "▎", "x", "■", , 
   },
-  float = {
-    border = "rounded",
-  },
+
+  virtual_lines = true,
+  -- virtual_lines = { current_line = true },
+
+  -- Uses vim.opt.winborder now unless overridden
+  -- float = {
+  --   border = "rounded",
+  -- },
   signs = {
     -- text = {
     --   [vim.diagnostic.severity.ERROR] = '',

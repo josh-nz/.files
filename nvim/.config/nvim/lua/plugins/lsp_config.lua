@@ -49,7 +49,7 @@ return {
     -- Setup mason so it can manage 3rd party LSP servers
     require("mason").setup({
       ui = {
-        border = "rounded",
+        border = "single",
       },
     })
 
@@ -100,53 +100,24 @@ return {
       gleam = {},
     }
 
-    -- Specify what the border looks like
-    local border = {
-        { "┌", "FloatBorder" },
-        { "─", "FloatBorder" },
-        { "┐", "FloatBorder" },
-        { "│", "FloatBorder" },
-        { "┘", "FloatBorder" },
-        { "─", "FloatBorder" },
-        { "└", "FloatBorder" },
-        { "│", "FloatBorder" },
-    }
-
-    -- local border = "rounded"
-
-    -- Default handlers for LSP
     -- https://neovim.io/doc/user/lsp.html
-    local handlers = {
-      ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
-      ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
-    }
-
-
     local lspconfig = require("lspconfig")
-    for server_name, server_settings in pairs(servers) do
-      -- This handles overriding only values explicitly passed
-      -- by the server configuration above. Useful when disabling
-      -- certain features of an LSP (for example, turning off formatting for tsserver)
-      server_settings.handlers = vim.tbl_deep_extend("force", {}, handlers, server_settings.handlers or {})
-
+    for server_name, server_config in pairs(servers) do
       -- LSP servers and clients are able to communicate to each other what features they support.
       -- By default, Neovim doesn't support everything that is in the LSP specification.
       -- When you add blink, luasnip, etc. Neovim now has *more* capabilities.
       -- So, we create new capabilities with blink and the specific LSP configuration,
       -- and then broadcast that to the servers.
       if vim.g.cmp_plugin == "blink" then
-        server_settings.capabilities = require("blink.cmp").get_lsp_capabilities(server_settings.capabilities, true) -- true will include the nvim default capabilities.
+        server_config.capabilities = require("blink.cmp").get_lsp_capabilities(server_config.capabilities, true) -- true will include the nvim default capabilities.
       else
         local default_capabilities = vim.lsp.protocol.make_client_capabilities()
         local extended_capabilities = require("cmp_nvim_lsp").default_capabilities(default_capabilities)
-        server_settings.capabilities = vim.tbl_deep_extend("force", {}, extended_capabilities, server_settings.capabilities or {})
+        server_config.capabilities = vim.tbl_deep_extend("force", {}, extended_capabilities, server_config.capabilities or {})
       end
 
-      lspconfig[server_name].setup(server_settings)
+      lspconfig[server_name].setup(server_config)
     end
-
-    -- Adds a border to lspconfig windows, such as :LspInfo
-    require("lspconfig.ui.windows").default_options.border = "single"
 
 
 
