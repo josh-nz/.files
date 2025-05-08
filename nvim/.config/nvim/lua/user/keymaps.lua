@@ -170,8 +170,9 @@ nnoremap("<leader>by", "ggyG", { desc = "Yank buffer" })
 -- Save
 -- Assign an action `Keyboard Keys`, `Esc`
 
--- This is also this option:
+-- There is also this option:
 -- https://karabiner-elements.pqrs.org/
+
 -- inoremap("df", "<Esc>")
 -- inoremap("fd", "<Esc>")
 -- inoremap("fj", "<Esc>")
