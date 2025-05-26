@@ -56,7 +56,7 @@ return {
         },
       },
       menu = {
-        border = "single",
+        -- border = "single",
         draw = {
           columns = { { "label", "label_description", gap = 1 }, { "kind" }, { "source_name" }  },
           components = {
@@ -71,7 +71,7 @@ return {
         auto_show = true,
         auto_show_delay_ms = 0, -- default 500
         window = {
-          border = "single",
+          -- border = "single",
           max_width = 180,  -- default 80
           max_height = 50,  -- default 20
         },
@@ -80,7 +80,22 @@ return {
     },
     signature = {
       enabled = true,
-      window = { border = "single" }
+      trigger = {
+        -- These are just the default values, for me to play around with someday:
+        enabled = true,
+        show_on_keyword = false,
+        blocked_trigger_characters = {},
+        blocked_retrigger_characters = {},
+        show_on_trigger_character = true,
+        show_on_insert = false,
+        show_on_insert_on_trigger_character = true,
+        show_on_accept = false,
+        show_on_accept_on_trigger_character = true,
+      },
+      window = {
+        -- border = "single",
+        show_documentation = false,
+      },
     },
     cmdline = {
       completion = {
@@ -95,7 +110,7 @@ return {
     -- Default list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, due to `opts_extend`
     sources = {
-      default = { "lsp", "path", "snippets", "buffer" },
+      default = { "lazydev", "lsp", "path", "snippets", "buffer" },
       -- https://github.com/Saghen/blink.cmp/discussions/564
       -- default = function()
       --     local node = vim.treesitter.get_node()
@@ -114,14 +129,22 @@ return {
           -- snippets. Could probably just leave this table empty.
           -- https://github.com/Saghen/blink.cmp/discussions/1021
           fallbacks = { "snippets" },
+
         },
         path = {
           opts = {
             show_hidden_files_by_default = true,
           },
         },
+        lazydev = {
+          name = "LazyDev",
+          module = "lazydev.integrations.blink",
+          -- make lazydev completions top priority (see `:h blink.cmp`)
+          score_offset = 100,
+        },
       },
     },
   },
   opts_extend = { "sources.default" }
 }
+

@@ -21,10 +21,10 @@ return {
       },
     },
     -- Plugin and UI to automatically install LSPs to stdpath
-    -- https://github.com/williamboman/mason.nvim
-    "williamboman/mason.nvim",
-    -- https://github.com/williamboman/mason-lspconfig.nvim
-    "williamboman/mason-lspconfig.nvim",
+    -- https://github.com/mason-org/mason.nvim
+    "mason-org/mason.nvim",
+    -- https://github.com/mason-org/mason-lspconfig.nvim
+    "mason-org/mason-lspconfig.nvim",
 
     {
       -- https://github.com/hrsh7th/cmp-nvim-lsp
@@ -47,13 +47,10 @@ return {
   cmd = { "LspInfo", "LspInstall", "LspUninstall" },
   config = function()
     -- Setup mason so it can manage 3rd party LSP servers
-    require("mason").setup({
-      ui = {
-        border = "single",
-      },
-    })
+    require("mason").setup()
 
     require("mason-lspconfig").setup({
+      automatic_enable = true,
       ensure_installed = {
         "lua_ls",
         "elixirls",

@@ -12,6 +12,7 @@ return {
     -- Good videos explaining this at https://www.youtube.com/watch?v=ff0GYrK3nT0
     -- and at https://www.youtube.com/watch?v=FuYQ7M73bC0
     "nvim-treesitter/nvim-treesitter-textobjects",
+
     -- https://github.com/nvim-treesitter/nvim-treesitter-context
     -- This pins the current scope to top of file
     -- "nvim-treesitter/nvim-treesitter-context",
