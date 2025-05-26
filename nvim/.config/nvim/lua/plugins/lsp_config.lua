@@ -59,6 +59,7 @@ return {
     })
 
 
+
     -- Enable the following language servers
     -- Add any additional override configuration in the following tables. Available keys are:
     --  - cmd (table): Override the default command used to start the server
@@ -80,12 +81,16 @@ return {
         },
       },
       elixirls = {
+        cmd = { "/Users/josh/.local/share/nvim/mason/bin/elixir-ls" },
+        -- https://github.com/elixir-lsp/elixir-ls?tab=readme-ov-file#elixirls-configuration-settings
         settings = {
           elixirLS = {
             dialyzerEnabled = true,
+            incrementalDialyzer = true,
             fetchDeps = false,
             enableTestLenses = false,
             suggestSpecs = true,
+            signatureAfterComplete = true,
           },
         },
       },
