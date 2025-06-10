@@ -1,6 +1,6 @@
--- https://github.com/neovim/nvim-lspconfig
 return {
-  "neovim/nvim-lspconfig",
+  -- https://github.com/mason-org/mason-lspconfig.nvim
+  "mason-org/mason-lspconfig.nvim",
   enabled = true,
   dependencies = {
     {
@@ -20,21 +20,21 @@ return {
         },
       },
     },
+
     -- Plugin and UI to automatically install LSPs to stdpath
     -- https://github.com/mason-org/mason.nvim
-    "mason-org/mason.nvim",
-    -- https://github.com/mason-org/mason-lspconfig.nvim
-    "mason-org/mason-lspconfig.nvim",
+    {
+      "mason-org/mason.nvim",
+      opts = {},
+    },
+
+    -- https://github.com/neovim/nvim-lspconfig
+    "neovim/nvim-lspconfig",
 
     {
       -- https://github.com/hrsh7th/cmp-nvim-lsp
       "hrsh7th/cmp-nvim-lsp",
       enabled = vim.g.cmp_plugin == "nvim-cmp",
-    },
-
-    {
-      -- https://cmp.saghen.dev/
-      "saghen/blink.cmp",
     },
 
     -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
@@ -43,11 +43,7 @@ return {
     -- https://github.com/j-hui/fidget.nvim
     -- { "j-hui/fidget.nvim", opts = {} },
   },
-  event = { "BufReadPost" },
-  cmd = { "LspInfo", "LspInstall", "LspUninstall" },
   config = function()
-    -- Setup mason so it can manage 3rd party LSP servers
-    require("mason").setup()
 
     require("mason-lspconfig").setup({
       automatic_enable = true,
@@ -103,7 +99,6 @@ return {
     }
 
     -- https://neovim.io/doc/user/lsp.html
-    local lspconfig = require("lspconfig")
     for server_name, server_config in pairs(servers) do
       -- LSP servers and clients are able to communicate to each other what features they support.
       -- By default, Neovim doesn't support everything that is in the LSP specification.
@@ -118,7 +113,7 @@ return {
         server_config.capabilities = vim.tbl_deep_extend("force", {}, extended_capabilities, server_config.capabilities or {})
       end
 
-      lspconfig[server_name].setup(server_config)
+      vim.lsp.config(server_name, server_config)
     end
 
 
@@ -160,6 +155,21 @@ return {
             callback = vim.lsp.buf.clear_references,
           })
         end
+      end,
+    })
+
+
+
+
+    -- https://www.reddit.com/r/neovim/comments/1kz0a23/nvim_0112_bug_fixes_and_vimlspenable_related/
+    -- This autocommand will stop all LSPs when NeoVim exits. Apparently some LSPs, such as the Rust
+    -- analyzer, keep running for reasons. Others, like the Lua LS, are automatically killed by
+    -- NeoVim without the need for the following autocommand.
+    vim.api.nvim_create_autocmd("VimLeavePre", {
+      callback = function()
+        vim.iter(vim.lsp.get_clients()):each(function(client)
+          client:stop()
+        end)
       end,
     })
   end,
