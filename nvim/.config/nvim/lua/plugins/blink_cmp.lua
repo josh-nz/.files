@@ -21,12 +21,23 @@ return {
     -- See the full "keymap" documentation for information on defining your own keymap.
     keymap = {
       preset = "default",
+      -- Repeating default key bindings below for reference:
+      ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
+      ['<C-e>'] = { 'hide' },
+      ['<C-y>'] = { 'select_and_accept' },
+
+      ['<Up>'] = { 'select_prev', 'fallback' },
+      ['<Down>'] = { 'select_next', 'fallback' },
       ["<C-p>"] = { "select_prev", "fallback" },
       ["<C-n>"] = { "select_next", "fallback" },
+
       ["<C-b>"] = { "scroll_documentation_up", "fallback" },
       ["<C-f>"] = { "scroll_documentation_down", "fallback" },
+
       ["<Tab>"] = { "snippet_forward", "fallback" },
       ["<S-Tab>"] = { "snippet_backward", "fallback" },
+
+      -- ['<C-k>'] = { 'show_signature', 'hide_signature', 'fallback' },
 
       -- My custom keymaps
       ["<C-k>"] = { "scroll_documentation_up", "fallback" },  -- default <C-b>
@@ -77,6 +88,19 @@ return {
         },
       },
       ghost_text = { enabled = false },
+      -- treigger = {
+      --   -- When true, will show completion window after backspacing
+      --   show_on_backspace = false,
+      --
+      --   -- When true, will show completion window after backspacing into a keyword
+      --   show_on_backspace_in_keyword = false,
+      --
+      --   -- When true, will show the completion window after accepting a completion and then backspacing into a keyword
+      --   show_on_backspace_after_accept = true,
+      --
+      --   -- When true, will show the completion window after entering insert mode and backspacing into keyword
+      --   show_on_backspace_after_insert_enter = true,
+      -- },
     },
     signature = {
       enabled = true,
