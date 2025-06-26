@@ -3,10 +3,7 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   enabled = true,
-  -- Might need to be not lazy loaded, if any issues encountered with BufEnter event. Refer:
-  -- https://github.com/nvim-treesitter/nvim-treesitter/discussions/5289
-  -- lazy = false,  
-  event = "BufEnter",
+  lazy = false,
   dependencies = {
     -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
     -- Good videos explaining this at https://www.youtube.com/watch?v=ff0GYrK3nT0
