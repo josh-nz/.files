@@ -24,6 +24,9 @@ export PATH="$PATH:/Applications/WezTerm.app/Contents/MacOS"
 # Add local script path at the front.
 export PATH="$HOME/bin:$PATH"
 
+# Add PostgreSQL
+export PATH="$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin"
+
 # Set default location for stow packages.
 #export STOW_DIR="$HOME/dotfiles"
 

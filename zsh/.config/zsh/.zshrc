@@ -1,4 +1,8 @@
-# A ZSH guide is here: https://zsh.sourceforge.io/Guide/
+# ZSH files overview:
+# https://apple.stackexchange.com/questions/388622/zsh-zprofile-zshrc-zlogin-what-goes-where
+
+# A ZSH guide is here:
+# https://zsh.sourceforge.io/Guide/
 source $ZDOTDIR/exports.zsh
 
 HISTFILE=$ZDOTDIR/.zsh_history
@@ -30,7 +34,7 @@ bindkey '^P' history-search-forward   # Ctrl-p key.
 
 # Basic auto/tab complete:
 # https://thevaluable.dev/zsh-completion-guide-examples/
-autoload -U compinit
+autoload -Uz compinit
 zmodload zsh/complist
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
@@ -46,9 +50,9 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # Case insensitive com
 # zstyle ':completion:*' list-colors "${(s.:.)LSCOLORS}"  # Doesn't seem to use LSCOLORS values (folders and symlinks have swapped colours from `ls` output).
 # zstyle ':completion:*' list-colors '' # Default colours.
 compinit
-_comp_options+=(globdots)		# Include hidden files in completion.
+_comp_options+=(globdots)   # Include hidden files in completion.
 
-# homebrew init
+# Homebrew init
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 source $ZDOTDIR/prompt.zsh
