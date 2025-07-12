@@ -52,6 +52,7 @@
   "monet.nvim": { "branch": "main", "commit": "51a7603f505a31c1e1c9fa852b9c8a19e4beb670" },
   "monoglow.nvim": { "branch": "main", "commit": "95a2595f5ea3b8ee94d7030f7970746b363ad47f" },
   "monokai-pro.nvim": { "branch": "master", "commit": "31bad737610ec211de086d373c73025f39de93cb" },
+  "naysayer.nvim": { "branch": "main", "commit": "e81fe485c7395f2b1fc4b930b33ba936b010712c" },
   "neofusion.nvim": { "branch": "main", "commit": "e705c8dc7ce2f50b813479400cd9a8724425a211" },
   "neogit": { "branch": "master", "commit": "89a2df9a882868ddfa2a757e3224f57971e38329" },
   "neomodern.nvim": { "branch": "main", "commit": "6fb1f29c092996fd3cef915a92b48992e0ba71d4" },

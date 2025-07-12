@@ -34,7 +34,8 @@ vim.o.background = "dark"
 -- vim.cmd.colorscheme("eidolon")
 -- vim.cmd.colorscheme("nightfox")
 -- vim.cmd.colorscheme("retro-theme")
-vim.cmd.colorscheme("melange")
+-- vim.cmd.colorscheme("melange")
+vim.cmd.colorscheme("naysayer")
 
 -- vim.api.nvim_set_hl(0, "Comment", { italic = true })
 
