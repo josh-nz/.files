@@ -666,4 +666,13 @@ end
 
 
 
+-- Vim coach keymaps
+function M.vim_coach_keymaps()
+  return {
+    { "<leader>?", "<cmd>VimCoach<cr>", desc = "Vim Coach" },
+  }
+end
+
+
+
 return M
