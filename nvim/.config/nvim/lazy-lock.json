@@ -28,6 +28,7 @@
   "farout.nvim": { "branch": "main", "commit": "ebfcb874c3ebdb86fff8f22de4ae0944c3fa2bbc" },
   "flow.nvim": { "branch": "main", "commit": "095c54bbaf55473418dd09d61d3167891684cf85" },
   "fluoromachine.nvim": { "branch": "main", "commit": "d638ea221b4c6636978f49c1987d10ff2733c23d" },
+  "forest-night.nvim": { "branch": "main", "commit": "401a9bcc0f35ac22f974972ecb094b5be73fee2c" },
   "fzf-lua": { "branch": "main", "commit": "b3ca8af8795c28d600569c25c13fea244013a054" },
   "github-monochrome.nvim": { "branch": "master", "commit": "4932f920a46414ebaf9754f8c5d09716ffdf8335" },
   "gleam-theme-nvim": { "branch": "main", "commit": "7eb773022269038b5979ea8c8f321ef0946da356" },
