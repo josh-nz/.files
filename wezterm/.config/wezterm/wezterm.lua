@@ -43,6 +43,7 @@ config.colors = {
 
 config.hide_tab_bar_if_only_one_tab = true
 config.window_close_confirmation = "NeverPrompt"
+-- config.enable_scroll_bar = true
 
 config.window_padding = {
   left = 0,
