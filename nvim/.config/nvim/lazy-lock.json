@@ -48,6 +48,7 @@
   "melange-nvim": { "branch": "master", "commit": "c8266cfea088f4e92eac6026d61759ecc0ce6fab" },
   "mellifluous.nvim": { "branch": "main", "commit": "445ed56c3d66cc0f4a27beada09426379c12fcc4" },
   "min-theme.nvim": { "branch": "main", "commit": "29fe6f031202619e6285789f47ce37ead5165b8d" },
+  "minuet-ai.nvim": { "branch": "main", "commit": "6bc438ef345f20cc0fc593ee7c9d1d19cc2eb72a" },
   "modes.nvim": { "branch": "main", "commit": "326cff3282419b3bcc745061978c1e592cae055d" },
   "modus-themes.nvim": { "branch": "master", "commit": "61b8c10ec636f42baf6c845edb14b9ae2723711f" },
   "monet.nvim": { "branch": "main", "commit": "51a7603f505a31c1e1c9fa852b9c8a19e4beb670" },

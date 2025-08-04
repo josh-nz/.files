@@ -117,13 +117,17 @@ return {
           --     unix = "",
           --   },
           -- },
-          diagnostics_ind.error,
-          diagnostics_ind.warn,
-          diagnostics_ind.info,
-          diagnostics_ind.hint,
+          -- diagnostics_ind.error,
+          -- diagnostics_ind.warn,
+          -- diagnostics_ind.info,
+          -- diagnostics_ind.hint,
           session_name,
           "filetype",
           "lsp_status",
+          -- {
+          --   require("minuet.lualine"),
+          --   display_on_idle = true,
+          -- },
         },
         lualine_y = {
           "progress", -- % through file indicator.

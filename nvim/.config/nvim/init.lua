@@ -38,7 +38,13 @@ vim.o.background = "dark"
 -- vim.cmd.colorscheme("naysayer")
 vim.cmd.colorscheme("forest-night")
 
+
 -- vim.api.nvim_set_hl(0, "Comment", { italic = true })
+vim.api.nvim_set_hl(0, "MinuetVirtualText", { fg = "#ffc0cb", italic = true })
+
+
+
+
 
 require("user.keymaps")
 require("user.auto_commands")
