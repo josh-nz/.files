@@ -31,6 +31,8 @@ bindkey '^[[B' history-search-forward  # Down key.
 bindkey '^N' history-search-forward   # Ctrl-n key.
 bindkey '^P' history-search-backward   # Ctrl-p key.
 
+bindkey '^Y' autosuggest-accept
+
 
 # Basic auto/tab complete:
 # https://thevaluable.dev/zsh-completion-guide-examples/
