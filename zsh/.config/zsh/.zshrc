@@ -27,9 +27,9 @@ setopt HIST_VERIFY               # Don't execute immediately upon history expans
 # existing command. For example, if you type `curl ` and trigger
 # the history search, you only match results that start with `curl `.
 bindkey '^[[A' history-search-backward  # Up key.
-bindkey '^[[A' history-search-backward  # Up key.
+bindkey '^[[B' history-search-forward  # Down key.
 bindkey '^N' history-search-forward   # Ctrl-n key.
-bindkey '^P' history-search-forward   # Ctrl-p key.
+bindkey '^P' history-search-backward   # Ctrl-p key.
 
 
 # Basic auto/tab complete:
