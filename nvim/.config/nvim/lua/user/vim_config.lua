@@ -95,6 +95,12 @@ vim.opt.sidescrolloff = 5
 -- So that `` is visible in markdown files
 vim.opt.conceallevel = 0
 
+-- Defines how the jumplist works. Defaults to clean which will not reopen
+-- closed buffers. Can set to stack or empty string so closed buffers are
+-- reopened.
+-- https://www.reddit.com/r/neovim/comments/1mlvrk4/vimojumpoptions_stack_is_underrated/
+vim.opt.jumpoptions = ""
+
 -- Autoload file changes
 vim.opt.autoread = true
 
