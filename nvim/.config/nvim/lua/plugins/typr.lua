@@ -1,6 +1,7 @@
 -- https://github.com/nvzone/typr
 return {
   "nvzone/typr",
+  enabled = false,
   dependencies = "nvzone/volt",
   opts = {
     mode = "words", -- words, phrases
