@@ -1,7 +1,7 @@
 -- https://github.com/tris203/precognition.nvim
 return {
   "tris203/precognition.nvim",
-  enabled = true,
+  enabled = false,
   -- Some sort of lazy loading is needed here, otherwise the custom highlightColor
   -- doesn't take effect. Unsure exactly why, see my discussion here:
   -- https://github.com/tris203/precognition.nvim/pull/31
