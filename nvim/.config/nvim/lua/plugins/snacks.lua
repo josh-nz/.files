@@ -216,7 +216,7 @@ return {
     image = { enabled = false },
     -- Indent guides and scopes
     indent = {
-      enabled = true,
+      enabled = false,
       animate = {
         enabled = false,
       },
@@ -252,7 +252,7 @@ return {
     -- Create and manage floating windows or splits
     win = { enabled = false },
     -- Auto-show LSP references and quickly navigate between them
-    words = { enabled = true },
+    words = { enabled = false },
     -- Zen mode • distraction-free coding
     zen = { enabled = false },
     styles = {

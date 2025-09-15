@@ -172,8 +172,8 @@ return {
           },
         },
 
-        -- peek_definition_code: show textobject surrounding definition as determined 
-        -- using Neovim's built-in LSP in a floating window. Press the shortcut 
+        -- peek_definition_code: show textobject surrounding definition as determined
+        -- using Neovim's built-in LSP in a floating window. Press the shortcut
         -- twice to enter the floating window.
         lsp_interop = {
           enable = false,
