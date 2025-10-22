@@ -173,7 +173,7 @@ vim.diagnostic.config({
     prefix = "■ ", -- This square is the default, can be anything for eg "●", "▎", "x", "■", , 
   },
 
-  virtual_lines = true,
+  virtual_lines = false,
   -- virtual_lines = { current_line = true },
 
   -- Uses vim.opt.winborder now unless overridden
