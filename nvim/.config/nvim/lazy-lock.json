@@ -1,5 +1,6 @@
 {
   "Base2Tone-nvim": { "branch": "main", "commit": "c32c1d3dfdc8fb6e91cbf6078c078d6c3eaaa673" },
+  "alabaster.nvim": { "branch": "main", "commit": "481910715c46b83b9bf50bb9402d176391fb3017" },
   "arrow.nvim": { "branch": "master", "commit": "5438c977e729a29d96bd54c8da3103154e80dbd1" },
   "ash.nvim": { "branch": "main", "commit": "3223e825a96b89f867614317d0aa74342a57a62f" },
   "ashen.nvim": { "branch": "main", "commit": "638fbfe0845068cd49a7d6e0c9c1a34e91f899cd" },
