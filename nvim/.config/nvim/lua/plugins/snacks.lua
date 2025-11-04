@@ -212,6 +212,7 @@ return {
     git = { enabled = false },
     -- Open the current file, branch, commit, or repo in a browser (e.g. GitHub, GitLab, Bitbucket)
     gitbrowse = { enabled = false },
+    gh = { enabled = false },
     -- Image viewer using Kitty Graphics Protocol, supported by kitty, weztermn and ghostty
     image = { enabled = false },
     -- Indent guides and scopes
