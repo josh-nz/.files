@@ -40,6 +40,7 @@ return {
         "typescript",
         "html",
         "comment",
+        "go",
         -- Requrired for Snacks plugin:
         "regex",
       },
