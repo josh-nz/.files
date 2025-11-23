@@ -37,7 +37,9 @@ vim.o.background = "dark"
 -- vim.cmd.colorscheme("melange")
 -- vim.cmd.colorscheme("naysayer")
 -- vim.cmd.colorscheme("forest-night")
-vim.cmd.colorscheme("nanode")
+-- vim.cmd.colorscheme("nanode")
+vim.cmd.colorscheme("yukinord")
+-- vim.cmd.colorscheme("github_plus")
 
 
 -- vim.api.nvim_set_hl(0, "Comment", { italic = true })

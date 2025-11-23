@@ -32,6 +32,7 @@
   "forest-night.nvim": { "branch": "main", "commit": "d4cbe768d5044c06fbb9c0987d0518bac2699aae" },
   "fzf-lua": { "branch": "main", "commit": "b3ca8af8795c28d600569c25c13fea244013a054" },
   "github-monochrome.nvim": { "branch": "master", "commit": "d9885008f7ba2436b296a00ca9868e34c0c91dca" },
+  "github-plus.nvim": { "branch": "main", "commit": "ab9d49452932caa7788e1ecc91120470ccafafa9" },
   "gleam-theme-nvim": { "branch": "main", "commit": "7eb773022269038b5979ea8c8f321ef0946da356" },
   "gleam.vim": { "branch": "main", "commit": "7174886f4974629a4427b0c703d6ce77f39422c5" },
   "iceberg.vim": { "branch": "master", "commit": "23835d5ed696436f716cbfdb56a93a7850fe3b18" },
@@ -118,5 +119,6 @@
   "vimux": { "branch": "master", "commit": "66d53eab51aa7d2c0f55f3ee2e381b923e705e37" },
   "white-chocolate.nvim": { "branch": "master", "commit": "ac60d8b6b3e73f1a3f8570c9275cb4b645ec3822" },
   "wsnavigator.nvim": { "branch": "main", "commit": "5165b8d75dedf1b77a1c048c96e0c274eeec46e3" },
+  "yukinord.nvim": { "branch": "main", "commit": "685ff1a8e8be11b1a48eb37bbc96c7b32c4bed3a" },
   "zenbones.nvim": { "branch": "main", "commit": "a934bc07d2ed4a98b74526c172d7f043736d8935" }
 }
