@@ -60,8 +60,15 @@ vim.opt.completeopt = { "menuone", "noselect" }
 -- Enable persistent undo history
 vim.opt.undofile = true
 
--- Enable 24-bit color
+-- Enable 24-bit color. Also uses the `gui` highlight attributes
+-- in colorschemes instead of the `cterm` attributes.
 vim.opt.termguicolors = true
+
+-- This is the Neovim default except I have set a highlight group of `Cursor`
+-- for some modes. This means that if a colorscheme sets this highlight then
+-- the cursor will adapt accordingly. Without setting the highlight group the
+-- default terminal cursor color is used.
+vim.opt.guicursor = "n-v-c-sm:block-Cursor,i-ci-ve:ver25-Cursor,r-cr-o:hor20-Cursor,t:block-blinkon500-blinkoff500-TermCursor"
 
 -- Set number column width to 4 {default 4}
 -- vim.opt.numberwidth = 4
