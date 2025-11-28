@@ -4,31 +4,9 @@ return {
   enabled = true,
   dependencies = {
     "nvim-tree/nvim-web-devicons",
-    -- https://github.com/ThePrimeagen/harpoon
-    -- "ThePrimeagen/harpoon",
   },
   event = "VeryLazy",
   config = function()
-    -- Doesn't work with Harpoon 2 as API is very different.
-    -- local harpoon = require("harpoon.list")
-
-    -- local function harpoon_component()
-    --  local total_marks = harpoon.get_length()
-
-    --  if total_marks == 0 then
-    --    return ""
-    --  end
-
-    --  local current_mark = "—"
-
-    --  local mark_idx = harpoon.get_current_index()
-    --  if mark_idx ~= nil then
-    --    current_mark = tostring(mark_idx)
-    --  end
-
-    --  return string.format("󱡅 %s/%d", current_mark, total_marks)
-    -- end
-
 
     local function session_name()
       -- return ""
@@ -99,7 +77,6 @@ return {
         },
         lualine_b = {
           "branch",
-          -- harpoon_component,
           "diff",
           "diagnostics",
         },
@@ -121,13 +98,13 @@ return {
           -- diagnostics_ind.warn,
           -- diagnostics_ind.info,
           -- diagnostics_ind.hint,
-          session_name,
-          "filetype",
+          -- session_name,
+          -- "filetype",
           "lsp_status",
-          -- {
-          --   require("minuet.lualine"),
-          --   display_on_idle = true,
-          -- },
+          {
+            require("minuet.lualine"),
+            display_on_idle = true,
+          },
         },
         lualine_y = {
           "progress", -- % through file indicator.
