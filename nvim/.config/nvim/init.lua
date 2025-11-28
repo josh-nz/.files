@@ -7,6 +7,7 @@ require("user.vim_config")
 
 require("user.lazy")
 
+
 -- https://vimcolorschemes.com
 
 -- Some themes might set the background automatically,
@@ -15,9 +16,9 @@ require("user.lazy")
 -- background setting. Probably best to default to
 -- setting it explicitly.
 -- :h 'background'
-
 -- vim.o.background = "light"
 vim.o.background = "dark"
+
 -- When changing colorscheme:
 -- - Set `lazy = true,` in the current colorscheme file
 -- - Set `lazy = false,` in the new colorscheme file
@@ -29,7 +30,16 @@ vim.o.background = "dark"
 -- vim.cmd.colorscheme("nordic")
 -- vim.cmd.colorscheme("blue")
 -- vim.cmd.colorscheme("evergarden")
--- vim.cmd.colorscheme("darkvoid")
+
+vim.cmd.colorscheme("darkvoid")
+-- Darkvoid colorscheme seems to have mistakenly swapped the
+-- cursor fg and bg colors, so let's correctly swap them back.
+vim.api.nvim_set_hl(0, "Cursor", { bg = "#bdfe58" })
+-- Darkvoid doesn't set Treesitter highlight groups, so we lose
+-- the comment italics. Link the Treesitter comment group to
+-- the comment highlight defined by Darkvoid to restore this.
+vim.api.nvim_set_hl(0, "@Comment", { link = "Comment" })
+
 -- vim.cmd.colorscheme("serene")
 -- vim.cmd.colorscheme("eidolon")
 -- vim.cmd.colorscheme("nightfox")
@@ -38,15 +48,12 @@ vim.o.background = "dark"
 -- vim.cmd.colorscheme("naysayer")
 -- vim.cmd.colorscheme("forest-night")
 -- vim.cmd.colorscheme("nanode")
-vim.cmd.colorscheme("yukinord")
+-- vim.cmd.colorscheme("yukinord")
 -- vim.cmd.colorscheme("github_plus")
 
 
 -- vim.api.nvim_set_hl(0, "Comment", { italic = true })
 vim.api.nvim_set_hl(0, "MinuetVirtualText", { fg = "#ffc0cb", italic = true })
-
-
-
 
 
 require("user.keymaps")
