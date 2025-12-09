@@ -18,6 +18,10 @@ local pickers = {
 pickers.fonts:select(config, "MonoLisa")
 config.font_size = 13.0
 
+-- pickers.fonts:select(config, "CascadiaCode")
+-- config.font_size = 13.0
+
+
 -- https://github.com/wez/wezterm/issues/3774
 -- config.front_end = 'OpenGL'
 -- config.front_end = 'WebGPU'
@@ -27,18 +31,20 @@ config.font_size = 13.0
 -- config.freetype_render_target = 'HorizontalLcd'
 -- config.font = wezterm.font("MonoLisa", { weight = "Medium" })
 
--- fonts:select(config, "CascadiaCode")
--- config.font_size = 13.0
 
 pickers.colors:select(config, "Catppuccin Mocha")
 pickers.inactive_panes:select(config, "Slightly dimmed")
 
 
-config.colors = {
-  -- split = "#777bdc",
-  cursor_bg = "red",
-  cursor_fg = "white",
-}
+config.force_reverse_video_cursor = true
+-- config.colors = {
+--   -- split = "#777bdc",
+--   cursor_bg = "red",
+--   cursor_fg = "white",
+--   -- cursor_fg = "black",
+-- }
+
+config.term = "wezterm"
 
 
 config.hide_tab_bar_if_only_one_tab = true
