@@ -113,6 +113,7 @@
   "vim-coach.nvim": { "branch": "master", "commit": "ed31e7b9450691199288180a922d8166ae11a0b9" },
   "vim-colors-pencil": { "branch": "master", "commit": "1101118fa3e3038568541e9a67511513aac5d19b" },
   "vim-colors-plain": { "branch": "master", "commit": "908ed31ad398c18b47a3f4f71c97313754484ff8" },
+  "vim-habamax": { "branch": "master", "commit": "4d4192f17a15905ef2b0eca3c4bb5c93454cc6a8" },
   "vim-peekaboo": { "branch": "master", "commit": "2a8a3187ba6b15201b2563a3f0331fcdf49da36c" },
   "vim-phoenix": { "branch": "master", "commit": "c1b429574c4405192227bf341048d645c7692dcb" },
   "vim-test": { "branch": "master", "commit": "2c264d2a5dddb3a7ec927e4359a2b619a8c13a8c" },
