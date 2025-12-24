@@ -35,6 +35,7 @@
   "github-plus.nvim": { "branch": "main", "commit": "ab9d49452932caa7788e1ecc91120470ccafafa9" },
   "gleam-theme-nvim": { "branch": "main", "commit": "7eb773022269038b5979ea8c8f321ef0946da356" },
   "gleam.vim": { "branch": "main", "commit": "7174886f4974629a4427b0c703d6ce77f39422c5" },
+  "gruvbox-minimal.nvim": { "branch": "main", "commit": "fd739883d8311278ebc980c9bbfc80d6f0c74c40" },
   "iceberg.vim": { "branch": "master", "commit": "23835d5ed696436f716cbfdb56a93a7850fe3b18" },
   "jellybeans.nvim": { "branch": "main", "commit": "28b80886b54396b13a2a85edf608926333e842b9" },
   "kanagawa.nvim": { "branch": "master", "commit": "aef7f5cec0a40dbe7f3304214850c472e2264b10" },
