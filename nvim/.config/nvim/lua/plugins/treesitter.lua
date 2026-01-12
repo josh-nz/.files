@@ -17,6 +17,13 @@ return {
   branch = "main",
   build = ":TSUpdate",
   init = function()
+
+    -- https://github.com/MeanderingProgrammer/treesitter-modules.nvim
+    -- The above plugin replacates a lot of what Treesitter used to provide
+    -- before it removed these functions in favour of just being a basic API.
+    -- Most of the above plugin is replicated below except for incremental
+    -- selection.
+
     local ensure_installed = {
       -- These parsers are bundled with NeoVim. We must install them via Treesitter
       -- I don't think we need to keep them in sync any more. Refer to :checkhealth
@@ -43,6 +50,7 @@ return {
       "typescript",
     }
 
+    -- Installs asyncronously, no-op if already instealled.
     require("nvim-treesitter").install(ensure_installed)
 
     local filetypes = {}
@@ -61,16 +69,22 @@ return {
       group = vim.api.nvim_create_augroup("start_treesitter", { clear = true }),
       pattern = filetypes,
       callback = function(ev)
-        vim.treesitter.start(ev.buf)
 
-        local filetype = vim.bo[ev.buf].filetype
+        -- local filetype = vim.bo[ev.buf].filetype
+        local filetype = ev.match
         local lang = vim.treesitter.language.get_lang(filetype)
+        -- if not lang or not vim.treesitter.language.add(lang) then return end
         if not lang then return end
 
+        -- Start treesitter syntax highlighting.
+        vim.treesitter.start(ev.buf)
+
+        -- Enable treesitter indenting.
         if vim.treesitter.query.get(lang, "indents") then
           vim.opt_local.indentexpr = "v:lua.require('nvim-treesitter').indentexpr()"
         end
 
+        -- Enable treesitter folding.
         if vim.treesitter.query.get(lang, "folds") then
           vim.opt_local.foldmethod = "expr"
           vim.opt_local.foldexpr = "v:lua.vim.treesitter.foldexpr()"
