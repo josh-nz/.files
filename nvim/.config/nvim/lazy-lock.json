@@ -39,6 +39,7 @@
   "iceberg.vim": { "branch": "master", "commit": "23835d5ed696436f716cbfdb56a93a7850fe3b18" },
   "jellybeans.nvim": { "branch": "main", "commit": "28b80886b54396b13a2a85edf608926333e842b9" },
   "kanagawa.nvim": { "branch": "master", "commit": "aef7f5cec0a40dbe7f3304214850c472e2264b10" },
+  "koda.nvim": { "branch": "main", "commit": "a6e51936a18fb37ff84ad239e4aa7cdd1c2576db" },
   "lackluster.nvim": { "branch": "main", "commit": "70dd682e564784893b984deb51dd5ddd263c8cc7" },
   "lazy.nvim": { "branch": "main", "commit": "202d8e92b3a74ac88eb3a7f1e40fb59b4c2a6535" },
   "lazydev.nvim": { "branch": "main", "commit": "371cd7434cbf95606f1969c2c744da31b77fcfa6" },
@@ -103,6 +104,7 @@
   "snipe.nvim": { "branch": "main", "commit": "0d0a482ac713370196e4fc0025d5aaac5030104d" },
   "sonokai": { "branch": "master", "commit": "48c809c887ce7b7828f7ea27408fc2ef2179efb5" },
   "techbase.nvim": { "branch": "main", "commit": "e509f0a9b84e2ee2c32133827219f022150226fa" },
+  "teide.nvim": { "branch": "main", "commit": "95041d1d78e786bd88be64bca3e1771f7b6236df" },
   "telescope.nvim": { "branch": "0.1.x", "commit": "a0bbec21143c7bc5f8bb02e0005fa0b982edc026" },
   "textangle.nvim": { "branch": "main", "commit": "7d67b5cdccf5a4251f0f44b87d8b8c2acc52e29d" },
   "todo-comments.nvim": { "branch": "main", "commit": "411503d3bedeff88484de572f2509c248e499b38" },
@@ -120,6 +122,7 @@
   "vim-test": { "branch": "master", "commit": "2c264d2a5dddb3a7ec927e4359a2b619a8c13a8c" },
   "vimux": { "branch": "master", "commit": "66d53eab51aa7d2c0f55f3ee2e381b923e705e37" },
   "white-chocolate.nvim": { "branch": "master", "commit": "ac60d8b6b3e73f1a3f8570c9275cb4b645ec3822" },
+  "wisteria.nvim": { "branch": "main", "commit": "9d2ff53f31b8a17de82531ea2376e258ad500f4d" },
   "wsnavigator.nvim": { "branch": "main", "commit": "5165b8d75dedf1b77a1c048c96e0c274eeec46e3" },
   "yukinord.nvim": { "branch": "main", "commit": "685ff1a8e8be11b1a48eb37bbc96c7b32c4bed3a" },
   "zenbones.nvim": { "branch": "main", "commit": "a934bc07d2ed4a98b74526c172d7f043736d8935" }
