@@ -6,6 +6,7 @@
   "ashen.nvim": { "branch": "main", "commit": "bfb04bd50b69d863469b2deb9fb361cf0d945ba7" },
   "bafa.nvim": { "branch": "main", "commit": "ed0bb85b48d60ad64f6b87e9df6ff2cea1f9f184" },
   "balance-theme.nvim": { "branch": "master", "commit": "fd4edfc4767166d862b82814dcd8e231fb2b03c5" },
+  "bebop.nvim": { "branch": "main", "commit": "997b2d40a728a17d225026f9580cb5e489e82f4f" },
   "black-metal-theme-neovim": { "branch": "main", "commit": "6d0207871387077f40d5396ab1ae90520e688d36" },
   "blink.cmp": { "branch": "main", "commit": "327fff91fe6af358e990be7be1ec8b78037d2138" },
   "borrowed.nvim": { "branch": "main", "commit": "f144e22051180448cf30c42fca622c18233d2401" },
