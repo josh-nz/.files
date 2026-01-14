@@ -69,3 +69,5 @@
   path = ~/.config/delta/themes/catppuccin.gitconfig
 [delta]
   features = catppuccin-mocha
+[credential "https://codeberg.org"]
+	provider = generic
