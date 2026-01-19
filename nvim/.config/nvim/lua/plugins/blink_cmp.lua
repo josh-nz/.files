@@ -3,6 +3,8 @@
 
 -- https://github.com/Saghen/blink.cmp/discussions/279
 
+-- Monkey patch to remove duplicate items:
+-- https://github.com/saghen/blink.cmp/issues/1222#issuecomment-2891921393
 
 
 -- Can use this to test completion highlighting. Delete and retype `bc`.
