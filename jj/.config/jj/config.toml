@@ -1,0 +1,20 @@
+[ui]
+diff-editor = ":builtin"
+default-command = ["log", "-r", "stack()", "-n", "10"]
+
+[working-copy]
+eol-conversion = "none"
+
+[revset-aliases]
+HEAD = "@"
+"stack()" = "stack(@)"
+"stack(x)" = "stack(x, 2)"
+"stack(x, n)" = "ancestors(reachable(x, mutable()), n)"
+"private()" = "description(glob:'TODO:*') | description(glob:'wip:*') | description(glob:'private:*')"
+
+# [templates]
+# git_push_bookmark = '"josh/push-" ++ change_id.short()'
+
+[git]
+# Prevent pushing work in progress or anything explicitly labeled "private".
+private-commits = "private()"

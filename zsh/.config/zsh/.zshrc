@@ -83,6 +83,13 @@ eval "$(mise activate zsh)"
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 
+# https://docs.jj-vcs.dev/latest/install-and-setup/#zsh
+# Set up jj autocompletion
+source <(jj util completion zsh)
+
+
+
 # GNU cli tools:
 # https://gist.github.com/skyzyx/3438280b18e4f7c490db8a2a2ca0b9da
 # https://github.com/pkill37/linuxify
+
