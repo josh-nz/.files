@@ -1,7 +1,7 @@
  -- https://github.com/milanglacier/minuet-ai.nvim
 return {
   "milanglacier/minuet-ai.nvim",
-  enabled = true,
+  enabled = false,
   dependencies = {
     "nvim-lua/plenary.nvim",
   },

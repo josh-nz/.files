@@ -101,10 +101,10 @@ return {
           -- session_name,
           -- "filetype",
           "lsp_status",
-          {
-            require("minuet.lualine"),
-            display_on_idle = true,
-          },
+          -- {
+          --   require("minuet.lualine"),
+          --   display_on_idle = true,
+          -- },
         },
         lualine_y = {
           "progress", -- % through file indicator.
