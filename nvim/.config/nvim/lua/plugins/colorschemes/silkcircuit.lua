@@ -2,6 +2,6 @@
 return {
   "hyperb1iss/silkcircuit-nvim",
   enabled = true,
-  lazy = false,
+  lazy = true,
   priority = 1000,
 }

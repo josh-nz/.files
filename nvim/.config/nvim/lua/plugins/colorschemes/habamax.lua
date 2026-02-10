@@ -2,6 +2,6 @@
 return {
   "habamax/vim-habamax",
   enabled = true,
-  lazy = false,
+  lazy = true,
   priority = 1000,
 }
