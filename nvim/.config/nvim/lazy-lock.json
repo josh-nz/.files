@@ -10,6 +10,7 @@
   "bebop.nvim": { "branch": "main", "commit": "997b2d40a728a17d225026f9580cb5e489e82f4f" },
   "black-metal-theme-neovim": { "branch": "main", "commit": "6d0207871387077f40d5396ab1ae90520e688d36" },
   "blink.cmp": { "branch": "main", "commit": "327fff91fe6af358e990be7be1ec8b78037d2138" },
+  "boo-berry.nvim": { "branch": "main", "commit": "d262f8009e86e9c3a601d0b4e5d3e830cc0d224d" },
   "borrowed.nvim": { "branch": "main", "commit": "f144e22051180448cf30c42fca622c18233d2401" },
   "catppuccin": { "branch": "main", "commit": "234fc048de931a0e42ebcad675bf6559d75e23df" },
   "cmp-nvim-lsp": { "branch": "main", "commit": "a8912b88ce488f411177fc8aed358b04dc246d7b" },
