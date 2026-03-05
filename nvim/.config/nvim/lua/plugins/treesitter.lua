@@ -81,13 +81,13 @@ return {
 
         -- Enable treesitter indenting.
         if vim.treesitter.query.get(lang, "indents") then
-          vim.opt_local.indentexpr = "v:lua.require('nvim-treesitter').indentexpr()"
+          vim.bo.indentexpr = "v:lua.require('nvim-treesitter').indentexpr()"
         end
 
         -- Enable treesitter folding.
         if vim.treesitter.query.get(lang, "folds") then
-          vim.opt_local.foldmethod = "expr"
-          vim.opt_local.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+          vim.wo.foldmethod = "expr"
+          vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
         end
       end,
     })

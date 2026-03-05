@@ -11,4 +11,4 @@ return {
 -- blankline.nvim replaced with the following:
 
 -- vim.o.list = true
--- vim.opt.listchars = {leadmultispace = "│ "}
+-- vim.o.listchars = vim.o.listchars .. ",leadmultispace:│ "

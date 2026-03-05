@@ -10,7 +10,6 @@ return {
   },
   init = function()
     -- Requires that the fzf binary is already installed using Homebrew.
-    -- vim.cmd("set rtp+=/usr/local/opt/fzf")
-    vim.opt.rtp:append("/usr/local/opt/fzf")
+    vim.o.rtp = vim.o.rtp .. "," .. "/usr/local/opt/fzf"
   end,
 }
