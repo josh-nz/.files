@@ -22,6 +22,7 @@
   "darkrose.nvim": { "branch": "main", "commit": "7d3ffd24460dafdcdbd50322442b8f4d1152c6f6" },
   "darkvoid.nvim": { "branch": "master", "commit": "45be993a5617e05811b6b293c05e6aded7003cc9" },
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
+  "doric-themes.nvim": { "branch": "main", "commit": "cff89b1b40f599fc0b151181c96fa31fdc82b993" },
   "edge": { "branch": "master", "commit": "dfb013e84e8b8302d99ed75e664ccb2a05925ad3" },
   "ef-themes.nvim": { "branch": "main", "commit": "5deb08237d1e243532dfdb5b24c3658c31d255aa" },
   "eidolon.nvim": { "branch": "main", "commit": "5f28387b92b5fb665a8650c9c233bdbbdb4e1b45" },
