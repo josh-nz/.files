@@ -83,6 +83,7 @@
   "nvim-rusticated": { "branch": "master", "commit": "93e35f67b11857736c9af8b353867daf7e4a3abc" },
   "nvim-web-devicons": { "branch": "master", "commit": "8dcb311b0c92d460fac00eac706abd43d94d68af" },
   "nvim-treesitter": { "branch": "main", "commit": "ec034813775d7e2974c7551c8c34499a828963f8" },
+  "oasis.nvim": { "branch": "main", "commit": "fe388c81d31f4ae974b93619608e4e2a1e9b10a8" },
   "oh-lucy.nvim": { "branch": "main", "commit": "2d94e9b03efe4c50f4653b6f2b7b200d970fe1aa" },
   "oil.nvim": { "branch": "master", "commit": "7e1cd7703ff2924d7038476dcbc04b950203b902" },
   "okcolors.nvim": { "branch": "main", "commit": "fc3adc66edf6d146e28122e3872f1b402747f94c" },
