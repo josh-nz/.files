@@ -15,7 +15,7 @@ return {
   enabled = vim.g.cmp_plugin == "blink",
   -- optional: provides snippets for the snippet source
   -- dependencies = "rafamadriz/friendly-snippets",
-  version = "*",
+  version = "1.*",
   opts = {
     -- "default" for mappings similar to built-in completion
     -- "super-tab" for mappings similar to vscode (tab to accept, arrow keys to navigate)
