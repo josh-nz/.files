@@ -11,6 +11,15 @@
 -- [<Space>, ]<Space> add an empty line above and below the cursor
 
 
+-- Added as defaults in 0,12.0:
+-- Incremental selection mappings (treesitter, falling back to LSP):
+-- https://github.com/neovim/neovim/blob/master/runtime/lua/vim/_core/defaults.lua#L452-L478
+-- an select parent node, eg van to select from cursor to parent node
+-- in select child node, eg vin to select from cursor to child node
+-- ]n select previous node, eg v]n to select from cursor to previous node
+-- [n select next node, eg v[n to select from cursor to next node
+
+
 local function bind(op, baked_opts)
   baked_opts = vim.tbl_extend("force", { noremap = true, silent = true }, baked_opts or {})
 
@@ -30,6 +39,7 @@ local map = bind("")
 local nmap = bind("n", { noremap = false })
 local nnoremap = bind("n")
 local vnoremap = bind("v")
+local cnoremapnosilent = bind("c", { silent = false })
 local xnoremap = bind("x")
 local inoremap = bind("i")
 local tnoremap = bind("t")
@@ -193,7 +203,16 @@ vnoremap("<Space>", "<nop>")
 
 
 
+-- Command mode --
 
+-- Emacs bindings when in command mode
+cnoremapnosilent("<C-a>", "<home>")
+cnoremapnosilent("<C-e>", "<end>")
+-- C-f clashes with the built-in fuction of opening command mode history in a window, but we remap this to C-o.
+cnoremapnosilent("<C-f>", "<right>")
+cnoremapnosilent("<C-b>", "<left>")
+cnoremapnosilent("<C-d>", "<del>")
+cnoremapnosilent("<C-o>", "<C-f>")
 
 
 
@@ -264,6 +283,7 @@ function M.lsp_bultins(opts)
   --  For example, in C this would take you to the header.
   nnoremap("gD", vim.lsp.buf.declaration, { desc = "Goto declaration" }, opts)
 
+  nnoremap("grx", vim.lsp.codelens.run, { desc = "Run codelens" }, opts)
 end
 
 local function lsp_keymaps(fns, forwarded_opts)
