@@ -166,6 +166,8 @@ nnoremap("<M-l>", "<Cmd>Lazy reload poss<CR>")
 
 nnoremap("<leader>by", "ggyG", { desc = "Yank buffer" })
 
+nnoremap("<leader>u", function() require("undotree").open() end)
+
 
 
 -- Insert --

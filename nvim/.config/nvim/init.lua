@@ -7,6 +7,7 @@ require("user.vim_config")
 
 require("user.lazy")
 
+vim.cmd("packadd nvim.undotree")
 
 -- https://vimcolorschemes.com
 
