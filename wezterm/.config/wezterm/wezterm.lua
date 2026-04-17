@@ -66,7 +66,11 @@ config.window_padding = {
 -- This allows Nvim to distinguish between C-k and C-S-k for example.
 -- https://wezfurlong.org/wezterm/config/key-encoding.html
 -- config.enable_csi_u_key_encoding = true  -- Not recommended according to docs.
-config.enable_kitty_keyboard = true
+--
+-- Causes issues with Nvim 0.12.0+ since the WezTerm implementation of the
+-- kitty keyboard protocol is incomplete. Refer:
+-- https://github.com/neovim/neovim/discussions/39148
+config.enable_kitty_keyboard = false
 
 
 -- Setup key and mouse bindings.
