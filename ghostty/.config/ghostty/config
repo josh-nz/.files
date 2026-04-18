@@ -1,12 +1,67 @@
-font-family=Monolisa
-font-feature=ss02
-font-feature=zero
-font-size=13
-theme=catppuccin mocha
-cursor-color=red
-cursor-style=block
-shell-integration-features=no-cursor
-cursor-style-blink=false
-cursor-text=white
-clipboard-read=allow
-copy-on-select=true
+font-family = Monolisa
+# ss02 is the script variant.
+# Zero is slashed zero instead of dotted zero.
+# Ghostty appears to behave like WezTerm where ligatures will not be
+# displayed if their colour and style etc are not consistent for all
+# characters in the ligature. This can happen for example with syntax
+# highlighting or terminal plugins. Other terminals, such as Kitty,
+# don't seem to have this limit, but instead the ligature is rendered
+# as a mixture of the different colours, styles, etc.
+# https://github.com/ghostty-org/ghostty/discussions/12324
+#
+# Test ligatures:
+# != <!--
+#
+# Disable ligatures with `-liga` and `-calt` for whitspace ligatures.
+font-feature = ss02, zero
+font-size = 13
+
+theme = catppuccin mocha
+unfocused-split-opacity = 0.7
+
+#cursor-color = red
+#cursor-text = white
+cursor-style = block
+cursor-style-blink = false
+mouse-hide-while-typing = true
+right-click-action = paste
+
+# Right option can still be used for unicode input.
+macos-option-as-alt = left
+macos-auto-secure-input = true
+macos-secure-input-indication = true
+
+clipboard-paste-protection = true
+copy-on-select = clipboard
+
+maximize = true
+window-padding-balance = true
+
+window-inherit-working-directory = true
+tab-inherit-working-directory = true
+split-inherit-working-directory = true
+
+# Use block for cursor, not a bar.
+shell-integration-features = no-cursor
+
+# Bell feature system on macOS will play a beep sound.
+bell-features = no-title, system
+
+# Alternative icon images: https://github.com/ghostty-org/ghostty/pull/5696
+# This feature requires the Ghostty Dock Tile to be enbaled under
+# System Settings -> General -> Dock Tiles i icon.
+macos-icon = chalkboard
+
+# Default is `transparent`.
+macos-titlebar-style = native
+# The above setting needs to be set to `native` for this to take effect.
+window-theme = system
+
+# I have disabled app save state globally (System Settings -> Desktop and Dock
+# -> Windows - Close windows when quitting an app is enabled), but force it on
+# for Ghostty.
+# window-save-state = always
+
+# Prevent Shortcuts app from controlling Ghostty (can be a security risk).
+macos-shortcuts = deny
+macos-applescript = false
