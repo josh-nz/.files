@@ -82,7 +82,7 @@ function M.setup(config, pickers)
     table.insert(keymaps, v)
   end
 
-  require("wezterm_nvim_move").nav_keys(keymaps)
+  -- require("wezterm_nvim_move").nav_keys(keymaps)
 
   config.keys = keymaps
 end

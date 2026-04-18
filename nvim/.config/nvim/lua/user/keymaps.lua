@@ -109,6 +109,7 @@ nnoremap("#", "#zz")
 -- nnoremap("<M-p>", "<Cmd>wincmd p<CR>", { desc = "Move focus to the previous window" })
 
 -- WezTerm handles these keymaps, passing them to wezterm_nvim_move.lua when necessary.
+-- wezterm_nvim_move.lua is currently not called (via init.lua) as I've shifted to Ghostty.
 -- nnoremap("<C-h>", "<Cmd>wincmd h<CR>", { desc = "Move focus to the left window" })
 -- nnoremap("<C-j>", "<Cmd>wincmd j<CR>", { desc = "Move focus to the lower window" })
 -- nnoremap("<C-k>", "<Cmd>wincmd k<CR>", { desc = "Move focus to the upper window" })

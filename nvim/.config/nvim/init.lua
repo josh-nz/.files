@@ -61,7 +61,7 @@ require("user.keymaps")
 require("user.auto_commands")
 require("user.user_commands")
 
-require("user.wezterm_nvim_move")
+-- require("user.wezterm_nvim_move")
 
 -- Hide all semantic highlights until upstream issues are resolved.
 -- https://github.com/catppuccin/nvim/issues/480
