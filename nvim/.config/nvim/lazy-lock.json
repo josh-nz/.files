@@ -12,6 +12,7 @@
   "blink.cmp": { "branch": "main", "commit": "78336bc89ee5365633bcf754d93df01678b5c08f" },
   "boo-berry.nvim": { "branch": "main", "commit": "d3ae631b9176e99ea7b758761f3c20fbad82437e" },
   "borrowed.nvim": { "branch": "main", "commit": "f144e22051180448cf30c42fca622c18233d2401" },
+  "carvion.nvim": { "branch": "master", "commit": "1515a25d4422bbdd388c40a67e36f611bb5aa8de" },
   "catppuccin": { "branch": "main", "commit": "16408d203973da7e43fab87c6f9d3bf7fa98fa8b" },
   "cmp-nvim-lsp": { "branch": "main", "commit": "a8912b88ce488f411177fc8aed358b04dc246d7b" },
   "codescope.nvim": { "branch": "master", "commit": "2ad95002124ec0259e50ac8615d8f6ddbae79954" },
