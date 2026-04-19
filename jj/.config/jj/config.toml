@@ -1,6 +1,7 @@
 [ui]
 diff-editor = ":builtin"
 default-command = ["log", "-r", "stack()", "-n", "10"]
+log-word-wrap = true
 
 [working-copy]
 eol-conversion = "none"
@@ -12,9 +13,44 @@ HEAD = "@"
 "stack(x, n)" = "ancestors(reachable(x, mutable()), n)"
 "private()" = "description(glob:'TODO:*') | description(glob:'wip:*') | description(glob:'private:*')"
 
-# [templates]
-# git_push_bookmark = '"josh/push-" ++ change_id.short()'
-
 [git]
 # Prevent pushing work in progress or anything explicitly labeled "private".
 private-commits = "private()"
+
+[templates]
+# https://github.com/jj-vcs/jj/blob/main/cli/src/config/templates.toml
+
+# git_push_bookmark = '"josh/push-" ++ change_id.short()'
+log = "custom_log_oneline"
+
+[template-aliases]
+
+custom_log_oneline = 'custom_log_oneline(self)'
+'custom_log_oneline(commit)' = '''
+if(commit.root(),
+  format_root_commit(commit),
+  label(
+    separate(" ",
+      if(commit.current_working_copy(), "working_copy"),
+      if(commit.immutable(), "immutable", "mutable"),
+      if(commit.conflict(), "conflicted"),
+    ),
+    separate(" ",
+      format_short_change_id_with_change_offset(commit),
+      if(commit.empty(), empty_commit_marker),
+      if(commit.description(),
+        commit.description().first_line(),
+        label(if(commit.empty(), "empty"), description_placeholder),
+      ),
+      commit.bookmarks(),
+      commit.tags(),
+      commit.working_copies(),
+      format_short_commit_id(commit.commit_id()),
+      format_commit_labels(commit),
+      if(config("ui.show-cryptographic-signatures").as_boolean(),
+        format_short_cryptographic_signature(commit.signature())
+      ),
+    ) ++ "\n",
+  )
+)
+'''
