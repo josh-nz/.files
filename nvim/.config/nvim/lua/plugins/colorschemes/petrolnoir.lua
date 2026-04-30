@@ -1,7 +1,7 @@
 -- https://github.com/connormxfadden/petrolnoir.nvim
 return {
   "connormxfadden/petrolnoir.nvim",
-  enabled = true,
+  enabled = false,
   lazy = true,
   priority = 1000,
 }

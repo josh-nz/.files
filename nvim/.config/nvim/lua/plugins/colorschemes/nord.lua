@@ -1,7 +1,7 @@
 -- https://github.com/shaunsingh/nord.nvim
 return {
   "shaunsingh/nord.nvim",
-  enabled = true,
+  enabled = false,
   lazy = true,
   priority = 1000,
 }

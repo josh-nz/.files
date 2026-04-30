@@ -1,7 +1,7 @@
 -- https://github.com/vinitkumar/oscura-vim
 return {
   "vinitkumar/oscura-vim",
-  enabled = true,
+  enabled = false,
   lazy = true,
   priority = 1000,
 }

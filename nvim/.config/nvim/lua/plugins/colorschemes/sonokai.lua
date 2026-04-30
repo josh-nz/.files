@@ -1,7 +1,7 @@
 -- https://github.com/sainnhe/sonokai
 return {
   "sainnhe/sonokai",
-  enabled = true,
+  enabled = false,
   lazy = true,
   priority = 1000,
 }

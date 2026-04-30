@@ -1,7 +1,7 @@
 -- https://github.com/wolandark/Pool-Vim
 return {
   "wolandark/pool-vim",
-  enabled = true,
+  enabled = false,
   lazy = true,
 	priority = 1000,
 }

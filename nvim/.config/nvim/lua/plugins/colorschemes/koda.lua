@@ -1,7 +1,7 @@
 -- https://github.com/oskarnurm/koda.nvim
 return {
   "oskarnurm/koda.nvim",
-  enabled = true,
+  enabled = false,
   lazy = true,
   priority = 1000,
   opts = {

@@ -1,7 +1,7 @@
 -- https://github.com/comfysage/evergarden
 return {
   "comfysage/evergarden",
-  enabled = true,
+  enabled = false,
   lazy = true,
   priority = 1000,
 }

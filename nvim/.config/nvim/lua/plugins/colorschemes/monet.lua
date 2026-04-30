@@ -1,7 +1,7 @@
 -- https://github.com/fynnfluegge/monet.nvim
 return {
   "fynnfluegge/monet.nvim",
-  enabled = true,
+  enabled = false,
   lazy = true,
   priority = 1000,
 }

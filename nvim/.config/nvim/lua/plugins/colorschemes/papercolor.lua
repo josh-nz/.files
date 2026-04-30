@@ -1,7 +1,7 @@
 -- https://github.com/NLKNguyen/papercolor-theme
 return {
   "NLKNguyen/papercolor-theme",
-  enabled = true,
+  enabled = false,
   lazy = true,
   priority = 1000,
 }

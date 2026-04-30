@@ -1,7 +1,7 @@
 -- https://github.com/metalelf0/kintsugi-nvim
 return {
   "metalelf0/kintsugi-nvim",
-  enabled = true,
+  enabled = false,
   lazy = true,
 	priority = 1000,
   opts = {

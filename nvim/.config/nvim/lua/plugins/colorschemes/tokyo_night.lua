@@ -1,7 +1,7 @@
 -- https://github.com/folke/tokyonight.nvim
 return {
   "folke/tokyonight.nvim",
-  enabled = true,
+  enabled = false,
   lazy = true,
   priority = 1000,
   opts = {},

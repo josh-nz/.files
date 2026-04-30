@@ -1,7 +1,7 @@
 -- https://github.com/mrpbennett/boo-berry.nvim
 return {
   "mrpbennett/boo-berry.nvim",
-  enabled = true,
+  enabled = false,
   lazy = true,
   priority = 1000,
   opts = {},

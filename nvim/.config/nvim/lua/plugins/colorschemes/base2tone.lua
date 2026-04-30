@@ -1,7 +1,7 @@
 -- https://github.com/atelierbram/Base2Tone-nvim
 return {
   "atelierbram/Base2Tone-nvim",
-  enabled = true,
+  enabled = false,
   lazy = true,
   priority = 1000,
 }

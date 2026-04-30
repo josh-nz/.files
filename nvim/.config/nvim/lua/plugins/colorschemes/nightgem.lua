@@ -1,7 +1,7 @@
 -- https://github.com/alexkotusenko/nightgem.nvim
 return {
   "alexkotusenko/nightgem.nvim",
-  enabled = true,
+  enabled = false,
   lazy = true,
   priority = 1000,
 }

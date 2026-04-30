@@ -2,7 +2,7 @@
 -- Alternative one to try here: https://github.com/jameswalls/naysayer.nvim
 return {
   "RostislavArts/naysayer.nvim",
-  enabled = true,
+  enabled = false,
   lazy = true,
   priority = 1000,
 }

@@ -1,7 +1,7 @@
 -- https://github.com/metalelf0/black-metal-theme-neovim
 return {
   "metalelf0/black-metal-theme-neovim",
-  enabled = true,
+  enabled = false,
   lazy = true,
   priority = 1000,
   config = function()

@@ -1,7 +1,7 @@
 -- https://github.com/aliqyan-21/darkvoid.nvim
 return {
   "aliqyan-21/darkvoid.nvim",
-  enabled = true,
+  enabled = false,
   lazy = false,
   priority = 1000,
   opts = {

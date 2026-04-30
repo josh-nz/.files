@@ -1,7 +1,7 @@
 -- https://github.com/mcchrish/zenbones.nvim
 return {
   "mcchrish/zenbones.nvim",
-  enabled = true,
+  enabled = false,
   lazy = true,
   priority = 1000,
   dependencies = {

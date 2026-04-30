@@ -1,7 +1,7 @@
 -- https://github.com/Shatur/neovim-ayu
 return {
   "Shatur/neovim-ayu",
-  enabled = true,
+  enabled = false,
   lazy = true,
 	priority = 1000,
 }

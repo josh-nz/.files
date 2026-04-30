@@ -1,7 +1,7 @@
 -- https://github.com/Vallen217/eidolon.nvim
 return {
   "Vallen217/eidolon.nvim",
-  enabled = true,
+  enabled = false,
   lazy = true,
   priority = 1000,
 }

@@ -1,7 +1,7 @@
 -- https://github.com/rebelot/kanagawa.nvim
 return {
   "rebelot/kanagawa.nvim",
-  enabled = true,
+  enabled = false,
   lazy = true,
   priority = 1000,
 }

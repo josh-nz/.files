@@ -1,7 +1,7 @@
 -- https://github.com/catppuccin/nvim
 return {
   "catppuccin/nvim",
-  enabled = true,
+  enabled = false,
   name = "catppuccin",
   lazy = true,
   priority = 1000,

@@ -1,7 +1,7 @@
 -- https://github.com/embark-theme/vim
 return {
   "embark-theme/vim",
-  enabled = true,
+  enabled = false,
   name = "embark",
   lazy = true,
   priority = 1000,

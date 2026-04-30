@@ -1,7 +1,7 @@
 -- https://github.com/cocopon/iceberg.vim
 return {
   "cocopon/iceberg.vim",
-  enabled = true,
+  enabled = false,
   lazy = true,
   priority = 1000,
 }

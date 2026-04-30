@@ -1,7 +1,7 @@
 -- https://github.com/Mofiqul/adwaita.nvim
 return {
   "Mofiqul/adwaita.nvim",
-  enabled = true,
+  enabled = false,
   lazy = true,
   priority = 1000,
 }

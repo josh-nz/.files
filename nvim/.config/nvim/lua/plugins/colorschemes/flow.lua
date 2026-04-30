@@ -1,7 +1,7 @@
 -- https://github.com/0xstepit/flow.nvim
 return {
   "0xstepit/flow.nvim",
-  enabled = true,
+  enabled = false,
   lazy = true,
 	priority = 1000,
 }
