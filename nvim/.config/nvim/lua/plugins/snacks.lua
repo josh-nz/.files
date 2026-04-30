@@ -227,7 +227,7 @@ return {
     -- Window layouts
     layout = { enabled = false },
     -- Open LazyGit in a float, auto-configure colorscheme and integration with Neovim
-    lazygit = { enabled = true },
+    lazygit = { enabled = false },
     -- Pretty vim.notify
     notifier = { enabled = false },
     -- Picker for selecting items
