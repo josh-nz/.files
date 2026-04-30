@@ -32,14 +32,14 @@ vim.o.background = "dark"
 -- vim.cmd.colorscheme("blue")
 -- vim.cmd.colorscheme("evergarden")
 
-vim.cmd.colorscheme("darkvoid")
+-- vim.cmd.colorscheme("darkvoid")
 -- Darkvoid colorscheme seems to have mistakenly swapped the
 -- cursor fg and bg colors, so let's correctly swap them back.
-vim.api.nvim_set_hl(0, "Cursor", { bg = "#bdfe58" })
+-- vim.api.nvim_set_hl(0, "Cursor", { bg = "#bdfe58" })
 -- Darkvoid doesn't set Treesitter highlight groups, so we lose
 -- the comment italics. Link the Treesitter comment group to
 -- the comment highlight defined by Darkvoid to restore this.
-vim.api.nvim_set_hl(0, "@Comment", { link = "Comment" })
+-- vim.api.nvim_set_hl(0, "@Comment", { link = "Comment" })
 
 -- vim.cmd.colorscheme("serene")
 -- vim.cmd.colorscheme("eidolon")
