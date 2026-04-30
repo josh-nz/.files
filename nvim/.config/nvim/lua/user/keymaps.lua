@@ -138,7 +138,7 @@ nnoremap("#", "#zz")
 -- Turn off highlighted results
 nnoremap("<Esc>", "<Cmd>nohlsearch<CR><Esc>", { desc = "No search highlight" })
 
--- gF is a more useful default that gf as it will also go to the line number
+-- gF is a more useful default than gf as it will also go to the line number
 nnoremap("gf", "gF", { desc = "Go to file" })
 
 -- Send replaced char to black hole clip buffer instead of putting it in main clip buffer
@@ -164,10 +164,12 @@ nnoremap("<C-w><C-^>", "<C-w>v<C-^>", { desc = "Open alt buffer in vsplit" })
 -- nnoremap("<C-m>", "<Cmd>messages<CR>")
 nnoremap("<M-l>", "<Cmd>Lazy reload poss<CR>")
 
+nnoremap("<leader>yp", ":let @+=expand('%:.')<cr>", { desc = "Copy relative path" })
+nnoremap("<leader>yP", ":let @+=@%<cr>", { desc = "Copy absolute path" })
 
-nnoremap("<leader>by", "ggyG", { desc = "Yank buffer" })
+nnoremap("<leader>yb", "ggyG", { desc = "Yank buffer" })
 
-nnoremap("<leader>u", function() require("undotree").open() end)
+nnoremap("<leader>u", function() require("undotree").open() end, { desc = "Toggle undo tree" })
 
 
 
