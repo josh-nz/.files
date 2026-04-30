@@ -1,7 +1,7 @@
 -- https://github.com/shahshlok/vim-coach.nvim
 return {
   "shahshlok/vim-coach.nvim",
-  enabled = true,
+  enabled = false,
   dependencies = {
     "folke/snacks.nvim",
   },

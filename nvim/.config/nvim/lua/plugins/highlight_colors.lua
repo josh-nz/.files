@@ -1,7 +1,7 @@
 -- https://github.com/brenoprata10/nvim-highlight-colors
 return {
   "brenoprata10/nvim-highlight-colors",
-  enabled = true,
+  enabled = false,
   event = "VeryLazy",
   opts = {
     -- render = "foreground",
