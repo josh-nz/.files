@@ -1,7 +1,7 @@
 -- https://github.com/jedrzejboczar/possession.nvim
 return {
   "jedrzejboczar/possession.nvim",
-  enabled = true,
+  enabled = false,
   lazy = false,
   dependencies = {
     "nvim-lua/plenary.nvim",
