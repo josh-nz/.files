@@ -17,6 +17,8 @@ return {
           { path = "${3rd}/luv/library", words = { "vim%.uv" } },
           { path = "snacks.nvim", words = { "Snacks" } },
           { path = "lazy.nvim", words = { "LazyVim" } },
+          -- https://www.reddit.com/r/neovim/comments/1rssfs9/a_new_use_for_lspconfig_providing_types_for_your/
+          { path = 'nvim-lspconfig', words = { 'lspconfig' } },
         },
       },
     },
@@ -64,8 +66,10 @@ return {
     --  - settings (table): Override the default settings passed when initializing the server.
     --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
     local servers = {
-      -- https://luals.github.io/wiki/settings/
+      ---@type vim.lsp.Config
       lua_ls = {
+        -- https://luals.github.io/wiki/settings/
+        ---@type lspconfig.settings.lua_ls
         settings = {
           Lua = {
             completion = {
@@ -76,9 +80,11 @@ return {
           },
         },
       },
+      ---@type vim.lsp.Config
       elixirls = {
         cmd = { "/Users/josh/.local/share/nvim/mason/bin/elixir-ls" },
         -- https://github.com/elixir-lsp/elixir-ls?tab=readme-ov-file#elixirls-configuration-settings
+        ---@type lspconfig.settings.elixirls
         settings = {
           elixirLS = {
             dialyzerEnabled = true,
@@ -90,11 +96,13 @@ return {
           },
         },
       },
+      ---@type vim.lsp.Config
       tailwindcss = {
         -- filetypes = {
         --   "html",
         -- },
       },
+      ---@type vim.lsp.Config
       gleam = {},
     }
 

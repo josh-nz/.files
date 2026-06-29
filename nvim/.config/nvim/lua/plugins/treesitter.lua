@@ -79,6 +79,11 @@ return {
         -- Start treesitter syntax highlighting.
         vim.treesitter.start(ev.buf)
 
+        -- Starting treesitter will disable regex syntax highlighting, which 
+        -- some filetypes depend on for for indenting. So re-enable it.
+        -- https://www.reddit.com/r/neovim/comments/1t5q901/comment/okfqye2/
+        -- vim.cmd("syntax on") -- or maybe better syntax enable
+
         -- Enable treesitter indenting.
         if vim.treesitter.query.get(lang, "indents") then
           vim.bo.indentexpr = "v:lua.require('nvim-treesitter').indentexpr()"
