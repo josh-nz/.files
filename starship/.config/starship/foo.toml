@@ -5,15 +5,20 @@
 
 format = """
 $directory\
-${custom.mise_elixir}\
-$git_branch\
-$git_state\
-$git_status\
-$cmd_duration\
-$fill\
-$time\
 $line_break\
 $character"""
+
+# format = """
+# $directory\
+# ${custom.mise_elixir}\
+# $git_branch\
+# $git_state\
+# $git_status\
+# $cmd_duration\
+# $fill\
+# $time\
+# $line_break\
+# $character"""
 
 # The built in Elixir module is slow, hence the custom module.
 # https://github.com/starship/starship/issues/3867
