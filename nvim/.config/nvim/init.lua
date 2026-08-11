@@ -52,6 +52,9 @@ vim.o.background = "dark"
 -- vim.cmd.colorscheme("yukinord")
 -- vim.cmd.colorscheme("github_plus")
 -- require("user.backy").load_colorscheme()
+-- vim.cmd.colorscheme("cendre")
+-- vim.cmd.colorscheme("meowsoot")
+-- vim.cmd.colorscheme("rwth-dark")
 
 
 -- vim.api.nvim_set_hl(0, "Comment", { italic = true })
