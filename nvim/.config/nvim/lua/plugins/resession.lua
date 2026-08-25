@@ -2,7 +2,7 @@
 return {
   -- "stevearc/resession.nvim",
   dir = "/Users/josh/code/vendor-forks/resession.nvim",
-  enabled = true,
+  enabled = false,
   lazy = false,
   config = function()
     local resession = require("resession")

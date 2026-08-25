@@ -100,7 +100,7 @@
   "papercolor-theme": { "branch": "master", "commit": "0cfe64ffb24c21a6101b5f994ca342a74c977aef" },
   "petrolnoir.nvim": { "branch": "master", "commit": "874572bfc75c19a4efc038f5f12f651e04b7d549" },
   "pool-vim": { "branch": "master", "commit": "038e29e6747ce2d0497f0f63f524ef14b4b079bd" },
-  "possession.nvim": { "branch": "master", "commit": "fbea95b16c284727bc8deff2c3780a73efcdaca6" },
+  "possession.nvim": { "branch": "ai-remove-plenary", "commit": "2f9ab43e926f4c5f143b3497ffa46d1c328314fb" },
   "precognition.nvim": { "branch": "main", "commit": "2aae2687207029b3611a0e19a289f9e1c7efbe16" },
   "quick-scope": { "branch": "master", "commit": "6cee1d9e0b9ac0fbffeb538d4a5ba9f5628fabbc" },
   "rakis.nvim": { "branch": "main", "commit": "be8d63236673548ed3d743a9a963d6fbfb92bb83" },

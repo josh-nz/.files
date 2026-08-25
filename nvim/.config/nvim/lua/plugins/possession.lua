@@ -1,13 +1,16 @@
 -- https://github.com/jedrzejboczar/possession.nvim
+-- Above is original repo, no longer maintained. Using
+-- my fork with plenary.nvim removed branch.
 return {
-  "jedrzejboczar/possession.nvim",
-  enabled = false,
+  "josh-nz/possession.nvim",
+  branch = "ai-remove-plenary",
+  enabled = true,
   lazy = false,
-  dependencies = {
-    "nvim-lua/plenary.nvim",
-    -- https://github.com/ibhagwan/fzf-lua
-    -- "ibhagwan/fzf-lua",
-  },
+  -- dependencies = {
+  --   "nvim-lua/plenary.nvim",
+  --   -- https://github.com/ibhagwan/fzf-lua
+  --   -- "ibhagwan/fzf-lua",
+  -- },
   config = function()
     local possession = require("possession")
     possession.setup({
